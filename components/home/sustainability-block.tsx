@@ -21,8 +21,8 @@ export function SustainabilityBlock() {
 
             <div className="grid sm:grid-cols-2 gap-8 mb-12">
               <div className="flex flex-col gap-3">
-                <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center">
-                  <Gem className="h-6 w-6 text-white/80" />
+                <div className="h-12 w-12 rounded-full bg-zinc-900/10 flex items-center justify-center">
+                  <Gem className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold">Premium Quality</h3>
                 <p className="text-sm text-zinc-900">
@@ -31,8 +31,8 @@ export function SustainabilityBlock() {
               </div>
 
               <div className="flex flex-col gap-3">
-                <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center">
-                  <Box className="h-6 w-6 text-white/80" />
+                <div className="h-12 w-12 rounded-full bg-zinc-900/10 flex items-center justify-center">
+                  <Box className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold">Custom Solutions</h3>
                 <p className="text-sm text-zinc-900">
@@ -41,7 +41,7 @@ export function SustainabilityBlock() {
               </div>
             </div>
 
-            <Button asChild className="bg-white text-black hover:bg-zinc-300 rounded-full px-8 py-6 text-lg font-bold transition-all duration-300">
+            <Button asChild className="bg-zinc-900 text-white hover:bg-zinc-800 rounded-full px-8! py-6 text-lg font-bold transition-all duration-300">
               <Link href="/products">
                 Shop Premium Packaging
                 <ArrowRight className="ml-2 h-5 w-5" />

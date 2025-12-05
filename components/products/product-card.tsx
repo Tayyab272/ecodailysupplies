@@ -21,20 +21,20 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div
-      className="group relative flex flex-col"
+      className="group relative flex flex-col h-full border border-primary overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link href={`/products/${product.slug}`} className="flex-1 border border-gray-300 hover:border-primary p-3">
-        {/* Image Container */}
-        <div className="relative aspect-square w-full overflow-hidden rounded-xl">
+      <Link href={`/products/${product.slug}`} className="flex flex-col h-full">
+        {/* Image Container - Maximized Height */}
+        <div className="relative flex-1 aspect-square w-full bg-white overflow-hidden">
           {/* Primary Image */}
-          <div className="relative w-full h-full transition-transform duration-700 ease-out group-hover:scale-105">
+          <div className="relative w-full h-full transition-transform duration-700 ease-out">
             <Image
               src={primaryImage}
               alt={product.imageAlt || product.name}
               fill
-              className={`object-contain p-6 transition-opacity duration-500 ${isHovered && secondaryImage ? "opacity-0" : "opacity-100"
+              className={`object-cover transition-opacity duration-500 ${isHovered && secondaryImage ? "opacity-0" : "opacity-100"
                 }`}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
@@ -45,7 +45,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 src={secondaryImage}
                 alt={product.imageAlt || product.name}
                 fill
-                className={`object-contain p-6 transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"
+                className={`object-cover transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"
                   }`}
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               />
@@ -55,7 +55,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Badges */}
           <div className="absolute top-3 left-3 z-10">
             {Number(product.discount) > 0 && (
-              <span className="bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
+              <span className="bg-red-600 text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm">
                 Sale
               </span>
             )}
@@ -64,28 +64,28 @@ export function ProductCard({ product }: ProductCardProps) {
           {/* Floating View Details Button */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="transform translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              <button className="flex items-center gap-2 bg-primary text-black px-6 py-3 rounded-full font-medium text-sm shadow-xl hover:bg-white hover:text-black cursor-pointer transition-colors pointer-events-auto">
+              <span className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm shadow-xl hover:bg-gray-100 cursor-pointer pointer-events-auto">
                 <Eye className="h-4 w-4" />
                 View Details
-              </button>
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Product Info */}
-        <div className="mt-4 text-center border-t border-gray-300 pt-4">
-          <h3 className="text-sm font-medium text-gray-900 line-clamp-1 group-hover:text-gray-600 transition-colors">
+        {/* Product Info - Primary Background */}
+        <div className="bg-primary p-4 text-center z-20">
+          <h3 className="text-xs lg:text-base font-bold text-gray-900 mb-1 group-hover:underline decoration-white/50 underline-offset-4">
             {product.name}
           </h3>
 
-          <div className="mt-1 flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2 text-white/90">
             {shouldShowPrice ? (
               <>
-                <span className="text-sm font-bold text-primary">
+                <span className="text-md font-bold text-white">
                   £{displayPrice.toFixed(2)}
                 </span>
                 {Number(product.discount) > 0 && (
-                  <span className="text-xs text-gray-400 line-through">
+                  <span className="text-xs text-white/60 line-through">
                     £
                     {(
                       displayPrice /
@@ -95,15 +95,15 @@ export function ProductCard({ product }: ProductCardProps) {
                 )}
               </>
             ) : (
-              <span className="text-sm text-gray-500 italic">
+              <span className="text-sm font-medium italic">
                 View Price
               </span>
             )}
           </div>
 
-          {/* Variant Count (Optional - Minimalist) */}
+          {/* Variant Count */}
           {hasVariants && (
-            <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-wide">
+            <p className="text-[10px] text-white/50 mt-1 uppercase tracking-wider">
               {product.variants!.length} Colors
             </p>
           )}

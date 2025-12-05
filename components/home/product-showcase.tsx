@@ -40,19 +40,24 @@ export function ProductShowcase({
                         Product Showcase
                     </h2>
 
-                    {/* Tabs */}
-                    <div className="inline-flex p-1 bg-gray-100 rounded-full">
+                    {/* Sliding Pill Tabs */}
+                    <div className="relative inline-flex bg-white p-1.5 rounded-full shadow-sm border border-gray-300">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={cn(
-                                    "px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300",
-                                    activeTab === tab.id
-                                        ? "bg-white text-black shadow-sm"
-                                        : "text-gray-500 hover:text-gray-900"
+                                    "relative z-10 px-8 py-3 text-sm font-bold rounded-full transition-colors duration-300",
+                                    activeTab === tab.id ? "text-white" : "text-gray-900 hover:text-gray-600"
                                 )}
                             >
+                                {activeTab === tab.id && (
+                                    <motion.div
+                                        layoutId="activeTab"
+                                        className="absolute inset-0 bg-primary rounded-full -z-10"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
+                                )}
                                 {tab.label}
                             </button>
                         ))}
@@ -63,6 +68,7 @@ export function ProductShowcase({
                 <div className="min-h-[400px]">
                     {activeProducts.length > 0 ? (
                         <motion.div
+                            layout
                             key={activeTab}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -70,9 +76,11 @@ export function ProductShowcase({
                             transition={{ duration: 0.3 }}
                             className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
                         >
-                            {activeProducts.map((product) => (
-                                <ProductCard key={product.id} product={product} />
-                            ))}
+                            <AnimatePresence mode="popLayout">
+                                {activeProducts.map((product) => (
+                                    <ProductCard key={product.id} product={product} />
+                                ))}
+                            </AnimatePresence>
                         </motion.div>
                     ) : (
                         <motion.div
