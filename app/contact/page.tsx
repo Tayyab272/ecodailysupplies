@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +12,6 @@ import {
   Phone,
   MapPin,
   Send,
-  Leaf,
   Clock,
   CheckCircle,
   ArrowLeft,
@@ -185,62 +185,91 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
-      <div className="relative z-10 border-b-2 border-emerald-200">
+      <div className="relative z-10 border-b border-gray-300 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-6">
           <Breadcrumbs items={[{ label: "Contact", href: "/contact" }]} />
         </div>
       </div>
 
+      {/* Hero Section - Premium Style */}
+      <div className="relative w-full overflow-hidden bg-white">
+        <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
+          <Image
+            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Contact us - Professional customer service"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Subtle overlay for text readability */}
+          <div className="absolute inset-0 bg-linear-to-b from-gray-900/50 via-gray-900/30 to-gray-900/70" />
+
+          {/* Content Container */}
+          <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8 max-w-[1600px]">
+            <div className="flex h-full items-center">
+              <div className="max-w-4xl space-y-6 md:space-y-8">
+                {/* Label */}
+                <div className="flex items-center gap-3">
+                  <div className="h-px w-12 bg-white/40"></div>
+                  <span className="text-xs font-bold text-white/80 uppercase tracking-wider">
+                    Contact Us
+                  </span>
+                </div>
+
+                {/* Main Heading */}
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-[1.1]">
+                  We&apos;re Here to Help
+                </h1>
+
+                {/* Description */}
+                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
+                  Have questions about our eco-friendly packaging? We&apos;d love to
+                  hear from you.
+                </p>
+
+                {/* Decorative Line */}
+                <div className="pt-4">
+                  <div className="h-px w-24 bg-white/40"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-20 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-20 lg:py-24">
         <div className="mx-auto max-w-6xl">
           {/* Back Button */}
           <Link href="/">
             <Button
               variant="ghost"
               size="sm"
-              className="mb-8 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 -ml-2"
+              className="mb-12 text-gray-600 hover:text-gray-900 hover:bg-gray-50 -ml-2 transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" strokeWidth={2} />
               Back to Home
             </Button>
           </Link>
 
-          {/* Page Header */}
-          <div className="mb-16 md:mb-20 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4 text-emerald-600">
-              <Leaf className="h-6 w-6" />
-              <span className="text-sm font-semibold uppercase tracking-wider">
-                Get In Touch
-              </span>
-            </div>
-            <h1 className="mb-4 text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
-              We&apos;re Here to Help
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Have questions about our eco-friendly packaging? We&apos;d love to
-              hear from you.
-            </p>
-          </div>
-
-          <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
-            {/* Contact Info Sidebar */}
+          <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
+            {/* Contact Info Sidebar - Premium Style */}
             <div className="space-y-6">
               {/* Email Card */}
-              <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-300  transition-all duration-300 group">
+              <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 transition-all duration-300 group hover:shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-emerald-600 to-teal-600 shadow-lg group-hover:scale-110 transition-transform">
-                    <Mail className="h-6 w-6 text-white" strokeWidth={2} />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
+                    <Mail className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-700 mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
                       Email
                     </h3>
                     <a
                       href="mailto:sales@bubblewrapshop.co.uk"
-                      className="block text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors"
+                      className="block text-sm font-medium text-gray-900 hover:text-primary transition-colors break-all"
                     >
                       sales@bubblewrapshop.co.uk
                     </a>
@@ -249,23 +278,23 @@ export default function ContactPage() {
               </div>
 
               {/* Phone Card */}
-              <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-300 transition-all duration-300 group">
+              <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 transition-all duration-300 group hover:shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-emerald-600 to-teal-600 shadow-lg group-hover:scale-110 transition-transform">
-                    <Phone className="h-6 w-6 text-white" strokeWidth={2} />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
+                    <Phone className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-700 mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
                       Phone
                     </h3>
                     <a
                       href="tel:01254916167"
-                      className="block text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors mb-2"
+                      className="block text-sm font-medium text-gray-900 hover:text-primary transition-colors mb-2"
                     >
                       01254 916167
                     </a>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
-                      <Clock className="h-3 w-3" />
+                    <div className="flex items-center gap-2 text-xs text-gray-600">
+                      <Clock className="h-3.5 w-3.5" />
                       <span>Mon - Fri, 9 AM - 6 PM BST</span>
                     </div>
                   </div>
@@ -273,13 +302,13 @@ export default function ContactPage() {
               </div>
 
               {/* Office Card */}
-              <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-300  transition-all duration-300 group">
+              <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 transition-all duration-300 group hover:shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-emerald-600 to-teal-600 shadow-lg group-hover:scale-110 transition-transform">
-                    <MapPin className="h-6 w-6 text-white" strokeWidth={2} />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
+                    <MapPin className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-700 mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
                       Office
                     </h3>
                     <p className="text-sm text-gray-700 leading-relaxed">
@@ -296,11 +325,17 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-2 ">
-              <div className="bg-white rounded-2xl p-8 md:p-10 shadow-2xl border border-gray-300">
-                <div className="flex items-center gap-2 mb-8">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            {/* Contact Form - Premium Style */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-8 md:p-10">
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-1 w-12 bg-primary"></div>
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                      Contact Form
+                    </span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
                     Send us a Message
                   </h2>
                 </div>
@@ -313,7 +348,7 @@ export default function ContactPage() {
                 >
                   {/* General Error Message */}
                   {submitStatus === "error" && errorMessage && (
-                    <div className="border-2 border-red-200 bg-red-50 p-4 rounded-xl flex items-start gap-3">
+                    <div className="border border-red-200 bg-red-50 p-4 rounded-lg flex items-start gap-3">
                       <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 shrink-0" />
                       <p className="text-sm font-medium text-red-800">
                         {errorMessage}
@@ -339,8 +374,8 @@ export default function ContactPage() {
                         className={`h-11 border ${
                           errors.name
                             ? "border-red-500 focus-visible:ring-red-500"
-                            : "border-gray-300 focus-visible:ring-emerald-400"
-                        } bg-transparent focus-visible:ring-1! transition-all`}
+                            : "border-gray-300 focus-visible:ring-primary"
+                        } bg-white focus-visible:ring-1 transition-all`}
                         aria-invalid={errors.name ? "true" : "false"}
                         aria-describedby={errors.name ? "name-error" : undefined}
                       />
@@ -373,8 +408,8 @@ export default function ContactPage() {
                         className={`h-11 border ${
                           errors.email
                             ? "border-red-500 focus-visible:ring-red-500"
-                            : "border-gray-300 focus-visible:ring-emerald-400"
-                        } bg-transparent focus-visible:ring-1! transition-all`}
+                            : "border-gray-300 focus-visible:ring-primary"
+                        } bg-white focus-visible:ring-1 transition-all`}
                         aria-invalid={errors.email ? "true" : "false"}
                         aria-describedby={errors.email ? "email-error" : undefined}
                       />
@@ -405,7 +440,7 @@ export default function ContactPage() {
                         type="text"
                         placeholder="Your company"
                         onChange={handleInputChange}
-                        className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                        className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-1 transition-all"
                       />
                     </div>
 
@@ -425,8 +460,8 @@ export default function ContactPage() {
                         className={`h-11 border ${
                           errors.phone
                             ? "border-red-500 focus-visible:ring-red-500"
-                            : "border-gray-300 focus-visible:ring-emerald-400"
-                        } bg-transparent focus-visible:ring-1! transition-all`}
+                            : "border-gray-300 focus-visible:ring-primary"
+                        } bg-white focus-visible:ring-1 transition-all`}
                         aria-invalid={errors.phone ? "true" : "false"}
                         aria-describedby={errors.phone ? "phone-error" : undefined}
                       />
@@ -460,8 +495,8 @@ export default function ContactPage() {
                       className={`h-11 border ${
                         errors.subject
                           ? "border-red-500 focus-visible:ring-red-500"
-                          : "border-gray-300 focus-visible:ring-emerald-400"
-                      } bg-transparent focus-visible:ring-1! transition-all`}
+                          : "border-gray-300 focus-visible:ring-primary"
+                      } bg-white focus-visible:ring-1 transition-all`}
                       aria-invalid={errors.subject ? "true" : "false"}
                       aria-describedby={errors.subject ? "subject-error" : undefined}
                     />
@@ -494,8 +529,8 @@ export default function ContactPage() {
                       className={`min-h-[120px] border ${
                         errors.message
                           ? "border-red-500 focus-visible:ring-red-500"
-                          : "border-gray-300 focus-visible:ring-emerald-400"
-                      } bg-transparent focus-visible:ring-1! transition-all`}
+                          : "border-gray-300 focus-visible:ring-primary"
+                      } bg-white focus-visible:ring-1 transition-all`}
                       aria-invalid={errors.message ? "true" : "false"}
                       aria-describedby={errors.message ? "message-error" : undefined}
                     />
@@ -512,9 +547,9 @@ export default function ContactPage() {
                   </div>
 
                   {submitStatus === "success" && (
-                    <div className="border-2 border-emerald-200 bg-emerald-50 p-4 rounded-xl flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 shrink-0" />
-                      <p className="text-sm font-medium text-emerald-800">
+                    <div className="border border-green-200 bg-green-50 p-4 rounded-lg flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
+                      <p className="text-sm font-medium text-green-800">
                         Thank you! Your message has been sent successfully.
                         We&apos;ll get back to you soon.
                       </p>
@@ -525,7 +560,7 @@ export default function ContactPage() {
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="h-12 w-full md:w-auto bg-linear-to-r from-emerald-600 to-teal-600 px-8 text-base font-semibold text-white hover:shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="h-12 w-full md:w-auto bg-primary text-white px-8 text-base font-bold rounded-full hover:bg-gray-800 transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       "Sending..."

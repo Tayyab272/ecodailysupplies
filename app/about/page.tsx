@@ -14,7 +14,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+const siteUrl =
+  process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
 
 export const metadata: Metadata = {
   title: "About Us - Premium Packaging Supplies | Bubble Wrap Shop",
@@ -33,63 +34,91 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div>
+    <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
-      <div className="relative z-10 border-b border-emerald-200 bg-white/50 backdrop-blur-sm">
+      <div className="relative z-10 border-b border-gray-300 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-6">
           <Breadcrumbs items={[{ label: "About", href: "/about" }]} />
         </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="relative h-[500px] w-full overflow-hidden md:h-[600px] lg:h-[700px]">
-        <Image
-          src="https://images.unsplash.com/photo-1736979110904-d9d9efb35cf6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1470"
-          alt="Professional packaging workspace"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-linear-to-b from-emerald-900/20 via-teal-900/10 to-transparent" />
-        <div className="container relative mx-auto flex h-full items-end px-4 sm:px-6 lg:px-8 max-w-[1600px] pb-16 md:pb-20">
-          <div className="max-w-3xl">
-            <h1 className="mb-4 text-4xl md:text-5xl lg:text-7xl font-bold block bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent ">
-              About Us
-            </h1>
-            <p className="text-lg md:text-xl text-white leading-relaxed">
-              Premium eco-friendly packaging solutions for businesses of all
-              sizes
-            </p>
+      {/* Hero Section - Premium Style */}
+      <div className="relative w-full overflow-hidden bg-white">
+        <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
+          <Image
+            src="https://images.unsplash.com/photo-1623577411094-b22a7607cbb9?q=80&w=1813&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Professional packaging workspace"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Subtle overlay for text readability */}
+          <div className="absolute inset-0 bg-linear-to-b from-gray-900/50 via-gray-900/30 to-gray-900/70" />
+
+          {/* Content Container */}
+          <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8 max-w-[1600px]">
+            <div className="flex h-full items-center">
+              <div className="max-w-4xl space-y-6 md:space-y-8">
+                {/* Label */}
+                <div className="flex items-center gap-3">
+                  <div className="h-px w-12 bg-white/40"></div>
+                  <span className="text-xs font-bold text-white/80 uppercase tracking-wider">
+                    About Us
+                  </span>
+                </div>
+
+                {/* Main Heading */}
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-[1.1]">
+                  Premium Packaging Solutions
+                  <span className="block mt-2 md:mt-3">for Your Business</span>
+                </h1>
+
+                {/* Description */}
+                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
+                  We are a leading provider of premium eco-friendly packaging
+                  supplies, serving businesses across industries with
+                  sustainable, high-quality solutions.
+                </p>
+
+                {/* Decorative Line */}
+                <div className="pt-4">
+                  <div className="h-px w-24 bg-white/40"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Content Section */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-5xl">
           {/* Back Button */}
           <Link href="/">
             <Button
               variant="ghost"
               size="sm"
-              className="mb-8 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 -ml-2"
+              className="mb-12 text-gray-600 hover:text-gray-900 hover:bg-gray-50 -ml-2 transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" strokeWidth={2} />
               Back to Home
             </Button>
           </Link>
 
-          {/* Main Content */}
-          <div className="mb-20 bg-white rounded-xl p-6 shadow-lg border border-gray-300">
-            <div className="flex items-center gap-2 mb-6">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
-                Who We
-                <span className="block bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mt-1">
-                  Are
+          {/* Main Content - Premium Card */}
+          <div className="mb-20 bg-white rounded-lg border border-gray-300 shadow-sm p-8 md:p-12">
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-1 w-12 bg-primary"></div>
+                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Our Story
                 </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
+                Who We Are
               </h2>
             </div>
-            <div className="space-y-4 text-base leading-relaxed text-gray-700 md:text-lg">
+            <div className="space-y-6 text-base leading-relaxed text-gray-600 md:text-lg">
               <p>
                 We are a leading provider of premium eco-friendly packaging
                 supplies, serving businesses across industries with sustainable,
@@ -106,127 +135,159 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Stats Grid */}
-          <div className="mb-20 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-300 text-center group hover:shadow-xl transition-all duration-300">
+          {/* Stats Grid - Premium Style */}
+          <div className="mb-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+            <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8 text-center group hover:shadow-md transition-all duration-300">
               <div className="flex justify-center mb-4">
-                <div className="h-16 w-16 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Users className="h-8 w-8 text-white" strokeWidth={2} />
+                <div className="h-14 w-14 md:h-16 md:w-16 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Users
+                    className="h-7 w-7 md:h-8 md:w-8 text-white"
+                    strokeWidth={2}
+                  />
                 </div>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 tracking-tight">
                 10,000+
               </div>
-              <div className="text-sm text-gray-600">Happy Customers</div>
+              <div className="text-xs md:text-sm text-gray-600 uppercase tracking-wider font-medium">
+                Happy Customers
+              </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-300 text-center group hover:shadow-xl transition-all duration-300">
+            <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8 text-center group hover:shadow-md transition-all duration-300">
               <div className="flex justify-center mb-4">
-                <div className="h-16 w-16 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Package className="h-8 w-8 text-white" strokeWidth={2} />
+                <div className="h-14 w-14 md:h-16 md:w-16 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Package
+                    className="h-7 w-7 md:h-8 md:w-8 text-white"
+                    strokeWidth={2}
+                  />
                 </div>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">50+</div>
-              <div className="text-sm text-gray-600">Product Categories</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 tracking-tight">
+                50+
+              </div>
+              <div className="text-xs md:text-sm text-gray-600 uppercase tracking-wider font-medium">
+                Product Categories
+              </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-300 text-center group hover:shadow-xl transition-all duration-300">
+            <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8 text-center group hover:shadow-md transition-all duration-300">
               <div className="flex justify-center mb-4">
-                <div className="h-16 w-16 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <TrendingUp className="h-8 w-8 text-white" strokeWidth={2} />
+                <div className="h-14 w-14 md:h-16 md:w-16 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <TrendingUp
+                    className="h-7 w-7 md:h-8 md:w-8 text-white"
+                    strokeWidth={2}
+                  />
                 </div>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">15+</div>
-              <div className="text-sm text-gray-600">Years Experience</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 tracking-tight">
+                15+
+              </div>
+              <div className="text-xs md:text-sm text-gray-600 uppercase tracking-wider font-medium">
+                Years Experience
+              </div>
             </div>
 
-            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-300 text-center group hover:shadow-xl transition-all duration-300">
+            <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8 text-center group hover:shadow-md transition-all duration-300">
               <div className="flex justify-center mb-4">
-                <div className="h-16 w-16 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Award className="h-8 w-8 text-white" strokeWidth={2} />
+                <div className="h-14 w-14 md:h-16 md:w-16 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Award
+                    className="h-7 w-7 md:h-8 md:w-8 text-white"
+                    strokeWidth={2}
+                  />
                 </div>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">99%</div>
-              <div className="text-sm text-gray-600">Satisfaction Rate</div>
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 tracking-tight">
+                99%
+              </div>
+              <div className="text-xs md:text-sm text-gray-600 uppercase tracking-wider font-medium">
+                Satisfaction Rate
+              </div>
             </div>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-x-8 md:gap-y-8">
-            <div className="group space-y-4 p-6 bg-white rounded-2xl border border-gray-300 shadow-2xl transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center shadow-lg">
-                <Heart className="h-6 w-6 text-white" strokeWidth={2} />
+          {/* Features Grid - Premium Style */}
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:gap-x-8 md:gap-y-8 mb-20">
+            <div className="group bg-white rounded-lg border border-gray-300 shadow-sm p-8 hover:shadow-md transition-all duration-300">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <Heart className="h-6 w-6 text-primary" strokeWidth={2} />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+                  Our Commitment
+                </h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">
-                Our Commitment
-              </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Premium quality standards on all products
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Next-day delivery available nationwide
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Automatic bulk pricing for best value
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Sustainable eco-friendly options
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Exceptional customer service
                   </span>
                 </li>
               </ul>
             </div>
 
-            <div className="group space-y-4 p-6 bg-white rounded-2xl border border-gray-300 shadow-2xl transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-linear-to-br from-emerald-600 to-teal-600 flex items-center justify-center shadow-lg">
-                <Leaf className="h-6 w-6 text-white" strokeWidth={2} />
+            <div className="group bg-white rounded-lg border border-gray-300 shadow-sm p-8 hover:shadow-md transition-all duration-300">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <Leaf className="h-6 w-6 text-primary" strokeWidth={2} />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+                  Why Choose Us
+                </h3>
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Why Choose Us</h3>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Industry-leading sustainable practices
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Trusted by 10,000+ businesses
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Comprehensive product range
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     15+ years of packaging expertise
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600" />
-                  <span className="text-sm leading-relaxed text-gray-600">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
                     Competitive pricing guaranteed
                   </span>
                 </li>
@@ -234,27 +295,37 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <section className="mt-12 relative border-t bg-linear-to-br from-emerald-600 to-teal-600 py-20 md:py-28 lg:py-32 overflow-hidden">
-            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
-              <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          {/* CTA Section - Premium Style */}
+          <section className="relative bg-gray-900 rounded-lg overflow-hidden">
+            <div className="relative z-10 px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24">
+              <div className="mx-auto max-w-3xl text-center">
                 {/* Heading */}
-                <h2 className="mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Explore Our Complete
-                  <span className="block mt-2 text-white">Product Catalog</span>
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <div className="h-px w-12 bg-white/30"></div>
+                  <span className="text-xs font-bold text-white/60 uppercase tracking-wider">
+                    Explore
+                  </span>
+                  <div className="h-px w-12 bg-white/30"></div>
+                </div>
+                <h2 className="mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
+                  Our Complete Product Catalog
                 </h2>
 
                 {/* Description */}
-                <p className="mb-10 text-base md:text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed lg:mb-12">
+                <p className="mb-10 text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
                   Discover our full range of premium packaging solutions, from
                   eco-friendly materials to custom packaging options. Bulk
                   pricing available on all products.
                 </p>
 
                 {/* CTA Button */}
-                <Button asChild variant="ghost" className="w-fit group">
+                <Button
+                  asChild
+                  className="group bg-white text-gray-900 hover:bg-gray-100 rounded-full px-8 py-6 text-base font-bold transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
                   <Link
                     href="/products"
-                    className="inline-flex items-center gap-3 px-8 py-4 mt-4 text-base font-semibold border border-white/20 text-white bg-white/20 rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                    className="inline-flex items-center gap-3"
                   >
                     View All Products
                     <ArrowRight
