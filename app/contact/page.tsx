@@ -329,8 +329,7 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-8 md:p-10">
                 <div className="mb-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="h-1 w-12 bg-primary"></div>
+                  <div className="mb-4">
                     <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                       Contact Form
                     </span>

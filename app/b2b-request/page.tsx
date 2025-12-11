@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft,
-  Briefcase,
   Package,
   TrendingUp,
   CheckCircle,
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
 
 export default function B2BRequestPage() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen bg-white">
       {/* Breadcrumbs */}
-      <div className="relative z-10 border-b-2 border-emerald-200">
+      <div className="relative z-10 border-b border-gray-300 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-6">
           <Breadcrumbs
             items={[
@@ -61,117 +61,185 @@ export default function B2BRequestPage() {
         </div>
       </div>
 
+      {/* Hero Section - Premium Style */}
+      <div className="relative w-full overflow-hidden bg-white">
+        <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
+          <Image
+            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="B2B Business Solutions - Professional wholesale packaging"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Subtle overlay for text readability */}
+          <div className="absolute inset-0 bg-linear-to-b from-gray-900/50 via-gray-900/30 to-gray-900/70" />
+
+          {/* Content Container */}
+          <div className="container relative mx-auto h-full px-4 sm:px-6 lg:px-8 max-w-[1600px]">
+            <div className="flex h-full items-center">
+              <div className="max-w-4xl space-y-6 md:space-y-8">
+                {/* Label */}
+                <div className="flex items-center gap-3">
+                  <div className="h-px w-12 bg-white/40"></div>
+                  <span className="text-xs font-bold text-white/80 uppercase tracking-wider">
+                    B2B Solutions
+                  </span>
+                </div>
+
+                {/* Main Heading */}
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-[1.1]">
+                  Request a Custom Quote
+                </h1>
+
+                {/* Description */}
+                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
+                  Need bulk packaging supplies? Get competitive wholesale
+                  pricing for your business. Fill out the form below and our
+                  team will provide a custom quote within 1-2 business days.
+                </p>
+
+                {/* Decorative Line */}
+                <div className="pt-4">
+                  <div className="h-px w-24 bg-white/40"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-20 lg:py-24">
+        <div className="mx-auto max-w-5xl">
           {/* Back Button */}
           <Link href="/">
             <Button
               variant="ghost"
               size="sm"
-              className="mb-8 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 -ml-2"
+              className="mb-12 text-gray-600 hover:text-gray-900 hover:bg-gray-50 -ml-2 transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" strokeWidth={2} />
               Back to Home
             </Button>
           </Link>
 
-          {/* Page Header */}
-          <div className="mb-12 md:mb-16 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4 text-emerald-600">
-              <Briefcase className="h-6 w-6" />
-              <span className="text-sm font-semibold uppercase tracking-wider">
-                B2B Solutions
-              </span>
-            </div>
-            <h1 className="mb-4 text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900">
-              Request a Custom Quote
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Need bulk packaging supplies? Get competitive wholesale pricing
-              for your business. Fill out the form below and our team will
-              provide a custom quote within 1-2 business days.
-            </p>
-          </div>
-
-          {/* Link to Wholesale Page */}
-          <div className="mb-8 p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>New to wholesale?</strong> Learn more about our bulk
-              pricing, benefits, and how it works.
-            </p>
-            <Button asChild variant="outline" size="sm">
-              <Link href="/wholesale">
-                Visit Wholesale Information Page
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
-          {/* Benefits Section */}
-          <div className="grid gap-4 md:grid-cols-3 mb-12">
-            <div className="bg-emerald-50 rounded-xl p-6 border border-emerald-200">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600">
-                  <TrendingUp className="h-5 w-5 text-white" />
-                </div>
-                <h3 className="text-sm font-bold text-gray-900">
-                  Save Up to 40%
-                </h3>
+          {/* Link to Wholesale Page - Premium Style */}
+          <div className="mb-12 bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex-1">
+                <p className="text-sm md:text-base text-gray-700 mb-1">
+                  <strong className="font-bold text-gray-900">
+                    New to wholesale?
+                  </strong>{" "}
+                  Learn more about our bulk pricing, benefits, and how it works.
+                </p>
               </div>
-              <p className="text-sm text-gray-600">
-                Competitive bulk pricing for large orders
-              </p>
-            </div>
-
-            <div className="bg-emerald-50 rounded-xl p-6 border border-emerald-200">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600">
-                  <Package className="h-5 w-5 text-white" />
-                </div>
-                <h3 className="text-sm font-bold text-gray-900">
-                  Custom Solutions
-                </h3>
-              </div>
-              <p className="text-sm text-gray-600">
-                Tailored packaging solutions for your needs
-              </p>
-            </div>
-
-            <div className="bg-emerald-50 rounded-xl p-6 border border-emerald-200">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-600">
-                  <CheckCircle className="h-5 w-5 text-white" />
-                </div>
-                <h3 className="text-sm font-bold text-gray-900">
-                  Fast Response
-                </h3>
-              </div>
-              <p className="text-sm text-gray-600">
-                Get a quote within 1-2 business days
-              </p>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="shrink-0 border-gray-300 hover:bg-gray-50"
+              >
+                <Link
+                  href="/wholesale"
+                  className="inline-flex items-center gap-2"
+                >
+                  Visit Wholesale Page
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
 
-          {/* Form Section */}
-          <div className="bg-white rounded-2xl p-8 md:p-10 shadow-2xl border border-gray-300">
+          {/* Benefits Section - Premium Style */}
+          <div className="grid gap-6 md:grid-cols-3 mb-16">
+            <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8 group hover:shadow-md transition-all duration-300">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
+                  <TrendingUp
+                    className="h-6 w-6 text-primary group-hover:text-white transition-colors"
+                    strokeWidth={2}
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                    Save Up to 40%
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Competitive bulk pricing for large orders
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8 group hover:shadow-md transition-all duration-300">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
+                  <Package
+                    className="h-6 w-6 text-primary group-hover:text-white transition-colors"
+                    strokeWidth={2}
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                    Custom Solutions
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Tailored packaging solutions for your needs
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8 group hover:shadow-md transition-all duration-300">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
+                  <CheckCircle
+                    className="h-6 w-6 text-primary group-hover:text-white transition-colors"
+                    strokeWidth={2}
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">
+                    Fast Response
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    Get a quote within 1-2 business days
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Form Section - Premium Style */}
+          <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-8 md:p-10 mb-12">
+            <div className="mb-8">
+              <div className="mb-4">
+                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  Request Form
+                </span>
+              </div>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
+                Get Your Custom Quote
+              </h2>
+            </div>
             <B2BRequestForm />
           </div>
 
-          {/* Additional Info */}
-          <div className="mt-12 text-center">
-            <p className="text-sm text-gray-600">
+          {/* Additional Info - Premium Style */}
+          <div className="text-center bg-gray-50 rounded-lg border border-gray-200 p-6 md:p-8">
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
               Have questions?{" "}
               <Link
                 href="/contact"
-                className="text-emerald-600 hover:text-emerald-700 font-semibold underline"
+                className="text-primary hover:text-gray-900 font-bold underline transition-colors"
               >
                 Contact our sales team
               </Link>{" "}
               or call us at{" "}
               <a
                 href="tel:01254916167"
-                className="text-emerald-600 hover:text-emerald-700 font-semibold"
+                className="text-primary hover:text-gray-900 font-bold transition-colors"
               >
                 01254 916167
               </a>

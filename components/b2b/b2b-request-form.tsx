@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,13 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Briefcase,
-  Send,
-  CheckCircle,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
+import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import type { CreateB2BRequestInput } from "@/types/b2b-request";
 
 interface FormErrors {
@@ -43,7 +36,6 @@ interface FormErrors {
 }
 
 export function B2BRequestForm() {
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
@@ -108,7 +100,8 @@ export function B2BRequestForm() {
       const phoneRegex = /^[\d\s\-\+\(\)]+$/;
       const cleanPhone = formData.phone.replace(/\s/g, "");
       if (!phoneRegex.test(formData.phone) || cleanPhone.length < 10) {
-        newErrors.phone = "Please enter a valid phone number (minimum 10 digits)";
+        newErrors.phone =
+          "Please enter a valid phone number (minimum 10 digits)";
       }
     }
 
@@ -132,15 +125,18 @@ export function B2BRequestForm() {
     if (formData.vatNumber && formData.vatNumber.trim()) {
       const vatRegex = /^[A-Z]{2}?[A-Z0-9]{2,12}$/i;
       if (!vatRegex.test(formData.vatNumber.trim())) {
-        newErrors.vatNumber = "Please enter a valid VAT number (e.g., GB123456789)";
+        newErrors.vatNumber =
+          "Please enter a valid VAT number (e.g., GB123456789)";
       }
     }
 
     // Products Interested validation
     if (!formData.productsInterested.trim()) {
-      newErrors.productsInterested = "Please describe the products you're interested in";
+      newErrors.productsInterested =
+        "Please describe the products you're interested in";
     } else if (formData.productsInterested.trim().length < 10) {
-      newErrors.productsInterested = "Please provide more details (at least 10 characters)";
+      newErrors.productsInterested =
+        "Please provide more details (at least 10 characters)";
     }
 
     // Estimated Quantity validation
@@ -165,7 +161,8 @@ export function B2BRequestForm() {
     if (!formData.deliveryAddress.addressLine1.trim()) {
       newErrors.deliveryAddress.addressLine1 = "Address line 1 is required";
     } else if (formData.deliveryAddress.addressLine1.trim().length < 5) {
-      newErrors.deliveryAddress.addressLine1 = "Address must be at least 5 characters";
+      newErrors.deliveryAddress.addressLine1 =
+        "Address must be at least 5 characters";
     }
 
     if (!formData.deliveryAddress.city.trim()) {
@@ -177,13 +174,15 @@ export function B2BRequestForm() {
     if (!formData.deliveryAddress.state.trim()) {
       newErrors.deliveryAddress.state = "County/State is required";
     } else if (formData.deliveryAddress.state.trim().length < 2) {
-      newErrors.deliveryAddress.state = "County/State must be at least 2 characters";
+      newErrors.deliveryAddress.state =
+        "County/State must be at least 2 characters";
     }
 
     if (!formData.deliveryAddress.postalCode.trim()) {
       newErrors.deliveryAddress.postalCode = "Postal code is required";
     } else if (formData.deliveryAddress.postalCode.trim().length < 4) {
-      newErrors.deliveryAddress.postalCode = "Postal code must be at least 4 characters";
+      newErrors.deliveryAddress.postalCode =
+        "Postal code must be at least 4 characters";
     }
 
     if (!formData.deliveryAddress.country) {
@@ -213,7 +212,9 @@ export function B2BRequestForm() {
         },
       }));
       // Clear error for this field
-      if (errors.deliveryAddress?.[field as keyof typeof errors.deliveryAddress]) {
+      if (
+        errors.deliveryAddress?.[field as keyof typeof errors.deliveryAddress]
+      ) {
         setErrors((prev) => ({
           ...prev,
           deliveryAddress: {
@@ -365,7 +366,7 @@ export function B2BRequestForm() {
     <form onSubmit={handleSubmit} className="space-y-8" noValidate>
       {/* General Error Message */}
       {submitStatus === "error" && errorMessage && (
-        <div className="border-2 border-red-200 bg-red-50 p-4 rounded-xl flex items-start gap-3">
+        <div className="border border-red-200 bg-red-50 p-4 rounded-lg flex items-start gap-3">
           <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 shrink-0" />
           <div className="flex-1">
             <p className="text-sm font-semibold text-red-800 mb-1">
@@ -378,9 +379,8 @@ export function B2BRequestForm() {
 
       {/* Company Information Section */}
       <div className="space-y-6">
-        <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
-          <Briefcase className="h-5 w-5 text-emerald-600" />
-          <h2 className="text-xl font-bold text-gray-900">
+        <div className="pb-4 border-b border-gray-200">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
             Company Information
           </h2>
         </div>
@@ -398,13 +398,15 @@ export function B2BRequestForm() {
               value={formData.companyName}
               onChange={handleInputChange}
               placeholder="Acme Corporation Ltd"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.companyName
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.companyName ? "true" : "false"}
-              aria-describedby={errors.companyName ? "companyName-error" : undefined}
+              aria-describedby={
+                errors.companyName ? "companyName-error" : undefined
+              }
             />
             {errors.companyName && (
               <p
@@ -430,13 +432,15 @@ export function B2BRequestForm() {
               value={formData.contactName}
               onChange={handleInputChange}
               placeholder="John Smith"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.contactName
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.contactName ? "true" : "false"}
-              aria-describedby={errors.contactName ? "contactName-error" : undefined}
+              aria-describedby={
+                errors.contactName ? "contactName-error" : undefined
+              }
             />
             {errors.contactName && (
               <p
@@ -464,11 +468,11 @@ export function B2BRequestForm() {
               value={formData.email}
               onChange={handleInputChange}
               placeholder="contact@company.com"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.email
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.email ? "true" : "false"}
               aria-describedby={errors.email ? "email-error" : undefined}
             />
@@ -496,11 +500,11 @@ export function B2BRequestForm() {
               value={formData.phone}
               onChange={handleInputChange}
               placeholder="01254 916167"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.phone
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.phone ? "true" : "false"}
               aria-describedby={errors.phone ? "phone-error" : undefined}
             />
@@ -529,13 +533,15 @@ export function B2BRequestForm() {
               value={formData.companyWebsite}
               onChange={handleInputChange}
               placeholder="https://www.company.com"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.companyWebsite
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.companyWebsite ? "true" : "false"}
-              aria-describedby={errors.companyWebsite ? "companyWebsite-error" : undefined}
+              aria-describedby={
+                errors.companyWebsite ? "companyWebsite-error" : undefined
+              }
             />
             {errors.companyWebsite && (
               <p
@@ -560,13 +566,15 @@ export function B2BRequestForm() {
               value={formData.vatNumber}
               onChange={handleInputChange}
               placeholder="GB123456789"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.vatNumber
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.vatNumber ? "true" : "false"}
-              aria-describedby={errors.vatNumber ? "vatNumber-error" : undefined}
+              aria-describedby={
+                errors.vatNumber ? "vatNumber-error" : undefined
+              }
             />
             {errors.vatNumber && (
               <p
@@ -598,9 +606,10 @@ export function B2BRequestForm() {
 
       {/* Request Details Section */}
       <div className="space-y-6">
-        <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
-          <Briefcase className="h-5 w-5 text-emerald-600" />
-          <h2 className="text-xl font-bold text-gray-900">Request Details</h2>
+        <div className="pb-4 border-b border-gray-200">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
+            Request Details
+          </h2>
         </div>
 
         <div className="space-y-2">
@@ -615,13 +624,15 @@ export function B2BRequestForm() {
             value={formData.productsInterested}
             onChange={handleInputChange}
             placeholder="e.g., Bubble wrap rolls, packing boxes, protective packaging materials..."
-            className={`min-h-[100px] ${
+            className={`min-h-[100px] border bg-white ${
               errors.productsInterested
                 ? "border-red-500 focus-visible:ring-red-500"
-                : ""
-            }`}
+                : "border-gray-300 focus-visible:ring-primary"
+            } focus-visible:ring-1 transition-all`}
             aria-invalid={errors.productsInterested ? "true" : "false"}
-            aria-describedby={errors.productsInterested ? "productsInterested-error" : undefined}
+            aria-describedby={
+              errors.productsInterested ? "productsInterested-error" : undefined
+            }
           />
           {errors.productsInterested && (
             <p
@@ -654,13 +665,15 @@ export function B2BRequestForm() {
               value={formData.estimatedQuantity}
               onChange={handleInputChange}
               placeholder="e.g., 1000-5000 units or 5000+"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.estimatedQuantity
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.estimatedQuantity ? "true" : "false"}
-              aria-describedby={errors.estimatedQuantity ? "estimatedQuantity-error" : undefined}
+              aria-describedby={
+                errors.estimatedQuantity ? "estimatedQuantity-error" : undefined
+              }
             />
             {errors.estimatedQuantity && (
               <p
@@ -680,9 +693,11 @@ export function B2BRequestForm() {
             </Label>
             <Select
               value={formData.budgetRange || ""}
-              onValueChange={(value) => handleSelectChange("budgetRange", value)}
+              onValueChange={(value) =>
+                handleSelectChange("budgetRange", value)
+              }
             >
-              <SelectTrigger className="h-11">
+              <SelectTrigger className="h-11 border border-gray-300 bg-white focus:ring-primary">
                 <SelectValue placeholder="Select budget range" />
               </SelectTrigger>
               <SelectContent>
@@ -712,13 +727,17 @@ export function B2BRequestForm() {
             value={formData.preferredDeliveryDate}
             onChange={handleInputChange}
             min={new Date().toISOString().split("T")[0]}
-            className={`h-11 ${
+            className={`h-11 border bg-white ${
               errors.preferredDeliveryDate
                 ? "border-red-500 focus-visible:ring-red-500"
-                : ""
-            }`}
+                : "border-gray-300 focus-visible:ring-primary"
+            } focus-visible:ring-1 transition-all`}
             aria-invalid={errors.preferredDeliveryDate ? "true" : "false"}
-            aria-describedby={errors.preferredDeliveryDate ? "preferredDeliveryDate-error" : undefined}
+            aria-describedby={
+              errors.preferredDeliveryDate
+                ? "preferredDeliveryDate-error"
+                : undefined
+            }
           />
           {errors.preferredDeliveryDate && (
             <p
@@ -735,9 +754,10 @@ export function B2BRequestForm() {
 
       {/* Delivery Address Section */}
       <div className="space-y-6">
-        <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
-          <Briefcase className="h-5 w-5 text-emerald-600" />
-          <h2 className="text-xl font-bold text-gray-900">Delivery Address</h2>
+        <div className="pb-4 border-b border-gray-200">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 tracking-tight">
+            Delivery Address
+          </h2>
         </div>
 
         <div className="space-y-2">
@@ -755,13 +775,19 @@ export function B2BRequestForm() {
             value={formData.deliveryAddress.addressLine1}
             onChange={handleInputChange}
             placeholder="Unit BR16 Blakewater Road"
-            className={`h-11 ${
+            className={`h-11 border bg-white ${
               errors.deliveryAddress?.addressLine1
                 ? "border-red-500 focus-visible:ring-red-500"
-                : ""
-            }`}
-            aria-invalid={errors.deliveryAddress?.addressLine1 ? "true" : "false"}
-            aria-describedby={errors.deliveryAddress?.addressLine1 ? "addressLine1-error" : undefined}
+                : "border-gray-300 focus-visible:ring-primary"
+            } focus-visible:ring-1 transition-all`}
+            aria-invalid={
+              errors.deliveryAddress?.addressLine1 ? "true" : "false"
+            }
+            aria-describedby={
+              errors.deliveryAddress?.addressLine1
+                ? "addressLine1-error"
+                : undefined
+            }
           />
           {errors.deliveryAddress?.addressLine1 && (
             <p
@@ -789,7 +815,7 @@ export function B2BRequestForm() {
             value={formData.deliveryAddress.addressLine2}
             onChange={handleInputChange}
             placeholder="Blackburn, England"
-            className="h-11"
+            className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-1 transition-all"
           />
         </div>
 
@@ -809,13 +835,15 @@ export function B2BRequestForm() {
               value={formData.deliveryAddress.city}
               onChange={handleInputChange}
               placeholder="Blackburn"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.deliveryAddress?.city
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.deliveryAddress?.city ? "true" : "false"}
-              aria-describedby={errors.deliveryAddress?.city ? "city-error" : undefined}
+              aria-describedby={
+                errors.deliveryAddress?.city ? "city-error" : undefined
+              }
             />
             {errors.deliveryAddress?.city && (
               <p
@@ -844,13 +872,15 @@ export function B2BRequestForm() {
               value={formData.deliveryAddress.state}
               onChange={handleInputChange}
               placeholder="Lancashire"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.deliveryAddress?.state
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
               aria-invalid={errors.deliveryAddress?.state ? "true" : "false"}
-              aria-describedby={errors.deliveryAddress?.state ? "state-error" : undefined}
+              aria-describedby={
+                errors.deliveryAddress?.state ? "state-error" : undefined
+              }
             />
             {errors.deliveryAddress?.state && (
               <p
@@ -881,13 +911,19 @@ export function B2BRequestForm() {
               value={formData.deliveryAddress.postalCode}
               onChange={handleInputChange}
               placeholder="BB1 5QF"
-              className={`h-11 ${
+              className={`h-11 border bg-white ${
                 errors.deliveryAddress?.postalCode
                   ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}
-              aria-invalid={errors.deliveryAddress?.postalCode ? "true" : "false"}
-              aria-describedby={errors.deliveryAddress?.postalCode ? "postalCode-error" : undefined}
+                  : "border-gray-300 focus-visible:ring-primary"
+              } focus-visible:ring-1 transition-all`}
+              aria-invalid={
+                errors.deliveryAddress?.postalCode ? "true" : "false"
+              }
+              aria-describedby={
+                errors.deliveryAddress?.postalCode
+                  ? "postalCode-error"
+                  : undefined
+              }
             />
             {errors.deliveryAddress?.postalCode && (
               <p
@@ -914,11 +950,13 @@ export function B2BRequestForm() {
                 handleSelectChange("deliveryAddress.country", value)
               }
             >
-              <SelectTrigger className={`h-11 ${
-                errors.deliveryAddress?.country
-                  ? "border-red-500 focus-visible:ring-red-500"
-                  : ""
-              }`}>
+              <SelectTrigger
+                className={`h-11 border bg-white ${
+                  errors.deliveryAddress?.country
+                    ? "border-red-500 focus-visible:ring-red-500"
+                    : "border-gray-300 focus-visible:ring-primary"
+                } focus-visible:ring-1 transition-all`}
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -961,19 +999,19 @@ export function B2BRequestForm() {
           value={formData.additionalNotes}
           onChange={handleInputChange}
           placeholder="Any special requirements, packaging specifications, delivery instructions, etc."
-          className="min-h-[120px]"
+          className="min-h-[120px] border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-1 transition-all"
         />
       </div>
 
       {/* Success/Error Messages */}
       {submitStatus === "success" && (
-        <div className="border-2 border-emerald-200 bg-emerald-50 p-4 rounded-xl flex items-start gap-3">
-          <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 shrink-0" />
+        <div className="border border-green-200 bg-green-50 p-4 rounded-lg flex items-start gap-3">
+          <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 shrink-0" />
           <div className="flex-1">
-            <p className="text-sm font-semibold text-emerald-800 mb-1">
+            <p className="text-sm font-semibold text-green-800 mb-1">
               Request Submitted Successfully!
             </p>
-            <p className="text-sm text-emerald-700">
+            <p className="text-sm text-green-700">
               Thank you for your interest. Our team will review your request and
               get back to you within 1-2 business days with a custom quote.
             </p>
@@ -986,7 +1024,7 @@ export function B2BRequestForm() {
         type="submit"
         size="lg"
         disabled={isSubmitting}
-        className="h-12 w-full md:w-auto bg-linear-to-r from-emerald-600 to-teal-600 px-8 text-base font-semibold text-white hover:shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="h-12 w-full md:w-auto bg-primary text-white px-8 text-base font-bold rounded-full hover:bg-gray-800 transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? (
           <>

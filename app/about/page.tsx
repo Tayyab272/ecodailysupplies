@@ -108,8 +108,7 @@ export default function AboutPage() {
           {/* Main Content - Premium Card */}
           <div className="mb-20 bg-white rounded-lg border border-gray-300 shadow-sm p-8 md:p-12">
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-1 w-12 bg-primary"></div>
+              <div className="mb-4">
                 <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                   Our Story
                 </span>
