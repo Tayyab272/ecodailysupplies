@@ -29,12 +29,12 @@ export function VariantSelector({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <span className="label-luxury text-sm font-medium">
+        <span className="text-xs font-bold uppercase tracking-wider text-gray-900">
           {label.toUpperCase()}
         </span>
         {selectedVariant && (
-          <span className="text-sm text-muted-foreground">
-            Selected: {variants.find((v) => v.id === selectedVariant)?.name}
+          <span className="text-xs text-gray-500">
+            {variants.find((v) => v.id === selectedVariant)?.name}
           </span>
         )}
       </div>
@@ -49,7 +49,7 @@ export function VariantSelector({
             key={variant.id}
             value={variant.id}
             aria-label={`Select ${variant.name}`}
-            className="h-12 min-w-12 border-2 border-gray-300 data-[state=on]:border-emerald-600 data-[state=on]:bg-linear-to-br data-[state=on]:from-emerald-100 cursor-pointer data-[state=on]:to-teal-100 data-[state=on]:text-emerald-700 data-[state=on]:font-semibold hover:border-emerald-600 transition-all"
+            className="h-11 min-w-11 px-4 border-2 border-gray-300 bg-white data-[state=on]:border-primary data-[state=on]:bg-primary data-[state=on]:text-white data-[state=on]:font-bold cursor-pointer hover:border-gray-300 transition-all duration-300 rounded-md text-sm"
           >
             {variant.name}
           </ToggleGroupItem>

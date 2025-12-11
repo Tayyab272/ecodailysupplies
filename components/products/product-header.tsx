@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/common/breadcrumbs";
+import { ArrowRight } from "lucide-react";
 
 interface ProductHeaderProps {
   productName: string;
@@ -22,20 +24,34 @@ export function ProductHeader({
   ];
 
   return (
-    <div className="space-y-6 pb-8 border-b-2 border-emerald-200">
+    <div className="space-y-6 pb-8 md:pb-12 border-b border-gray-100">
       {/* Breadcrumbs */}
       <Breadcrumbs items={breadcrumbItems} />
 
-      {/* Product Title */}
+      {/* Product Title & Category */}
       <div className="space-y-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
+        {/* Category Link (if available) */}
+        {category && categorySlug && (
+          <Link
+            href={`/products?category=${categorySlug}`}
+            className="inline-flex items-center text-xs font-bold text-gray-600 uppercase tracking-wider hover:text-gray-900 transition-colors mb-2"
+          >
+            {category}
+            <ArrowRight className="ml-1.5 h-3 w-3" />
+          </Link>
+        )}
+
+        {/* Product Title */}
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
           {productName}
         </h1>
 
-        {/* Product Code / SKU */}
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-600">SKU:</span>
-          <span className="px-3 py-1.5 bg-linear-to-r from-emerald-100 to-teal-100 rounded-lg text-sm font-semibold text-emerald-700 border border-emerald-400">
+        {/* Product Code / SKU - Minimal Badge */}
+        <div className="flex items-center gap-3 pt-2">
+          <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+            SKU
+          </span>
+          <span className="px-3 py-1 bg-gray-100 rounded-md text-sm font-bold text-gray-900 border border-gray-200">
             {productCode}
           </span>
         </div>

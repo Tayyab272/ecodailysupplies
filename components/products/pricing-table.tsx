@@ -6,14 +6,15 @@ interface PricingTableProps {
   variantPriceAdjustment?: number;
 }
 
-export function PricingTable({ tiers, basePrice, variantPriceAdjustment = 0 }: PricingTableProps) {
+export function PricingTable({
+  tiers,
+  basePrice,
+  variantPriceAdjustment = 0,
+}: PricingTableProps) {
   const adjustedBasePrice = basePrice + variantPriceAdjustment;
 
   // If no tiers provided, show base price only
-  const displayTiers =
-    tiers && tiers.length > 0
-      ? tiers
-      : [];
+  const displayTiers = tiers && tiers.length > 0 ? tiers : [];
 
   // Calculate the actual price per unit for each tier using discount percentage
   const getTierPrice = (tier: PricingTier): number => {
@@ -21,20 +22,20 @@ export function PricingTable({ tiers, basePrice, variantPriceAdjustment = 0 }: P
     if (tier.discount > 0) {
       return adjustedBasePrice * (1 - tier.discount / 100);
     }
-    
+
     // No discount, return base price
     return adjustedBasePrice;
   };
 
   return (
-    <div className="w-full overflow-hidden rounded-xl border-2 border-emerald-200 shadow-lg bg-white">
+    <div className="w-full overflow-hidden rounded-lg border border-gray-300 bg-white shadow-sm">
       <table className="w-full">
         <thead>
-          <tr className="border-b-2 border-emerald-300 bg-linear-to-r from-emerald-100 to-teal-100">
-            <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-emerald-800">
+          <tr className="border-b border-gray-300 bg-gray-50">
+            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-900">
               Quantity
             </th>
-            <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-emerald-800">
+            <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-900">
               Price per Unit
             </th>
           </tr>
@@ -42,16 +43,21 @@ export function PricingTable({ tiers, basePrice, variantPriceAdjustment = 0 }: P
         <tbody>
           {displayTiers.length === 0 ? (
             <tr>
-              <td colSpan={2} className="px-6 py-4 text-center text-gray-500">
+              <td
+                colSpan={2}
+                className="px-4 py-6 text-center text-sm text-gray-500"
+              >
                 No pricing tiers configured
               </td>
             </tr>
           ) : (
             <>
               {/* Show base price row first */}
-              <tr className="border-b border-emerald-100 bg-gray-50/50 hover:bg-gray-100/50 transition-colors">
-                <td className="px-6 py-4 font-semibold text-gray-900">1+ units</td>
-                <td className="px-6 py-4">
+              <tr className="border-b border-gray-300 hover:bg-gray-50/50 transition-colors">
+                <td className="px-4 py-4 font-bold text-sm text-gray-900 uppercase tracking-wide">
+                  1+ units
+                </td>
+                <td className="px-4 py-4">
                   <span className="text-lg font-bold text-gray-900">
                     £{adjustedBasePrice.toFixed(2)}
                   </span>
@@ -68,21 +74,23 @@ export function PricingTable({ tiers, basePrice, variantPriceAdjustment = 0 }: P
                 return (
                   <tr
                     key={index}
-                    className="border-b border-emerald-100 transition-all hover:bg-emerald-50/70 hover:shadow-sm last:border-0"
+                    className="border-b border-gray-300 transition-all hover:bg-primary/5 last:border-0"
                   >
-                    <td className="px-6 py-4 font-semibold text-gray-900">{quantityRange}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-4 font-bold text-sm text-gray-900 uppercase tracking-wide">
+                      {quantityRange}
+                    </td>
+                    <td className="px-4 py-4">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <span className="text-lg font-bold text-emerald-700">
+                        <span className="text-lg font-bold text-primary">
                           £{tierPrice.toFixed(2)}
                         </span>
                         {tier.discount > 0 && (
-                          <span className="inline-flex items-center justify-center bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                          <span className="inline-flex items-center justify-center bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
                             {tier.discount}% Off
                           </span>
                         )}
                         {tier.label && (
-                          <span className="inline-flex items-center justify-center bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-300">
+                          <span className="inline-flex items-center justify-center bg-gray-100 text-gray-900 text-xs font-bold px-2.5 py-1 rounded-md border border-gray-300 uppercase tracking-wider">
                             {tier.label}
                           </span>
                         )}

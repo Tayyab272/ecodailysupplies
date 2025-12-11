@@ -42,18 +42,18 @@ export function AddToCartButton({
   return (
     <Button
       size="lg"
-      className="w-full bg-linear-to-r cursor-pointer from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full bg-primary text-white hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed rounded-md font-bold uppercase tracking-wider text-sm py-6"
       disabled={disabled}
       onClick={handleClick}
     >
       {isAdded ? (
         <>
-          <Check className="mr-2 h-5 w-5" strokeWidth={2} />
+          <Check className="mr-2 h-5 w-5" strokeWidth={2.5} />
           Added to Cart
         </>
       ) : (
         <>
-          <ShoppingCart className="mr-2 h-5 w-5" strokeWidth={2} />
+          <ShoppingCart className="mr-2 h-5 w-5" strokeWidth={2.5} />
           Add to Cart
         </>
       )}

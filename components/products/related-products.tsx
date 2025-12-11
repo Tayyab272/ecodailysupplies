@@ -28,7 +28,7 @@ export function RelatedProducts({
   }
 
   return (
-    <section className="mt-16 md:mt-20 lg:mt-24 border-t-2 border-emerald-200 pt-12 md:pt-16">
+    <section className="mt-16 md:mt-20 lg:mt-24 border-t-2 border-primary pt-12 md:pt-16">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">

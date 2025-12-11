@@ -154,12 +154,12 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
                   </svg>
                 </button>
               </div>
-              <Link
+              {/* <Link
                 href="/sustainability"
                 className="text-sm font-medium text-gray-600 hover:text-primary transition-colors duration-300"
               >
                 Sustainability
-              </Link>
+              </Link> */}
               <Link
                 href="/b2b-request"
                 className="text-sm font-medium text-gray-600 hover:text-primary transition-colors duration-300"
@@ -463,13 +463,13 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
                 >
                   B2B Request
                 </Link>
-                <Link
+                {/* <Link
                   href="/sustainability"
                   className="block rounded-xl px-4 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Sustainability
-                </Link>
+                </Link> */}
                 <Link
                   href="/about"
                   className="block rounded-xl px-4 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors"

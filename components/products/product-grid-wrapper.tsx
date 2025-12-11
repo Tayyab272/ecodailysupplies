@@ -56,7 +56,7 @@ async function ProductGridContent({ searchParams }: ProductGridWrapperProps) {
 
 export function ProductGridWrapper({ searchParams }: ProductGridWrapperProps) {
   return (
-    <div className="rounded-xl border border-gray-300 bg-white p-4 sm:p-6 shadow-lg">
+    <div className="bg-white">
       <Suspense
         fallback={
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 sm:gap-4">

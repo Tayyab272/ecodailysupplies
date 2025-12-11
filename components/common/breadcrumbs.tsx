@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 interface BreadcrumbItem {
   label: string;
@@ -10,20 +11,16 @@ interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
-  variant?: "default" | "light";
+  className?: string;
 }
 
-export function Breadcrumbs({ items, variant = "default" }: BreadcrumbsProps) {
-  const isLight = variant === "light";
-  const textColor = isLight ? "text-white/70" : "text-muted-foreground";
-  const hoverColor = isLight ? "hover:text-white" : "hover:text-foreground";
-  const currentColor = isLight ? "text-white" : "text-foreground";
-
+export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   // Generate BreadcrumbList structured data for SEO
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+    const siteUrl =
+      process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
     const breadcrumbList = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -64,29 +61,113 @@ export function Breadcrumbs({ items, variant = "default" }: BreadcrumbsProps) {
     };
   }, [items]);
 
+  // Get the last item (current page)
+  const lastItem = items[items.length - 1];
+  // Get items to show on mobile (Home > ... > Current)
+  const mobileItems = items.length > 2 ? [items[0], lastItem] : items;
+
   return (
-    <nav className="mb-6 flex items-center gap-2 text-sm" aria-label="Breadcrumb">
-      <Link
-        href="/"
-        className={`flex items-center ${textColor} transition-colors ${hoverColor}`}
-      >
-        <Home className="h-4 w-4" strokeWidth={1.5} />
-      </Link>
-      {items.map((item, index) => (
-        <div key={index} className="flex items-center gap-2">
-          <ChevronRight className={`h-4 w-4 ${textColor}`} strokeWidth={1.5} />
-          {item.href ? (
-            <Link
-              href={item.href}
-              className={`label-luxury ${textColor} transition-colors ${hoverColor}`}
+    <nav
+      className={cn(
+        "mb-6 md:mb-8 flex items-center justify-start py-3 md:py-4 overflow-x-auto scrollbar-hide",
+        className
+      )}
+      aria-label="Breadcrumb"
+    >
+      {/* Desktop: Show all breadcrumbs */}
+      <div className="hidden md:flex items-center gap-2 flex-wrap">
+        {/* Home Link */}
+        <Link
+          href="/"
+          className="text-xs font-bold text-gray-600 uppercase tracking-wider hover:text-gray-900 transition-colors whitespace-nowrap"
+        >
+          Home
+        </Link>
+
+        {items.map((item, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <ChevronRight
+              className="h-3 w-3 text-gray-400 shrink-0"
+              strokeWidth={2}
+            />
+
+            {item.href ? (
+              <Link
+                href={item.href}
+                className={cn(
+                  "text-xs font-bold uppercase tracking-wider transition-colors whitespace-nowrap",
+                  index === items.length - 1
+                    ? "text-gray-900"
+                    : "text-gray-600 hover:text-gray-900"
+                )}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span className="text-xs font-bold text-gray-900 uppercase tracking-wider whitespace-nowrap">
+                {item.label}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile: Show Home > ... > Current (if more than 2 items) */}
+      <div className="flex md:hidden items-center gap-1.5 min-w-0 flex-1">
+        {/* Home Link */}
+        <Link
+          href="/"
+          className="text-xs font-bold text-gray-600 uppercase tracking-wider hover:text-gray-900 transition-colors shrink-0"
+        >
+          Home
+        </Link>
+
+        {items.length > 2 && (
+          <>
+            <ChevronRight
+              className="h-3 w-3 text-gray-400 shrink-0"
+              strokeWidth={2}
+            />
+            <span className="text-xs font-bold text-gray-500 uppercase tracking-wider shrink-0">
+              ...
+            </span>
+          </>
+        )}
+
+        {mobileItems.slice(1).map((item) => {
+          const actualIndex = items.indexOf(item);
+          const isLast = actualIndex === items.length - 1;
+
+          return (
+            <div
+              key={actualIndex}
+              className="flex items-center gap-1.5 min-w-0"
             >
-              {item.label}
-            </Link>
-          ) : (
-            <span className={`label-luxury ${currentColor}`}>{item.label}</span>
-          )}
-        </div>
-      ))}
+              <ChevronRight
+                className="h-3 w-3 text-gray-400 shrink-0"
+                strokeWidth={2}
+              />
+
+              {item.href && !isLast ? (
+                <Link
+                  href={item.href}
+                  className="text-xs font-bold text-gray-600 uppercase tracking-wider transition-colors truncate max-w-[120px]"
+                  title={item.label}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span
+                  className="text-xs font-bold text-gray-900 uppercase tracking-wider truncate max-w-[150px]"
+                  title={item.label}
+                >
+                  {item.label}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </nav>
   );
 }

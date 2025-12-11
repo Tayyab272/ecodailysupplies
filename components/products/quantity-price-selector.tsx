@@ -147,58 +147,69 @@ export function QuantityPriceSelector({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Quantity Input */}
+    <div className="space-y-4">
+      {/* Quantity Input - Premium Style */}
       {showQuantityInput && (
-        <div className="space-y-2">
-          <Label htmlFor="quantity" className="label-luxury">
+        <div className="space-y-3">
+          <Label htmlFor="quantity" className="text-xs font-bold uppercase tracking-wider text-gray-900">
             Quantity
           </Label>
-          <Input
-            id="quantity"
-            type="text"
-            inputMode="numeric"
-            min={minQuantity.toString()}
-            value={quantityInput}
-            onChange={(e) => {
-              const value = e.target.value;
-              // Only allow numbers and empty string
-              if (value === "" || /^\d+$/.test(value)) {
-                handleQuantityChange(value);
-              }
-            }}
-            onBlur={handleQuantityBlur}
-            className="w-32 border border-gray-400 focus-visible:ring-emerald-600/50! focus-visible:ring-2!"
-            aria-label={`Quantity (minimum ${minQuantity})`}
-          />
+          <div className="flex items-center gap-3">
+            <Input
+              id="quantity"
+              type="text"
+              inputMode="numeric"
+              min={minQuantity.toString()}
+              value={quantityInput}
+              onChange={(e) => {
+                const value = e.target.value;
+                // Only allow numbers and empty string
+                if (value === "" || /^\d+$/.test(value)) {
+                  handleQuantityChange(value);
+                }
+              }}
+              onBlur={handleQuantityBlur}
+              className="w-24 h-12 text-center text-lg font-bold border-2 border-gray-200 focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary rounded-md transition-all"
+              aria-label={`Quantity (minimum ${minQuantity})`}
+            />
+            {baseQuantity > 0 && (
+              <span className="text-sm text-gray-500">
+                (Base: {baseQuantity})
+              </span>
+            )}
+          </div>
         </div>
       )}
 
-      {/* Dynamic Price Display */}
-      <div className="space-y-2 rounded-lg border border-gray-300 bg-white p-6">
+      {/* Dynamic Price Display - Premium Style */}
+      <div className="space-y-3 rounded-lg border-2 border-gray-200 bg-gray-50/50 p-6">
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-bold text-gray-900">
+          <span className="text-3xl font-bold text-gray-900 tracking-tight">
             £{pricePerUnit.toFixed(2)}
           </span>
-          <span className="text-sm text-gray-600">per unit</span>
+          <span className="text-sm font-medium text-gray-500 uppercase tracking-wider">
+            per unit
+          </span>
         </div>
         {quantity > 1 && (
-          <div className="text-sm text-gray-600">
-            Total:{" "}
-            <span className="font-bold text-gray-900">
+          <div className="flex items-center gap-2 pt-2 border-t border-gray-200">
+            <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">
+              Total:
+            </span>
+            <span className="text-xl font-bold text-gray-900">
               £{totalPrice.toFixed(2)}
             </span>
           </div>
         )}
         {activeTier && (
-          <div className="mt-2 flex items-center gap-2 flex-wrap">
+          <div className="mt-3 flex items-center gap-2 flex-wrap pt-3 border-t border-gray-200">
             {activeTier.label && (
-              <div className="inline-block rounded-full bg-linear-to-r from-emerald-600 to-teal-600 px-3 py-1 text-xs font-semibold text-white shadow-md">
+              <div className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-xs font-bold text-white uppercase tracking-wider shadow-sm">
                 {activeTier.label}
               </div>
             )}
             {savings > 0 && (
-              <div className="text-sm text-emerald-600 font-medium">
+              <div className="text-sm font-bold text-primary uppercase tracking-wide">
                 Save £{savings.toFixed(2)}
               </div>
             )}

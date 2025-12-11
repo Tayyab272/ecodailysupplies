@@ -171,16 +171,43 @@ export function ProductPurchaseSection({
     selectedQuantityOption,
   ]);
 
+  // Calculate total amount (price per unit × total quantity)
+  const totalAmount = useMemo(() => {
+    return calculatedPricePerUnit * totalQuantity;
+  }, [calculatedPricePerUnit, totalQuantity]);
+
   return (
-    <div className="space-y-8 md:space-y-10 bg-white rounded-xl p-6 md:p-8 shadow-lg border border-gray-300">
+    <div className="space-y-8 bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8">
+      {/* Total Amount Display - Premium Style (Top) */}
+      <div className="pb-6 border-b border-gray-300">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-baseline gap-3">
+            <span className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+              £{totalAmount.toFixed(2)}
+            </span>
+            <span className="text-sm font-medium text-gray-500 uppercase tracking-wider">
+              Total
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <span>£{calculatedPricePerUnit.toFixed(2)}</span>
+            <span className="text-gray-400">×</span>
+            <span>{totalQuantity}</span>
+            <span className="text-gray-500 uppercase tracking-wide text-xs">
+              units
+            </span>
+          </div>
+          {product.pricingTiers && product.pricingTiers.length > 0 && (
+            <p className="text-xs text-gray-500 mt-1">
+              Bulk pricing available - see volume pricing below
+            </p>
+          )}
+        </div>
+      </div>
+
       {/* Variant Selector */}
       {product.variants && product.variants.length > 0 && (
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-700">
-              Select Size
-            </h3>
-          </div>
+        <div className="space-y-4 pb-8 border-b border-gray-300">
           <VariantSelector
             variants={product.variants}
             label="Size"
@@ -192,7 +219,10 @@ export function ProductPurchaseSection({
       {/* Quantity Options Selector (only show if selected variant has quantity options) */}
       {selectedVariant?.quantityOptions &&
         selectedVariant.quantityOptions.length > 0 && (
-          <div className="space-y-4" key={selectedVariant.id}>
+          <div
+            className="space-y-4 pb-8 border-b border-gray-300"
+            key={selectedVariant.id}
+          >
             <QuantityOptionsSelector
               quantityOptions={selectedVariant.quantityOptions}
               selectedQuantity={selectedQuantityOption?.quantity}
@@ -214,26 +244,9 @@ export function ProductPurchaseSection({
           </div>
         )}
 
-      {/* Pricing Table */}
-      {product.pricingTiers && product.pricingTiers.length > 0 && (
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <div className="h-1 w-1 rounded-full bg-teal-500"></div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-teal-700">
-              Volume Pricing
-            </h3>
-          </div>
-          <PricingTable
-            tiers={product.pricingTiers}
-            basePrice={product.basePrice}
-            variantPriceAdjustment={selectedVariant?.price_adjustment || 0}
-          />
-        </div>
-      )}
-
       {/* Quantity Selector & Price Display */}
       {/* Show quantity selector for all products, including those with quantity options */}
-      <div className="space-y-4">
+      <div className="space-y-4 pb-8 border-b border-gray-300">
         {selectedVariant?.quantityOptions &&
         selectedVariant.quantityOptions.length > 0 ? (
           // Quantity selector for products with quantity options
@@ -298,8 +311,25 @@ export function ProductPurchaseSection({
         )}
       </div>
 
+      {/* Pricing Table */}
+      {product.pricingTiers && product.pricingTiers.length > 0 && (
+        <div className="space-y-4 pb-8 border-b border-gray-300">
+          <div className="flex items-center gap-2">
+            <div className="h-1 w-1 rounded-full bg-primary"></div>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-900">
+              Volume Pricing
+            </h3>
+          </div>
+          <PricingTable
+            tiers={product.pricingTiers}
+            basePrice={product.basePrice}
+            variantPriceAdjustment={selectedVariant?.price_adjustment || 0}
+          />
+        </div>
+      )}
+
       {/* Add to Cart Button */}
-      <div className="pt-4 border-t border-gray-300">
+      <div className="pt-2">
         <AddToCartButton
           product={product}
           variant={selectedVariant}

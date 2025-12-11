@@ -89,8 +89,8 @@ export function QuantityOptionsSelector({
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-700">
-          Quantity
+        <h3 className="text-xs font-bold uppercase tracking-wider text-gray-900">
+          Pack Size
         </h3>
       </div>
 
@@ -122,12 +122,12 @@ export function QuantityOptionsSelector({
                 key={option.quantity}
                 value={option.quantity.toString()}
                 aria-label={`Select ${option.label}`}
-                className="relative h-12 min-w-24 border-2 border-gray-300 data-[state=on]:border-emerald-600 data-[state=on]:bg-linear-to-br data-[state=on]:from-emerald-100 data-[state=on]:to-teal-100 data-[state=on]:text-emerald-700 data-[state=on]:font-semibold hover:border-emerald-600 transition-all"
+                className="relative h-12 min-w-24 px-4 border-2 border-gray-300 bg-white data-[state=on]:border-primary data-[state=on]:bg-primary data-[state=on]:text-white data-[state=on]:font-bold hover:border-gray-300 transition-all duration-300 rounded-md text-sm"
               >
                 {option.label}
                 {discountPercent !== null && discountPercent > 0 && (
-                  <div className="absolute -top-2 -right-2 flex items-center justify-center bg-red-700 rounded-full px-1.5 py-0.5 min-w-[24px]">
-                    <span className="text-[12px] font-bold text-white leading-none">
+                  <div className="absolute -top-2 -right-2 flex items-center justify-center bg-primary rounded-full px-1.5 py-0.5 min-w-[24px] shadow-md">
+                    <span className="text-[10px] font-bold text-white leading-none">
                       {discountPercent}%
                     </span>
                   </div>
