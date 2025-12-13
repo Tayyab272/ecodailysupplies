@@ -27,49 +27,58 @@ export function StatsCard({
   className,
   color = "primary",
 }: StatsCardProps) {
+  const accent = DASHBOARD_COLORS[color];
+
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-xl sm:rounded-2xl border border-gray-300 bg-white p-4 sm:p-5 md:p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02]",
-        DASHBOARD_COLORS[color],
+        "group relative overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg",
         className
       )}
     >
-      <div className="flex items-start justify-between gap-3">
-        {/* Content */}
-        <div className="flex-1 space-y-2 sm:space-y-3">
-          <p className="text-xs font-medium text-gray-600 tracking-wide uppercase">
-            {title}
-          </p>
-          <p className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
-            {value}
-          </p>
-        </div>
+      {/* Accent bar */}
+      <div className={cn("absolute inset-x-1 top-0 h-1.5", accent)} />
 
-        {/* Icon - Simplified Style */}
-        <div className="inline-flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-100 text-emerald-600 transition-all duration-200 group-hover:bg-emerald-200">
-          {icon}
+      {/* Subtle background shape */}
+      {/* <div className="pointer-events-none absolute -right-14 -bottom-14 h-44 w-44 rounded-full bg-gray-300" /> */}
+
+      <div className="relative p-5 sm:p-6">
+        <div className="flex items-start justify-between gap-4">
+          {/* Content */}
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              {title}
+            </p>
+            <p className="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-gray-900">
+              {value}
+            </p>
+          </div>
+
+          {/* Icon tile */}
+          <div
+            className={cn(
+              "shrink-0 h-12 w-12 sm:h-14 sm:w-14 rounded-2xl flex items-center justify-center text-white shadow-md ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-110",
+              accent
+            )}
+          >
+            {icon}
+          </div>
         </div>
       </div>
-
-      {/* Subtle Hover Effect */}
-      <div className="absolute inset-0 -z-10 bg-emerald-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </div>
   );
 }
 
 export function StatsCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl sm:rounded-2xl border border-gray-300 bg-white p-4 sm:p-5 md:p-6 shadow-lg">
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 space-y-2 sm:space-y-3">
-          {/* Title skeleton */}
-          <div className="h-3 sm:h-4 w-20 sm:w-24 bg-emerald-100 rounded animate-pulse" />
-          {/* Value skeleton */}
-          <div className="h-7 sm:h-8 md:h-9 w-24 sm:w-28 md:w-32 bg-emerald-100 rounded animate-pulse" />
+    <div className="relative overflow-hidden rounded-2xl border border-gray-300 bg-white p-5 sm:p-6 shadow-sm">
+      <div className="absolute inset-x-0 top-0 h-1.5 bg-gray-200" />
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0 space-y-3">
+          <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
+          <div className="h-9 w-28 bg-gray-200 rounded animate-pulse" />
         </div>
-        {/* Icon skeleton */}
-        <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-emerald-100 animate-pulse" />
+        <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-gray-200 animate-pulse" />
       </div>
     </div>
   );

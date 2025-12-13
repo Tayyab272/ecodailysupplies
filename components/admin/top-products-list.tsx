@@ -46,7 +46,7 @@ export function TopProductsList({ initialData = [], limit = 10 }: TopProductsLis
     return (
       <div className="flex h-[400px] items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-emerald-600 border-r-transparent mx-auto" />
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent mx-auto" />
           <p className="text-sm text-gray-600">Loading products...</p>
         </div>
       </div>
@@ -56,10 +56,10 @@ export function TopProductsList({ initialData = [], limit = 10 }: TopProductsLis
   if (products.length === 0) {
     return (
       <div className="flex h-[400px] items-center justify-center">
-        <div className="text-center bg-white rounded-2xl p-6 shadow-lg border border-gray-300">
+        <div className="text-center bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/60">
           <div className="flex justify-center mb-4">
-            <div className="rounded-full bg-linear-to-br from-emerald-100 to-teal-100 p-4 border border-emerald-200">
-              <Package className="h-12 w-12 text-emerald-600" strokeWidth={2} />
+            <div className="rounded-2xl bg-primary/10 p-4 border-2 border-primary/20 shadow-lg">
+              <Package className="h-12 w-12 text-primary" strokeWidth={2.5} />
             </div>
           </div>
           <p className="mt-4 text-lg font-medium text-gray-900">No products data</p>
@@ -74,29 +74,29 @@ export function TopProductsList({ initialData = [], limit = 10 }: TopProductsLis
   return (
     <div className="space-y-3">
       {products.map((product, index) => {
-        // Medal colors for top 3 - using emerald/teal theme
+        // Medal colors for top 3 - premium primary/neutral theme
         const getRankColor = (rank: number) => {
-          if (rank === 0) return "from-emerald-500 to-teal-600 text-white";
-          if (rank === 1) return "from-teal-400 to-cyan-500 text-white";
-          if (rank === 2) return "from-emerald-400 to-teal-500 text-white";
-          return "from-emerald-100 to-teal-100 text-emerald-700";
+          if (rank === 0) return "from-primary to-primary/80 text-white";
+          if (rank === 1) return "from-gray-900 to-gray-700 text-white";
+          if (rank === 2) return "from-primary/70 to-primary/50 text-white";
+          return "from-gray-100 to-gray-50 text-gray-700";
         };
 
         return (
           <div
             key={product.name}
-            className="group flex items-center justify-between rounded-xl border border-gray-300 bg-white p-5 transition-all hover:shadow-lg hover:scale-[1.02]"
+            className="group flex items-center justify-between rounded-2xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             <div className="flex items-center gap-4">
               <div
-                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-linear-to-br ${getRankColor(
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br ${getRankColor(
                   index
                 )} shadow-lg`}
               >
                 <span className="text-lg font-bold">#{index + 1}</span>
               </div>
               <div className="min-w-0 flex-1">
-                <div className="font-semibold text-gray-900 transition-colors group-hover:text-emerald-700">
+                <div className="font-semibold text-gray-900 transition-colors group-hover:text-primary">
                   {product.name}
                 </div>
                 <div className="mt-1 flex items-center gap-4 text-sm text-gray-600">
@@ -108,7 +108,7 @@ export function TopProductsList({ initialData = [], limit = 10 }: TopProductsLis
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              <div className="text-2xl font-bold bg-linear-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                 {formatCurrency(product.revenue)}
               </div>
               <div className="text-xs text-gray-600">Revenue</div>

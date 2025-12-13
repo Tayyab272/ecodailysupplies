@@ -7,16 +7,19 @@ interface OrdersTabProps {
 
 export function OrdersTab({ orders }: OrdersTabProps) {
   return (
-    <div>
-      <div className="mb-6">
-        <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-          <div className="h-1 w-8 bg-emerald-600 rounded-full" />
+    <div className="space-y-6 lg:space-y-8">
+      {/* Premium Header */}
+      <div className="pb-6 border-b border-gray-200/50">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
           Order History
         </h2>
-        <p className="mt-2 text-gray-600">View and track all your past orders</p>
+        <p className="mt-3 text-sm sm:text-base text-gray-600 font-medium">
+          View and track all your past orders
+        </p>
       </div>
 
-      <div className="rounded-2xl border border-gray-300 bg-white shadow-lg overflow-hidden">
+      {/* Premium Orders Table Card */}
+      <div className="rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-xl shadow-xl overflow-hidden">
         <OrdersTable orders={orders} />
       </div>
     </div>

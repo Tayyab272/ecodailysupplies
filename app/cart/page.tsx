@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Leaf, UserPlus, LogIn } from "lucide-react";
+import {
+  ArrowLeft,
+  UserPlus,
+  LogIn,
+  ShoppingBag,
+  Package,
+  CheckCircle2,
+} from "lucide-react";
 import { useCartStore } from "@/lib/stores/cart-store";
 import { useAuth } from "@/components/auth/auth-provider";
 import { CartItem } from "@/components/cart/cart-item";
@@ -21,62 +28,72 @@ function CartPageContent() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-8 md:py-12">
-        {/* Page Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-              Shopping Cart
-            </h1>
+    <div className="min-h-screen bg-gray-50">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-8 md:py-12">
+        {/* Page Header - Centered with Icon */}
+        <div className="mb-8 md:mb-12 text-center">
+          <div className="inline-flex items-center justify-center">
+            <div className="h-16 w-16 rounded-2xl bg-primary/10 border-2 border-primary/20 flex items-center justify-center mr-4">
+              <ShoppingBag className="h-8 w-8 text-primary" strokeWidth={1.5} />
+            </div>
+            <div className="text-left">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
+                Your Cart
+              </h1>
+              {!isEmpty && (
+                <p className="text-sm text-gray-500 mt-1 uppercase tracking-wider font-medium">
+                  {items.length} {items.length === 1 ? "item" : "items"}
+                </p>
+              )}
+            </div>
           </div>
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 hover:text-emerald-700 transition-colors group"
-          >
-            <ArrowLeft
-              className="h-4 w-4 transition-transform group-hover:-translate-x-1"
-              strokeWidth={2}
-            />
-            Continue Shopping
-          </Link>
         </div>
 
         {/* Guest User Login Prompt */}
         {!user && !isEmpty && (
-          <div className="mb-8 bg-linear-to-r from-emerald-50 to-teal-50 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-emerald-200">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-              <div className="flex-shrink-0">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 shadow-lg">
-                  <UserPlus className="h-6 w-6 text-white" strokeWidth={2} />
+          <div className="mb-8 md:mb-10 max-w-3xl mx-auto">
+            <div className="bg-white rounded-2xl border-2 border-primary/20 shadow-lg p-6 md:p-8 relative overflow-hidden">
+              {/* Decorative Background */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full -ml-12 -mb-12"></div>
+
+              <div className="relative flex flex-col md:flex-row items-start gap-6">
+                <div className="shrink-0">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg">
+                    <UserPlus className="h-8 w-8" strokeWidth={1.5} />
+                  </div>
                 </div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Sign in for a better checkout experience
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Log in to use saved addresses, track your order, and checkout faster next time!
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Link
-                    href="/auth/login?redirect=/cart"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg"
-                  >
-                    <LogIn className="h-4 w-4" />
-                    Sign In
-                  </Link>
-                  <Link
-                    href="/auth/signup?redirect=/cart"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-emerald-600 font-semibold rounded-lg border-2 border-emerald-600 transition-all duration-200 hover:shadow-lg"
-                  >
-                    <UserPlus className="h-4 w-4" />
-                    Create Account
-                  </Link>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-3">
+                    <CheckCircle2
+                      className="h-5 w-5 text-primary"
+                      strokeWidth={2}
+                    />
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900">
+                      Sign in for faster checkout
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                    Save your addresses, track orders, and enjoy a seamless
+                    shopping experience
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Link
+                      href="/auth/login?redirect=/cart"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
+                    >
+                      <LogIn className="h-4 w-4" />
+                      Sign In
+                    </Link>
+                    <Link
+                      href="/auth/signup?redirect=/cart"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-lg border-2 border-gray-300 hover:border-primary transition-all duration-300"
+                    >
+                      <UserPlus className="h-4 w-4" />
+                      Create Account
+                    </Link>
+                  </div>
                 </div>
-                <p className="mt-3 text-sm text-gray-500">
-                  Or continue as guest - you can checkout without an account
-                </p>
               </div>
             </div>
           </div>
@@ -84,63 +101,137 @@ function CartPageContent() {
 
         {isEmpty ? (
           /* Empty Cart State */
-          <div className="flex flex-col items-center justify-center py-24 text-center">
-            <h2 className="mb-3 text-3xl font-bold text-gray-900">
-              Your cart is empty
-            </h2>
-            <p className="mb-8 text-lg text-gray-600 max-w-md">
-              Start adding eco-friendly products to your cart
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-linear-to-r mt-1 from-emerald-600 to-teal-600 text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              <Link href="/products" className="flex items-center gap-2">
-                <Leaf className="h-5 w-5" />
-                Browse Products
-              </Link>
-            </Button>
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white rounded-3xl border-2 border-gray-300 shadow-xl p-12 md:p-16 text-center">
+              <div className="mb-8 inline-flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br from-gray-100 to-gray-200 border-4 border-white shadow-lg">
+                <ShoppingBag
+                  className="h-12 w-12 text-gray-400"
+                  strokeWidth={1}
+                />
+              </div>
+              <h2 className="mb-4 text-2xl md:text-3xl font-bold text-gray-900">
+                Your cart is empty
+              </h2>
+              <p className="mb-8 text-gray-600 max-w-sm mx-auto">
+                Discover our premium eco-friendly packaging solutions
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="bg-primary text-white hover:bg-primary/90 transition-all duration-300 font-semibold px-8 py-6 rounded-xl shadow-lg hover:shadow-xl"
+              >
+                <Link href="/products" className="flex items-center gap-2">
+                  <Package className="h-5 w-5" />
+                  Start Shopping
+                </Link>
+              </Button>
+            </div>
           </div>
         ) : (
           /* Cart Content */
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {/* Cart Items - Left Column (2/3 width) */}
-            <div className="lg:col-span-2 space-y-4">
-              {items.map((item) => (
-                <CartItem key={item.id} item={item} />
-              ))}
-            </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+              {/* Cart Items - Left Column */}
+              <div className="lg:col-span-8 space-y-4">
+                <div className="bg-white rounded-2xl border border-gray-300 shadow-sm p-6">
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-300">
+                    <h2 className="text-lg font-bold text-gray-900 uppercase tracking-wider">
+                      Items in Cart
+                    </h2>
+                    <span className="text-sm text-gray-500 font-medium">
+                      {items.length} {items.length === 1 ? "item" : "items"}
+                    </span>
+                  </div>
+                  <div className="space-y-4">
+                    {items.map((item) => (
+                      <CartItem key={item.id} item={item} />
+                    ))}
+                  </div>
 
-            {/* Order Summary - Right Column (1/3 width) */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24 rounded-2xl border-2 p-6 border-gray-300 hover:shadow-2xl transition-all duration-300">
-                <div className="flex items-center gap-2 mb-6">
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Order Summary
-                  </h2>
+                  {/* Continue Shopping Button */}
+                  <div className="mt-6 pt-6 border-t border-gray-300">
+                    <Link
+                      href="/products"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-primary transition-colors group"
+                    >
+                      <ArrowLeft
+                        className="h-4 w-4 transition-transform group-hover:-translate-x-1"
+                        strokeWidth={2}
+                      />
+                      Continue Shopping
+                    </Link>
+                  </div>
                 </div>
+              </div>
 
-                <OrderSummary summary={summary} />
+              {/* Order Summary - Right Column */}
+              <div className="lg:col-span-4">
+                <div className="sticky top-24 space-y-6">
+                  {/* Order Summary Card */}
+                  <div className="bg-white rounded-2xl border-2 border-gray-300 shadow-lg p-6">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-gray-300">
+                      <Package
+                        className="h-5 w-5 text-primary"
+                        strokeWidth={2}
+                      />
+                      <h2 className="text-lg font-bold text-gray-900 uppercase tracking-wider">
+                        Order Summary
+                      </h2>
+                    </div>
 
-                {/* Checkout Button */}
-                <Button
-                  asChild
-                  size="lg"
-                  className="mt-6 w-full h-12 bg-linear-to-r from-emerald-600 to-teal-600 cursor-pointer text-white font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
-                >
-                  <Link href="/checkout">Proceed to Checkout</Link>
-                </Button>
+                    <OrderSummary summary={summary} />
 
-                {/* Clear Cart Button */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="mt-3 w-full border border-gray-300 focus:border-border-300 bg-transparent text-gray-700 hover:bg-emerald-100 cursor-pointer transition-colors"
-                  onClick={handleClearCart}
-                >
-                  Clear Cart
-                </Button>
+                    {/* Checkout Button */}
+                    <Button
+                      asChild
+                      size="lg"
+                      className="mt-6 w-full h-14 bg-primary text-white font-bold text-base hover:bg-primary/90 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl"
+                    >
+                      <Link
+                        href="/checkout"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        <CheckCircle2 className="h-5 w-5" />
+                        Proceed to Checkout
+                      </Link>
+                    </Button>
+
+                    {/* Trust Badges */}
+                    <div className="mt-6 pt-6 border-t border-gray-300 space-y-3">
+                      <div className="flex items-center gap-3 text-xs text-gray-600">
+                        <CheckCircle2
+                          className="h-4 w-4 text-primary shrink-0"
+                          strokeWidth={2}
+                        />
+                        <span>Secure checkout</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-xs text-gray-600">
+                        <CheckCircle2
+                          className="h-4 w-4 text-primary shrink-0"
+                          strokeWidth={2}
+                        />
+                        <span>Free shipping on orders over £50</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-xs text-gray-600">
+                        <CheckCircle2
+                          className="h-4 w-4 text-primary shrink-0"
+                          strokeWidth={2}
+                        />
+                        <span>Next day delivery available</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Clear Cart Button */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full border-2 border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 font-medium transition-all duration-200 rounded-xl"
+                    onClick={handleClearCart}
+                  >
+                    Clear Cart
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

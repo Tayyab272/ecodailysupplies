@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getAllCategories } from "@/sanity/lib";
 import { Breadcrumbs } from "@/components/common/breadcrumbs";
 import { Category } from "@/types/category";
+import { ArrowRight, Grid3X3 } from "lucide-react";
 
 // Revalidation strategy: On-demand revalidation via Sanity webhooks
 // Pages will only revalidate when content changes in Sanity CMS
@@ -44,236 +45,107 @@ export default async function CategoriesPage() {
   const categories = await getAllCategories();
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-linear-to-br from-emerald-600 to-teal-600">
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-        <div className="absolute bottom-20 left-10 w-72 h-72 bg-teal-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Breadcrumbs */}
+      <div className="border-b border-gray-200 bg-white/80 backdrop-blur-xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-5">
+          <Breadcrumbs items={[{ label: "Categories", href: "/categories" }]} />
+        </div>
       </div>
 
-      <div className="relative z-10">
-        {/* Breadcrumbs */}
-        <div className="border-b border-emerald-200/30 bg-white/10 backdrop-blur-sm">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-6">
-            <Breadcrumbs items={[{ label: "Categories", href: "/categories" }]} />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-10 sm:py-12">
+        {/* Header */}
+        <div className="mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary border border-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+            <Grid3X3 className="h-3.5 w-3.5" strokeWidth={2.5} />
+            Categories
           </div>
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
+            Browse packaging categories
+          </h1>
+          <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl">
+            Find the right packaging supplies faster by shopping by category.
+          </p>
         </div>
 
-        {/* Main Content */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-12 md:py-16 lg:py-20">
-          {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16 lg:mb-20">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-              Packaging Supplies
-              <span className="block text-white mt-2">Categories UK</span>
-            </h1>
-            <p className="mt-4 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
-              Browse our complete range of eco-friendly packaging solutions
-            </p>
-          </div>
+        {/* Category Grid */}
+        {categories && categories.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+            {categories.map((category: Category) => (
+              <Link
+                key={category.id}
+                href={`/products?category=${category.slug}`}
+                className="group rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-200 overflow-hidden"
+              >
+                <div className="relative aspect-[16/10] bg-gray-50">
+                  {category.image ? (
+                    <Image
+                      src={category.image}
+                      alt={category.imageAlt || category.name}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      placeholder="empty"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="h-12 w-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                        <Grid3X3 className="h-6 w-6 text-primary" strokeWidth={2.5} />
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-          {/* Category Grid */}
-          {categories && categories.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8 lg:gap-10">
-              {categories.map((category: Category) => (
-                <Link
-                  key={category.id}
-                  href={`/products?category=${category.slug}`}
-                  className="group flex flex-col items-center"
-                >
-                  {/* Circular Image Container */}
-                  <div className="relative w-full aspect-square max-w-[180px]">
-                    {/* Image Container */}
-                    <div className="relative w-full h-full rounded-full overflow-hidden bg-white shadow-lg group-hover:shadow-2xl transition-all duration-300 border-2 border-emerald-100 group-hover:border-transparent group-hover:scale-105">
-                      {category.image ? (
-                        <Image
-                          src={category.image}
-                          alt={category.imageAlt || category.name}
-                          fill
-                          className="object-cover p-4 transition-transform duration-300 group-hover:scale-110"
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
-                          placeholder="empty"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="flex h-full items-center justify-center bg-linear-to-br from-emerald-50 to-teal-50">
-                          <div className="text-center p-4">
-                            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-linear-to-br from-emerald-200 to-teal-200 flex items-center justify-center">
-                              <svg
-                                className="w-6 h-6 text-emerald-600"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                />
-                              </svg>
-                            </div>
-                            <span className="text-xs text-gray-400">
-                              No image
-                            </span>
-                          </div>
-                        </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="text-base font-semibold text-gray-900 truncate">
+                        {category.name}
+                      </h3>
+                      {category.description && (
+                        <p className="mt-1 text-sm text-gray-600 line-clamp-2">
+                          {category.description}
+                        </p>
                       )}
                     </div>
+                    <div className="shrink-0 mt-0.5 text-gray-400 group-hover:text-primary transition-colors">
+                      <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+                    </div>
                   </div>
-
-                  {/* Category Name */}
-                  <div className="mt-5 text-center w-full">
-                    <h3 className="text-sm sm:text-base font-semibold text-white group-hover:bg-linear-to-r group-hover:text-white transition-all duration-300 px-2">
-                      {category.name}
-                    </h3>
-                    {category.description && (
-                      <p className="text-xs text-white/70 mt-1 line-clamp-2 px-2">
-                        {category.description}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Hover Arrow Indicator */}
-                  <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg
-                      className="w-5 h-5 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-20 text-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center mb-6">
-                <svg
-                  className="w-10 h-10 text-emerald-600"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                No categories found
-              </h3>
-              <p className="text-base text-gray-300">
-                Check back later for product categories.
-              </p>
-            </div>
-          )}
-
-          {/* Related Content Section */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <h3 className="text-lg font-bold text-white mb-3">
-                Learn More
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/blog"
-                    className="text-emerald-200 hover:text-white underline text-sm"
-                  >
-                    Read Packaging Blog Posts
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/guides"
-                    className="text-emerald-200 hover:text-white underline text-sm"
-                  >
-                    Browse Buying Guides
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/sustainability"
-                    className="text-emerald-200 hover:text-white underline text-sm"
-                  >
-                    Learn About Sustainability
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <h3 className="text-lg font-bold text-white mb-3">
-                Shop Products
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/products"
-                    className="text-emerald-200 hover:text-white underline text-sm"
-                  >
-                    Browse All Products
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/b2b-request"
-                    className="text-emerald-200 hover:text-white underline text-sm"
-                  >
-                    Request Bulk Quote
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-emerald-200 hover:text-white underline text-sm"
-                  >
-                    Contact Our Team
-                  </Link>
-                </li>
-              </ul>
-            </div>
+                </div>
+              </Link>
+            ))}
           </div>
+        ) : (
+          <div className="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm">
+            <h3 className="text-lg font-semibold text-gray-900">
+              No categories found
+            </h3>
+            <p className="mt-2 text-sm text-gray-600">
+              Check back later for product categories.
+            </p>
+          </div>
+        )}
 
-          {/* Bottom CTA */}
-          <div className="mt-16 md:mt-20 lg:mt-24 text-center">
-            <div className="inline-block rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Can&apos;t find what you&apos;re looking for?
-              </h2>
-              <p className="text-base md:text-lg text-white/80 mb-6 max-w-2xl mx-auto">
-                Browse all products or use our advanced filters to find exactly what
-                you need
-              </p>
+        {/* Lower CTA */}
+        <div className="mt-10 sm:mt-12">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+                  Prefer browsing everything?
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                  View all products and filter by what matters to you.
+                </p>
+              </div>
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white text-emerald-600 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-5 py-3 text-sm font-semibold text-white hover:bg-black transition-colors"
               >
-                View All Products
-                <svg
-                  className="ml-2 h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
+                View all products
+                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
               </Link>
             </div>
           </div>

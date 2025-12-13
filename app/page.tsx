@@ -87,7 +87,7 @@ export default async function Home() {
     name: "Bubble Wrap Shop",
     legalName: "Bubble wrap shop (Blackburn) Limited",
     url: siteUrl,
-    logo: `${siteUrl}/logo.jpg`,
+    logo: `${siteUrl}/logo.webp`,
     description:
       "Premium packaging supplies with automatic bulk pricing. Next day delivery. Eco-friendly options.",
     contactPoint: {
@@ -121,7 +121,7 @@ export default async function Home() {
     "@id": `${siteUrl}#organization`,
     name: "Bubble Wrap Shop",
     legalName: "Bubble wrap shop (Blackburn) Limited",
-    image: `${siteUrl}/logo.jpg`,
+    image: `${siteUrl}/logo.webp`,
     url: siteUrl,
     telephone: "+44-7882-851632",
     email: "sales@bubblewrapshop.co.uk",

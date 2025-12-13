@@ -1,14 +1,14 @@
 import { Breadcrumbs } from "@/components/common";
-import { FileText, ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function RefundPolicyPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="min-h-screen bg-gray-50">
       {/* Breadcrumbs */}
-      <div className="relative z-10 border-b border-emerald-200 bg-white/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-6">
+      <div className="border-b border-gray-200 bg-white/80 backdrop-blur-xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-5">
           <Breadcrumbs
             items={[{ label: "Refund Policy", href: "/refund-policy" }]}
           />
@@ -16,29 +16,29 @@ export default function RefundPolicyPage() {
       </div>
 
       {/* Content Section */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-20 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-10 sm:py-12">
         <div className="mx-auto max-w-4xl">
           {/* Page Header */}
-          <div className="mb-16 md:mb-20 text-center">
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900">
-              Refund
-              <span className="block bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mt-2">
-                Policy
-              </span>
+          <div className="mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary border border-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+              <ShieldCheck className="h-3.5 w-3.5" strokeWidth={2.5} />
+              Returns & refunds
+            </div>
+            <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
+              Refund policy
             </h1>
-            <p className="text-lg text-center! text-gray-600 md:text-xl max-w-full mx-auto">
-              Our commitment to your satisfaction. Clear, fair, and transparent
-              return policy.
+            <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl">
+              Our commitment to your satisfaction — clear, fair, and transparent
+              returns.
             </p>
           </div>
 
           {/* Main Content */}
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-6 sm:space-y-8">
             {/* Refund Policy Section */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Refund Policy
+            <section className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200">
+              <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
+                Refund policy
               </h2>
               <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
                 <p>
@@ -55,7 +55,7 @@ export default function RefundPolicyPage() {
                   To start a return, you can contact us at{" "}
                   <a
                     href="mailto:sales@bubblewrapshop.co.uk"
-                    className="text-emerald-600 underline hover:text-emerald-700 font-medium"
+                    className="text-primary underline hover:text-primary/80 font-medium"
                   >
                     sales@bubblewrapshop.co.uk
                   </a>
@@ -75,7 +75,7 @@ export default function RefundPolicyPage() {
                   You can always contact us for any return question at{" "}
                   <a
                     href="mailto:sales@bubblewrapshop.co.uk"
-                    className="text-emerald-600 underline hover:text-emerald-700 font-medium"
+                    className="text-primary underline hover:text-primary/80 font-medium"
                   >
                     sales@bubblewrapshop.co.uk
                   </a>
@@ -85,10 +85,9 @@ export default function RefundPolicyPage() {
             </section>
 
             {/* Damages and Issues Section */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Damages and Issues
+            <section className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200">
+              <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
+                Damages and issues
               </h2>
               <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
                 <p>
@@ -101,10 +100,9 @@ export default function RefundPolicyPage() {
             </section>
 
             {/* Exceptions Section */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Exceptions / Non-returnable Items
+            <section className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200">
+              <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
+                Exceptions / non-returnable items
               </h2>
               <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
                 <p>
@@ -124,9 +122,8 @@ export default function RefundPolicyPage() {
             </section>
 
             {/* Exchanges Section */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
+            <section className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200">
+              <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                 Exchanges
               </h2>
               <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
@@ -139,10 +136,9 @@ export default function RefundPolicyPage() {
             </section>
 
             {/* European Union Section */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                European Union 14 Day Cooling Off Period
+            <section className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200">
+              <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
+                European Union 14 day cooling off period
               </h2>
               <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
                 <p>
@@ -158,9 +154,8 @@ export default function RefundPolicyPage() {
             </section>
 
             {/* Refunds Section */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
+            <section className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200">
+              <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                 Refunds
               </h2>
               <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
@@ -177,7 +172,7 @@ export default function RefundPolicyPage() {
                   approved your return, please contact us at{" "}
                   <a
                     href="mailto:sales@bubblewrapshop.co.uk"
-                    className="text-emerald-600 underline hover:text-emerald-700 font-medium"
+                    className="text-primary underline hover:text-primary/80 font-medium"
                   >
                     sales@bubblewrapshop.co.uk
                   </a>
@@ -187,39 +182,28 @@ export default function RefundPolicyPage() {
             </section>
           </div>
 
-          <section className="relative mt-18 border-t bg-linear-to-br from-emerald-600  to-teal-600 py-20 md:py-28 lg:py-32 overflow-hidden">
-            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
-              <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-                {/* Heading */}
-                <h2 className="mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Need Help with a
-                  <span className="block mt-2 text-white">
-                    Return or Refund?
-                  </span>
-                </h2>
-
-                {/* Description */}
-                <p className="mb-10 text-base md:text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed lg:mb-12">
-                  Our support team is ready to assist you with any questions
-                  about returns, refunds, or exchanges.
-                </p>
-
-                {/* CTA Button */}
-                <Button asChild variant="ghost" className="w-fit group">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-3 px-8 py-4 mt-4 text-base font-semibold border border-white/20 text-white bg-white/20 rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-                  >
-                    Contact Support
-                    <ArrowRight
-                      className="h-5 w-5 transition-transform group-hover:translate-x-1"
-                      strokeWidth={2.5}
-                    />
+          {/* CTA */}
+          <div className="mt-10 sm:mt-12">
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+                    Need help with a return or refund?
+                  </h2>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Our support team is ready to assist with returns, refunds, or
+                    exchanges.
+                  </p>
+                </div>
+                <Button asChild className="rounded-full bg-gray-900 hover:bg-black">
+                  <Link href="/contact" className="inline-flex items-center gap-2">
+                    Contact support
+                    <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
                   </Link>
                 </Button>
               </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </div>

@@ -77,7 +77,12 @@ export async function signUp(data: SignUpData): Promise<AuthResult> {
   try {
     const supabase = createClient();
 
+    // Debug: Log which Supabase project we're using
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    console.log("Signing up with Supabase URL:", supabaseUrl);
+
     // Sign up the user with OTP verification (no email link)
+    // Important: emailRedirectTo is not set - we're using OTP codes only
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
@@ -87,11 +92,20 @@ export async function signUp(data: SignUpData): Promise<AuthResult> {
           phone: data.phone || "",
           company: data.company || "",
         },
-        // Don't use emailRedirectTo - we'll use OTP instead
+        // Explicitly disable email redirect - we only want OTP
+        emailRedirectTo: undefined,
       },
     });
 
+    console.log("SignUp response:", {
+      hasUser: !!authData?.user,
+      userId: authData?.user?.id,
+      hasSession: !!authData?.session,
+      error: authError?.message,
+    });
+
     if (authError) {
+      console.error("SignUp error:", authError);
       return {
         success: false,
         error: authError.message,
@@ -99,10 +113,16 @@ export async function signUp(data: SignUpData): Promise<AuthResult> {
     }
 
     if (!authData.user) {
+      console.error("No user returned from signUp");
       return {
         success: false,
         error: "Failed to create user account",
       };
+    }
+
+    // Check if user was already confirmed (existing user)
+    if (authData.user.email_confirmed_at) {
+      console.log("User email already confirmed - this is an existing user");
     }
 
     // Create user profile using API route (bypasses RLS)
@@ -128,82 +148,66 @@ export async function signUp(data: SignUpData): Promise<AuthResult> {
 
       clearTimeout(timeoutId);
 
-      // if (response.ok) {
-      //   const profileResult = await response.json();
-      //   console.log("Profile creation result:", profileResult);
-      // } else {
-      //   console.warn(
-      //     "Profile creation failed, but continuing (trigger might create it)"
-      //   );
-      // }
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.warn(
+          "Profile creation API returned non-OK status:",
+          response.status,
+          errorData
+        );
+      }
     } catch (error) {
       if (error instanceof Error && error.name === "AbortError") {
         console.warn("Profile creation timed out - continuing anyway");
       } else {
         console.error("Error calling create-profile API:", error);
       }
-      // Continue anyway - trigger might have created it or user can update profile later
+      // Continue anyway - profile will be created after email verification
     }
 
-    // Wait a moment for any database triggers to complete
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    // Note: We don't fetch the profile here because:
+    // 1. User is not authenticated yet (unconfirmed), so RLS will block the query
+    // 2. Profile will be accessible after email verification
+    // 3. We'll return user data from authData instead
 
-    // Fetch the profile to return (with retry)
-    let profile = null;
-
-    // Try to fetch profile with retry
-    for (let i = 0; i < 2; i++) {
-      const { data: fetchedProfile, error: fetchError } = await supabase
-        .from("users")
-        .select("*")
-        .eq("id", authData.user.id)
-        .single();
-
-      if (fetchedProfile) {
-        profile = fetchedProfile;
-        break;
-      }
-
-      // Wait before retry
-      if (i === 0) await new Promise((resolve) => setTimeout(resolve, 500));
-    }
-
-    // Build user object from profile or fallback to signup data
-    const typedProfile = profile as UserProfile | null;
-
-    const userResult: AuthUser = typedProfile
-      ? {
-          id: typedProfile.id,
-          email: typedProfile.email,
-          fullName: typedProfile.full_name || data.fullName,
-          phone: typedProfile.phone || data.phone,
-          company: typedProfile.company || data.company,
-          avatarUrl: typedProfile.avatar_url || undefined,
-          role: typedProfile.role || "customer",
-          createdAt: typedProfile.created_at || new Date().toISOString(),
-          updatedAt: typedProfile.updated_at || new Date().toISOString(),
-        }
-      : {
-          id: authData.user.id,
-          email: authData.user.email!,
-          fullName: data.fullName,
-          phone: data.phone,
-          company: data.company,
-          role: "customer" as const,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-        };
-
-    // Send OTP code to user's email
+    // Explicitly send OTP for email verification
+    // signUp() may send a confirmation link instead of OTP depending on Supabase config
+    // We use resend() with type "signup" to ensure an OTP code is sent
     try {
-      await supabase.auth.resend({
+      console.log("Sending OTP code for email verification...");
+      const { error: resendError } = await supabase.auth.resend({
         type: "signup",
         email: data.email,
       });
+
+      if (resendError) {
+        console.warn("Failed to send OTP:", resendError.message);
+        // Don't fail signup - Supabase might have already sent an OTP
+      } else {
+        console.log("OTP sent successfully");
+      }
     } catch (otpError) {
-      console.warn("Failed to send OTP code:", otpError);
-      // Continue anyway - Supabase might have already sent it
+      console.warn("Error sending OTP:", otpError);
+      // Continue anyway - try to proceed with signup
     }
+
+    // Build user object from signup data
+    // We don't fetch profile here because user is unconfirmed and RLS will block it
+    // Profile will be available after email verification
+    const userResult: AuthUser = {
+      id: authData.user.id,
+      email: authData.user.email!,
+      fullName: data.fullName,
+      phone: data.phone,
+      company: data.company,
+      role: "customer" as const,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    // Note: supabase.auth.signUp() automatically sends OTP when email verification is enabled
+    // No need to call resend() here as it would invalidate the first OTP
+    // The resendOTP() function is available for manual resend requests
 
     // Return success - auth account is created
     return {
@@ -363,40 +367,158 @@ export async function verifyOTP(data: VerifyOTPData): Promise<AuthResult> {
   try {
     const supabase = createClient();
 
-    // Verify OTP
-    const { data: authData, error: verifyError } = await supabase.auth.verifyOtp({
+    // Debug: Log Supabase URL to verify we're using the correct project
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    console.log(
+      "Verifying OTP with Supabase URL:",
+      supabaseUrl?.substring(0, 30) + "..."
+    );
+    console.log("Email:", data.email);
+    console.log("Token length:", data.token.length);
+    console.log("Type:", data.type || "signup");
+
+    // Verify OTP - try multiple approaches
+    // Supabase can be finicky with OTP types, so we try multiple methods
+    let authData: {
+      user: {
+        id: string;
+        email?: string;
+        user_metadata?: Record<string, unknown>;
+      } | null;
+      session: unknown;
+    } | null = null;
+    let verifyError: { message?: string } | null = null;
+    let lastError: { message?: string } | null = null;
+
+    // Method 1: Try with "email" type first (most reliable for OTP verification)
+    console.log("Attempting OTP verification (email type)...");
+    let result = await supabase.auth.verifyOtp({
       email: data.email,
       token: data.token,
-      type: data.type || "signup",
+      type: "email",
     });
+
+    if (!result.error && result.data) {
+      authData = result.data;
+      console.log("OTP verified successfully (email type)");
+    } else {
+      lastError = result.error;
+      console.log(
+        "Email type failed, trying signup type...",
+        lastError?.message
+      );
+
+      // Method 2: Try "signup" type
+      result = await supabase.auth.verifyOtp({
+        email: data.email,
+        token: data.token,
+        type: "signup",
+      });
+
+      if (!result.error && result.data) {
+        authData = result.data;
+        verifyError = null;
+        console.log("OTP verified successfully (signup type)");
+      } else {
+        lastError = result.error || lastError;
+        console.log(
+          "Signup type failed, trying recovery type...",
+          lastError?.message
+        );
+
+        // Method 3: Try "recovery" type as last resort (unlikely but possible)
+        result = await supabase.auth.verifyOtp({
+          email: data.email,
+          token: data.token,
+          type: "recovery",
+        });
+
+        if (!result.error && result.data) {
+          authData = result.data;
+          verifyError = null;
+          console.log("OTP verified successfully (recovery type)");
+        } else {
+          verifyError = result.error || lastError;
+          console.error("All OTP verification methods failed:", {
+            email: lastError?.message,
+            signup: lastError?.message,
+            recovery: result.error?.message,
+          });
+        }
+      }
+    }
 
     if (verifyError) {
       return {
         success: false,
-        error: verifyError.message,
+        error: verifyError.message || "Token has expired or is invalid",
       };
     }
 
-    if (!authData.user) {
+    if (!authData || !authData.user) {
       return {
         success: false,
-        error: "Failed to verify OTP",
+        error: "Failed to verify OTP - no user data returned",
       };
     }
 
-    // Fetch user profile after verification
-    const { data: profile, error: profileError } = await supabase
-      .from("users")
-      .select("*")
-      .eq("id", authData.user.id)
-      .single();
+    // Ensure profile exists after verification (user is now authenticated)
+    // Try to create profile if it doesn't exist
+    if (authData?.user) {
+      try {
+        await fetch("/api/auth/create-profile", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: authData.user.id,
+            email: authData.user.email,
+            fullName: authData.user.user_metadata?.full_name || null,
+            phone: authData.user.user_metadata?.phone || null,
+            company: authData.user.user_metadata?.company || null,
+          }),
+        });
 
-    if (profileError && profileError.code !== "PGRST116") {
-      // PGRST116 is "not found" - profile might not exist yet
-      console.warn("Profile not found after OTP verification:", profileError);
+        // Wait a moment for profile creation to complete
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      } catch (error) {
+        console.warn("Error ensuring profile exists:", error);
+        // Continue anyway - profile might already exist
+      }
+    }
+
+    // Fetch user profile after verification (user is now authenticated, RLS should allow)
+    let profile = null;
+    let profileError = null;
+
+    // Try to fetch profile with retry
+    for (let i = 0; i < 3; i++) {
+      const { data: fetchedProfile, error: fetchError } = await supabase
+        .from("users")
+        .select("*")
+        .eq("id", authData.user.id)
+        .single();
+
+      if (fetchedProfile) {
+        profile = fetchedProfile;
+        break;
+      }
+
+      profileError = fetchError;
+
+      // Wait before retry
+      if (i < 2) {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
     }
 
     const typedProfile = profile as UserProfile | null;
+
+    // If profile fetch failed, log but don't fail verification
+    if (profileError && profileError.code !== "PGRST116") {
+      console.warn("Profile not found after OTP verification:", profileError);
+    }
 
     return {
       success: true,
@@ -415,6 +537,18 @@ export async function verifyOTP(data: VerifyOTPData): Promise<AuthResult> {
         : {
             id: authData.user.id,
             email: authData.user.email!,
+            fullName:
+              typeof authData.user.user_metadata?.full_name === "string"
+                ? authData.user.user_metadata.full_name
+                : undefined,
+            phone:
+              typeof authData.user.user_metadata?.phone === "string"
+                ? authData.user.user_metadata.phone
+                : undefined,
+            company:
+              typeof authData.user.user_metadata?.company === "string"
+                ? authData.user.user_metadata.company
+                : undefined,
             role: "customer" as const,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),

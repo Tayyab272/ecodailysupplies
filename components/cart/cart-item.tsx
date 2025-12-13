@@ -77,10 +77,10 @@ export function CartItem({ item }: CartItemProps) {
   };
 
   return (
-    <div className="flex gap-4 rounded-lg border p-4">
+    <div className="flex gap-4 rounded-lg border border-gray-200 bg-white p-4 hover:shadow-sm transition-shadow">
       {/* Product Image */}
       <Link href={`/products/${item.product.slug}`} className="shrink-0">
-        <div className="relative h-20 w-20 overflow-hidden rounded-lg bg-muted">
+        <div className="relative h-20 w-20 overflow-hidden rounded-lg bg-gray-100 border border-gray-200">
           <Image
             src={item.product.image}
             alt={item.product.imageAlt || item.product.name}
@@ -96,12 +96,12 @@ export function CartItem({ item }: CartItemProps) {
         <div>
           <Link
             href={`/products/${item.product.slug}`}
-            className="font-medium hover:text-primary"
+            className="font-semibold text-gray-900 hover:text-primary transition-colors"
           >
             {item.product.name}
           </Link>
           {item.variant && (
-            <p className="text-sm text-muted-foreground">{item.variant.name}</p>
+            <p className="text-sm text-gray-600 mt-1">{item.variant.name}</p>
           )}
         </div>
 
@@ -122,7 +122,7 @@ export function CartItem({ item }: CartItemProps) {
                 }
               }}
               onBlur={handleQuantityBlur}
-              className="w-16"
+              className="w-16 h-9 border-gray-300 focus-visible:ring-primary"
             />
           </div>
 
@@ -134,7 +134,7 @@ export function CartItem({ item }: CartItemProps) {
                   £{item.totalPrice.toFixed(2)}
                 </span>
                 {pricingDetails.hasDiscount && (
-                  <span className="text-xs text-emerald-600 font-medium">
+                  <span className="text-xs text-primary font-medium">
                     Save £{pricingDetails.savings.toFixed(2)}
                   </span>
                 )}

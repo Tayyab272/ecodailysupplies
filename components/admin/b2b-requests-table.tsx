@@ -63,7 +63,7 @@ const statusConfig: Record<
   },
   converted: {
     label: "Converted",
-    className: "bg-emerald-100 text-emerald-800 border-emerald-200",
+    className: "bg-primary/10 text-primary border-primary/20",
   },
   rejected: {
     label: "Rejected",
@@ -194,11 +194,11 @@ export function B2BRequestsTable({
       <div className="flex items-center justify-center py-12 sm:py-16">
         <div className="text-center space-y-4 max-w-md px-4">
           <div className="flex justify-center">
-            <div className="rounded-full bg-linear-to-br from-emerald-100 to-teal-100 p-4 border border-emerald-200">
-              <Briefcase className="h-8 w-8 text-emerald-600" strokeWidth={2} />
+            <div className="rounded-2xl bg-primary/10 p-4 border-2 border-primary/20 shadow-lg">
+              <Briefcase className="h-8 w-8 text-primary" strokeWidth={2.5} />
             </div>
           </div>
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-300">
+          <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/60">
             <p className="text-lg font-semibold text-gray-900">
               No B2B requests found
             </p>
@@ -224,14 +224,14 @@ export function B2BRequestsTable({
                 placeholder="Search requests..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 w-full border border-gray-300 rounded-lg focus:border-emerald-500 focus:ring-emerald-500"
+                className="pl-9 w-full h-11 border-2 border-gray-200 rounded-xl bg-white/80 backdrop-blur-sm font-medium focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary"
               />
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
               <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[140px]">
+                <SelectTrigger className="w-[140px] h-11 border-2 border-gray-200 rounded-xl bg-white/80 backdrop-blur-sm font-semibold focus:ring-2 focus:ring-primary/20 focus:border-primary">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -283,7 +283,7 @@ export function B2BRequestsTable({
                 >
                   <td className="px-4 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-2">
-                      <Briefcase className="h-4 w-4 text-emerald-600" />
+                      <Briefcase className="h-4 w-4 text-primary" strokeWidth={2.5} />
                       <div>
                         <div className="text-sm font-medium text-gray-900">
                           {request.companyName}
@@ -335,7 +335,7 @@ export function B2BRequestsTable({
                       variant="ghost"
                       size="sm"
                       onClick={() => handleViewDetails(request)}
-                      className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
+                      className="text-primary hover:text-primary/80 hover:bg-primary/10"
                     >
                       <Eye className="h-4 w-4 mr-1" />
                       View
@@ -361,7 +361,7 @@ export function B2BRequestsTable({
             <>
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
-                  <Briefcase className="h-5 w-5 text-emerald-600" />
+                  <Briefcase className="h-5 w-5 text-primary" strokeWidth={2.5} />
                   B2B Request Details
                 </DialogTitle>
                 <DialogDescription>
@@ -409,7 +409,7 @@ export function B2BRequestsTable({
                           href={selectedRequest.companyWebsite}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-emerald-600 hover:underline"
+                          className="text-sm text-primary hover:underline"
                         >
                           {selectedRequest.companyWebsite}
                         </a>
@@ -496,7 +496,7 @@ export function B2BRequestsTable({
                   <h3 className="text-lg font-semibold text-gray-900">
                     Delivery Address
                   </h3>
-                  <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="bg-white/80 backdrop-blur-xl rounded-xl p-4 border border-gray-200/60">
                     <p className="text-sm text-gray-900">
                       {selectedRequest.deliveryAddress.addressLine1}
                       {selectedRequest.deliveryAddress.addressLine2 && (
@@ -526,7 +526,7 @@ export function B2BRequestsTable({
                       value={editingStatus || selectedRequest.status}
                       onValueChange={(value) => setEditingStatus(value as AdminB2BRequest["status"])}
                     >
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full h-11 border-2 border-gray-200 rounded-xl bg-white/80 backdrop-blur-sm font-semibold focus:ring-2 focus:ring-primary/20 focus:border-primary">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -549,7 +549,7 @@ export function B2BRequestsTable({
                       onChange={(e) => setEditingAdminNotes(e.target.value)}
                       placeholder="Add internal notes about this request..."
                       rows={4}
-                      className="w-full"
+                      className="w-full border-2 border-gray-200 rounded-xl bg-white/80 backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary"
                     />
                     <p className="text-xs text-gray-500">
                       These notes are only visible to admins
@@ -582,7 +582,7 @@ export function B2BRequestsTable({
                         (editingStatus === selectedRequest.status &&
                           editingAdminNotes === (selectedRequest.adminNotes || ""))
                       }
-                      className="bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-primary hover:bg-primary/90 text-white disabled:opacity-50 disabled:cursor-not-allowed rounded-xl shadow-lg shadow-primary/20"
                     >
                       {isUpdating ? (
                         <>
@@ -597,7 +597,7 @@ export function B2BRequestsTable({
                       )}
                     </Button>
                     {updateSuccess && (
-                      <span className="text-sm text-emerald-600 font-medium">
+                      <span className="text-sm text-primary font-semibold">
                         Updated successfully!
                       </span>
                     )}

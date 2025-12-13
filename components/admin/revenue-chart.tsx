@@ -89,14 +89,14 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
       {
         label: "Revenue",
         data: data.map((point) => point.revenue),
-        borderColor: "rgb(5, 150, 105)", // emerald-600
-        backgroundColor: "rgba(5, 150, 105, 0.1)",
+        borderColor: "rgb(234, 91, 111)", // primary
+        backgroundColor: "rgba(234, 91, 111, 0.12)",
         fill: true,
         tension: 0.4,
         borderWidth: 2,
         pointRadius: 0,
         pointHoverRadius: 6,
-        pointBackgroundColor: "rgb(5, 150, 105)",
+        pointBackgroundColor: "rgb(234, 91, 111)",
         pointBorderColor: "#fff",
         pointBorderWidth: 2,
         yAxisID: "y",
@@ -104,14 +104,14 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
       {
         label: "Orders",
         data: data.map((point) => point.orders),
-        borderColor: "rgb(20, 184, 166)", // teal-500
-        backgroundColor: "rgba(20, 184, 166, 0.1)",
+        borderColor: "rgba(17, 24, 39, 0.55)", // gray-900/55
+        backgroundColor: "rgba(17, 24, 39, 0.06)",
         fill: true,
         tension: 0.4,
         borderWidth: 2,
         pointRadius: 0,
         pointHoverRadius: 6,
-        pointBackgroundColor: "rgb(20, 184, 166)",
+        pointBackgroundColor: "rgba(17, 24, 39, 0.55)",
         pointBorderColor: "#fff",
         pointBorderWidth: 2,
         yAxisID: "y1",
@@ -245,14 +245,14 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
       <div className="flex h-[400px] items-center justify-center">
         <div className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="rounded-full bg-linear-to-br from-emerald-100 to-teal-100 p-4 border border-emerald-200">
+            <div className="rounded-2xl bg-primary/10 p-4 border-2 border-primary/20 shadow-lg">
               <TrendingUp
-                className="mx-auto h-12 w-12 text-emerald-600"
-                strokeWidth={2}
+                className="mx-auto h-12 w-12 text-primary"
+                strokeWidth={2.5}
               />
             </div>
           </div>
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-300">
+          <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/60">
             <p className="text-lg font-medium text-gray-900">No revenue data</p>
             <p className="mt-2 text-sm text-gray-600">
               Revenue data will appear here once orders are placed
@@ -267,8 +267,8 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
     <div className="space-y-6">
       {/* Summary Stats */}
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-lg border border-gray-300 bg-linear-to-br from-emerald-50 to-teal-50 p-4">
-          <div className="flex items-center gap-2 text-sm font-medium text-emerald-700">
+        <div className="rounded-xl border border-gray-200 bg-white p-4">
+          <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
             <DollarSign className="h-4 w-4" strokeWidth={2} />
             Total Revenue
           </div>
@@ -276,8 +276,8 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
             £{totalRevenue.toFixed(2)}
           </div>
         </div>
-        <div className="rounded-lg border border-gray-300 bg-linear-to-br from-teal-50 to-cyan-50 p-4">
-          <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
+        <div className="rounded-xl border border-gray-200 bg-white p-4">
+          <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
             <TrendingUp className="h-4 w-4" strokeWidth={2} />
             Total Orders
           </div>
@@ -295,8 +295,8 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
           onClick={() => setTimeRange("7d")}
           className={`transition-all hover:scale-105 ${
             timeRange === "7d"
-              ? "bg-linear-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700"
-              : "border border-gray-300 text-gray-700 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700"
+              ? "bg-primary text-white hover:bg-primary/90"
+              : "border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-primary hover:text-primary"
           }`}
         >
           7 Days
@@ -307,8 +307,8 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
           onClick={() => setTimeRange("30d")}
           className={`transition-all hover:scale-105 ${
             timeRange === "30d"
-              ? "bg-linear-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700"
-              : "border border-gray-300 text-gray-700 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700"
+              ? "bg-primary text-white hover:bg-primary/90"
+              : "border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-primary hover:text-primary"
           }`}
         >
           30 Days
@@ -319,8 +319,8 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
           onClick={() => setTimeRange("90d")}
           className={`transition-all hover:scale-105 ${
             timeRange === "90d"
-              ? "bg-linear-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700"
-              : "border border-gray-300 text-gray-700 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700"
+              ? "bg-primary text-white hover:bg-primary/90"
+              : "border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-primary hover:text-primary"
           }`}
         >
           90 Days
@@ -331,8 +331,8 @@ export function RevenueChart({ initialData = [] }: RevenueChartProps) {
           onClick={() => setTimeRange("all")}
           className={`transition-all hover:scale-105 ${
             timeRange === "all"
-              ? "bg-linear-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700"
-              : "border border-gray-300 text-gray-700 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700"
+              ? "bg-primary text-white hover:bg-primary/90"
+              : "border-2 border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-primary hover:text-primary"
           }`}
         >
           All Time

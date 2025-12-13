@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   Search,
   User,
-  ShoppingCart,
+  ShoppingBag,
   Menu,
   X,
   LogOut,
@@ -19,6 +19,7 @@ import { useCartStore } from "@/lib/stores/cart-store";
 import { useAuth } from "@/components/auth/auth-provider";
 import Image from "next/image";
 import { Category } from "@/types/category";
+import { cn } from "@/lib/utils";
 
 interface HeaderProps {
   categories?: Category[];
@@ -58,6 +59,7 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [mounted, setMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const { getItemCount } = useCartStore();
   const { user, isAuthenticated, signOut, loading: authLoading } = useAuth();
@@ -66,8 +68,14 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       clearTimeout(timer);
+      window.removeEventListener("scroll", onScroll);
       if (megaMenuTimeoutRef.current) {
         clearTimeout(megaMenuTimeoutRef.current);
       }
@@ -90,10 +98,10 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
     (e: React.FormEvent) => {
       e.preventDefault();
       if (searchQuery.trim()) {
-        window.location.href = `/products?search=${encodeURIComponent(searchQuery)}`;
+        router.push(`/products?search=${encodeURIComponent(searchQuery)}`);
       }
     },
-    [searchQuery]
+    [searchQuery, router]
   );
 
   const handleMegaMenuEnter = useCallback(() => {
@@ -116,41 +124,60 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
 
   return (
     <>
-      {/* Premium Minimalist Header */}
-      <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-primary transition-all duration-300">
-        <div className="container mx-auto px-6">
-          <div className="flex h-20 items-center justify-between gap-8">
+      {/* Premium Header */}
+      <header
+        className={cn(
+          "sticky top-0 z-50 w-full backdrop-blur-xl transition-all duration-300",
+          isScrolled
+            ? "bg-white/90 shadow-sm border-b border-gray-200"
+            : "bg-white/70 border-b border-gray-200/60"
+        )}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
+          <div className="flex h-16 lg:h-[72px] items-center justify-between gap-6">
             {/* Logo */}
             <Link href="/" className="shrink-0 cursor-pointer group relative">
               <Image
-                src="/logo.jpg"
+                src="/logo.webp"
                 alt="Logo"
                 width={120}
                 height={40}
-                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-10 lg:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
                 priority
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
+            <nav className="hidden lg:flex items-center gap-7">
               <div
                 onMouseEnter={handleMegaMenuEnter}
                 onMouseLeave={handleMegaMenuLeave}
-                className="relative h-20 flex items-center"
+                className="relative h-[72px] flex items-center"
               >
                 <button
-                  className={`text-sm font-medium transition-colors duration-300 flex items-center gap-1 ${isMegaMenuOpen ? "text-primary" : "text-gray-600 hover:text-primary"
-                    }`}
+                  className={cn(
+                    "text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5",
+                    isMegaMenuOpen
+                      ? "text-gray-900"
+                      : "text-gray-600 hover:text-gray-900"
+                  )}
                 >
                   Products
                   <svg
-                    className={`w-4 h-4 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180" : ""}`}
+                    className={cn(
+                      "w-4 h-4 transition-transform duration-200",
+                      isMegaMenuOpen && "rotate-180"
+                    )}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </button>
               </div>
@@ -162,31 +189,31 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
               </Link> */}
               <Link
                 href="/b2b-request"
-                className="text-sm font-medium text-gray-600 hover:text-primary transition-colors duration-300"
+                className="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 B2B Request
               </Link>
               <Link
                 href="/about"
-                className="text-sm font-medium text-gray-600 hover:text-primary transition-colors duration-300"
+                className="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="text-sm font-medium text-gray-600 hover:text-primary transition-colors duration-300"
+                className="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
                 Contact
               </Link>
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {/* Desktop Search */}
               <form onSubmit={handleSearch} className="hidden lg:block">
                 <div className="relative group">
                   <Search
-                    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-primary"
+                    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 transition-colors group-focus-within:text-gray-900"
                     strokeWidth={2}
                   />
                   <input
@@ -194,12 +221,12 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search..."
-                    className="w-64 rounded-full bg-gray-100 border-transparent py-2 pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all duration-300"
+                    className="w-72 rounded-full bg-gray-100/80 border border-transparent py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-500 focus:bg-white focus:border-gray-300 focus:ring-2 focus:ring-gray-900/10 focus:outline-none transition-all duration-200"
                   />
                 </div>
               </form>
 
-              <div className="h-6 w-px bg-gray-200 hidden lg:block"></div>
+              <div className="h-6 w-px bg-gray-200 hidden lg:block" />
 
               {/* Account */}
               {authLoading && !user ? (
@@ -210,56 +237,87 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
                 </div>
               ) : isAuthenticated && user ? (
                 <div className="hidden lg:block relative group">
-                  <button className="p-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-full transition-all duration-300">
+                  <button className="p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-full transition-all duration-200">
                     <User className="h-5 w-5" strokeWidth={2} />
                   </button>
-                  <div className="absolute right-0 top-full mt-2 w-64 rounded-2xl bg-white border border-gray-100 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right">
-                    <div className="p-4 border-b border-gray-50">
-                      <p className="text-sm font-semibold text-gray-900 truncate">
-                        {user?.fullName || "User"}
-                      </p>
-                      <p className="text-xs text-gray-500 truncate mt-0.5">
-                        {user?.email}
-                      </p>
+                  <div className="absolute right-0 top-full mt-2 w-64 rounded-xl bg-white/95 backdrop-blur-xl border border-gray-200 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 origin-top-right overflow-hidden">
+                    {/* Profile header */}
+                    <div className="p-3 bg-white border-b border-gray-200">
+                      <div className="flex items-center gap-3">
+                        <div className="h-9 w-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-sm font-bold text-gray-700">
+                          {user?.fullName?.[0] || "U"}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-sm font-bold text-gray-900 truncate">
+                            {user?.fullName || "User"}
+                          </p>
+                          <p className="text-xs text-gray-500 truncate mt-0.5">
+                            {user?.email}
+                          </p>
+                        </div>
+                      </div>
                     </div>
+
+                    {/* Links */}
                     <div className="p-2">
                       {user?.role === "admin" && (
                         <Link
                           href="/admin"
-                          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white bg-gray-900 hover:bg-black transition-colors mb-1"
+                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-white bg-gray-900 hover:bg-black transition-colors"
                         >
-                          <ShieldCheck className="h-4 w-4" />
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
+                            <ShieldCheck className="h-4 w-4" />
+                          </span>
                           Admin Dashboard
                         </Link>
                       )}
-                      <Link
-                        href="/account"
-                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+
+                      <div
+                        className={cn(
+                          "mt-1",
+                          user?.role === "admin" &&
+                            "pt-2 border-t border-gray-200"
+                        )}
                       >
-                        <Settings className="h-4 w-4" />
-                        Account Settings
-                      </Link>
-                      <Link
-                        href="/account?tab=orders"
-                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
-                      >
-                        <Package className="h-4 w-4" />
-                        Orders
-                      </Link>
-                      <Link
-                        href="/account?tab=addresses"
-                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
-                      >
-                        <MapPin className="h-4 w-4" />
-                        Addresses
-                      </Link>
+                        <Link
+                          href="/account"
+                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                        >
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-gray-700">
+                            <Settings className="h-4 w-4" />
+                          </span>
+                          Account
+                        </Link>
+                        <Link
+                          href="/account?tab=orders"
+                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                        >
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-gray-700">
+                            <Package className="h-4 w-4" />
+                          </span>
+                          Orders
+                        </Link>
+                        <Link
+                          href="/account?tab=addresses"
+                          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                        >
+                          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-gray-700">
+                            <MapPin className="h-4 w-4" />
+                          </span>
+                          Addresses
+                        </Link>
+                      </div>
                     </div>
-                    <div className="border-t border-gray-50 p-2">
+
+                    {/* Footer */}
+                    <div className="border-t border-gray-200 p-2 bg-white">
                       <button
                         onClick={handleSignOut}
-                        className="flex items-center gap-3 w-full rounded-xl px-3 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                        className="flex items-center gap-3 w-full rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
                       >
-                        <LogOut className="h-4 w-4" />
+                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-700">
+                          <LogOut className="h-4 w-4" />
+                        </span>
                         Sign Out
                       </button>
                     </div>
@@ -277,7 +335,7 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
               {/* Cart */}
               <MiniCart>
                 <button className="relative p-2 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-full transition-all duration-300 group">
-                  <ShoppingCart
+                  <ShoppingBag
                     className="h-5 w-5 group-hover:scale-105 transition-transform"
                     strokeWidth={2}
                   />
@@ -309,75 +367,93 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
           <div
             onMouseEnter={handleMegaMenuEnter}
             onMouseLeave={handleMegaMenuLeave}
-            className="hidden lg:block absolute left-0 right-0 top-full border-t border-gray-100 bg-white/95 backdrop-blur-xl shadow-2xl transition-all duration-300"
+            className="hidden lg:block absolute left-0 right-0 top-full border-t border-gray-200 bg-white/95 backdrop-blur-xl shadow-2xl transition-all duration-200"
           >
-            <div className="container mx-auto px-6">
-              <div className="flex py-8 min-h-[400px]">
+            <div className="container mx-auto px-6 lg:px-8 max-w-[1600px]">
+              <div className="flex py-6 min-h-[360px]">
                 {/* Category Sidebar */}
-                <div className="w-64 border-r border-gray-100 pr-8">
-                  <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">
-                    Categories
-                  </h3>
+                <div className="w-60 border-r border-gray-200 pr-5">
+                  <div className="flex items-center justify-between px-3 mb-4">
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                      Categories
+                    </h3>
+                    <Link
+                      href="/products"
+                      onClick={handleMegaMenuLeave}
+                      className="text-xs font-semibold text-gray-600 hover:text-gray-900"
+                    >
+                      View all
+                    </Link>
+                  </div>
                   <div className="space-y-1">
                     {categories.map((category) => (
                       <button
                         key={category.id}
                         onMouseEnter={() => setActiveCategory(category)}
-                        className={`w-full text-left px-4 py-3 cursor-pointer text-sm font-medium rounded-xl transition-all duration-200 flex items-center justify-between group ${activeCategory?.id === category.id
-                            ? "bg-gray-50 text-primary"
-                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                          }`}
+                        className={cn(
+                          "w-full text-left px-3 py-2.5 cursor-pointer text-sm font-semibold rounded-lg transition-all duration-200 flex items-center justify-between group",
+                          activeCategory?.id === category.id
+                            ? "bg-primary/10 text-gray-900"
+                            : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                        )}
                       >
                         {category.name}
-                        {activeCategory?.id === category.id && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                        )}
+                        <div
+                          className={cn(
+                            "h-2 w-2 rounded-full transition-opacity",
+                            activeCategory?.id === category.id
+                              ? "bg-primary opacity-100"
+                              : "bg-gray-300 opacity-0 group-hover:opacity-100"
+                          )}
+                        />
                       </button>
                     ))}
                   </div>
                 </div>
 
                 {/* Content Area */}
-                <div className="flex-1 px-12 flex gap-12">
+                <div className="flex-1 pl-6 pr-2 flex gap-8">
                   {activeCategory ? (
                     <>
                       <div className="flex-1 py-4">
-                        <h2 className="text-2xl font-light text-gray-900 mb-4">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2 tracking-tight">
                           {activeCategory.name}
                         </h2>
                         {activeCategory.description && (
-                          <p className="text-gray-500 mb-8 leading-relaxed max-w-md">
+                          <p className="text-sm text-gray-600 mb-6 leading-relaxed max-w-lg">
                             {activeCategory.description}
                           </p>
                         )}
-                        <Link
-                          href={`/products?category=${activeCategory.slug}`}
-                          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-primary rounded-full hover:bg-gray-800 hover:shadow-lg transition-all duration-300 group"
-                          onClick={handleMegaMenuLeave}
-                        >
-                          Shop Collection
-                          <svg
-                            className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                        <div className="flex items-center gap-3">
+                          <Link
+                            href={`/products?category=${activeCategory.slug}`}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-gray-900 rounded-full hover:bg-black transition-all duration-200 group"
+                            onClick={handleMegaMenuLeave}
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                          </svg>
-                        </Link>
+                            Shop
+                            <svg
+                              className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                              />
+                            </svg>
+                          </Link>
+                        </div>
                       </div>
 
                       {/* Featured Image */}
                       {activeCategory.image && (
-                        <div className="w-80 py-4">
+                        <div className="w-72 py-4">
                           <Link
                             href={`/products?category=${activeCategory.slug}`}
-                            className="block group cursor-pointer relative aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100"
+                            className="block group cursor-pointer relative aspect-4/5 overflow-hidden rounded-2xl bg-gray-100 border border-gray-200"
                             onClick={handleMegaMenuLeave}
                           >
                             <Image
@@ -387,7 +463,17 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
                               className="object-cover transition-transform duration-700 group-hover:scale-110"
                               sizes="320px"
                             />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200" />
+                            <div className="absolute left-4 right-4 bottom-4">
+                              <div className="text-white">
+                                <div className="text-xs font-semibold uppercase tracking-wider text-white/80">
+                                  Featured
+                                </div>
+                                <div className="mt-1 text-lg font-semibold tracking-tight">
+                                  {activeCategory.name}
+                                </div>
+                              </div>
+                            </div>
                           </Link>
                         </div>
                       )}

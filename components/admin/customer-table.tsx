@@ -76,11 +76,11 @@ export function CustomerTable({ customers, loading }: CustomerTableProps) {
       <div className="flex items-center justify-center py-12 sm:py-16">
         <div className="text-center space-y-4 max-w-md px-4">
           <div className="flex justify-center">
-            <div className="rounded-full bg-linear-to-br from-emerald-100 to-teal-100 p-4 border border-emerald-200">
-              <Users className="h-8 w-8 text-emerald-600" strokeWidth={2} />
+            <div className="rounded-2xl bg-primary/10 p-4 border-2 border-primary/20 shadow-lg">
+              <Users className="h-8 w-8 text-primary" strokeWidth={2.5} />
             </div>
           </div>
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-300">
+          <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/60">
             <p className="text-lg font-semibold text-gray-900">
               No customers found
             </p>
@@ -103,7 +103,7 @@ export function CustomerTable({ customers, loading }: CustomerTableProps) {
             placeholder="Search customers..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 w-full border border-gray-300 rounded-lg focus:border-emerald-500 focus:ring-emerald-500"
+            className="pl-9 w-full h-11 border-2 border-gray-200 rounded-xl bg-white/80 backdrop-blur-sm font-medium focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary"
           />
         </div>
       </div>
@@ -129,11 +129,11 @@ export function CustomerTable({ customers, loading }: CustomerTableProps) {
       <div className="hidden md:block px-4 sm:px-6 pb-4 sm:pb-6">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="border border-gray-300 bg-linear-to-r from-emerald-50 to-teal-50">
+            <thead className="border border-gray-200 bg-linear-to-r from-gray-50 to-gray-100">
               <tr>
-                <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+                <th className="text-left py-4 px-5 text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   <button
-                    className="flex items-center gap-1 hover:text-emerald-800 transition-colors"
+                    className="flex items-center gap-1 hover:text-primary transition-colors"
                     onClick={() => {
                       if (sortBy === "email") {
                         setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -147,15 +147,15 @@ export function CustomerTable({ customers, loading }: CustomerTableProps) {
                     <ArrowUpDown className="h-3 w-3" strokeWidth={2} />
                   </button>
                 </th>
-                <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+                <th className="text-left py-4 px-5 text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   Contact
                 </th>
-                <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+                <th className="text-left py-4 px-5 text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   Orders
                 </th>
-                <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+                <th className="text-left py-4 px-5 text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   <button
-                    className="flex items-center gap-1 hover:text-emerald-800 transition-colors"
+                    className="flex items-center gap-1 hover:text-primary transition-colors"
                     onClick={() => {
                       if (sortBy === "total_spent") {
                         setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -169,9 +169,9 @@ export function CustomerTable({ customers, loading }: CustomerTableProps) {
                     <ArrowUpDown className="h-3 w-3" strokeWidth={2} />
                   </button>
                 </th>
-                <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+                <th className="text-left py-4 px-5 text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   <button
-                    className="flex items-center gap-1 hover:text-emerald-800 transition-colors"
+                    className="flex items-center gap-1 hover:text-primary transition-colors"
                     onClick={() => {
                       if (sortBy === "created_at") {
                         setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -185,7 +185,7 @@ export function CustomerTable({ customers, loading }: CustomerTableProps) {
                     <ArrowUpDown className="h-3 w-3" strokeWidth={2} />
                   </button>
                 </th>
-                <th className="text-right py-3 px-4 text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+                <th className="text-right py-4 px-5 text-xs font-semibold text-gray-700 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -210,7 +210,7 @@ export function CustomerTable({ customers, loading }: CustomerTableProps) {
       </div>
 
       {/* Results Count */}
-      <div className="px-4 sm:px-6 pb-4 text-sm text-gray-600">
+      <div className="px-4 sm:px-6 pb-4 text-sm text-gray-600 font-medium">
         Showing {filteredCustomers.length} of {customers.length} customers
       </div>
     </div>
@@ -222,7 +222,7 @@ function CustomerCard({ customer }: { customer: AdminCustomer }) {
   return (
     <Link
       href={`/admin/customers/${customer.id}`}
-      className="block p-4 hover:bg-emerald-50 border border-gray-300 transition-colors rounded-xl bg-white mb-2"
+      className="block p-4 border-2 border-gray-200/60 bg-white/80 backdrop-blur-xl transition-all duration-300 rounded-2xl shadow-sm hover:shadow-lg hover:border-primary/30 mb-3"
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-start gap-3 flex-1 min-w-0">
@@ -237,8 +237,8 @@ function CustomerCard({ customer }: { customer: AdminCustomer }) {
               />
             </div>
           ) : (
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-emerald-100 to-teal-100 border border-emerald-200">
-              <Mail className="h-5 w-5 text-emerald-600" strokeWidth={2} />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20">
+              <Mail className="h-5 w-5 text-primary" strokeWidth={2.5} />
             </div>
           )}
           <div className="flex-1 min-w-0">
@@ -255,7 +255,7 @@ function CustomerCard({ customer }: { customer: AdminCustomer }) {
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 w-8 p-0 shrink-0 ml-2 hover:bg-emerald-50 hover:text-emerald-700"
+              className="h-8 w-8 p-0 shrink-0 ml-2 hover:bg-gray-100 hover:text-gray-900"
             >
               <MoreVertical className="h-4 w-4" strokeWidth={2} />
             </Button>
@@ -276,10 +276,10 @@ function CustomerCard({ customer }: { customer: AdminCustomer }) {
 
       <div className="grid grid-cols-2 gap-3 mb-3">
         <div className="flex items-center gap-2">
-          <div className="rounded-lg bg-linear-to-br from-emerald-100 to-teal-100 p-1.5">
+          <div className="rounded-xl bg-primary/10 p-2 border border-primary/20">
             <ShoppingBag
-              className="h-3.5 w-3.5 text-emerald-600"
-              strokeWidth={2}
+              className="h-3.5 w-3.5 text-primary"
+              strokeWidth={2.5}
             />
           </div>
           <div className="min-w-0">
@@ -291,10 +291,10 @@ function CustomerCard({ customer }: { customer: AdminCustomer }) {
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="rounded-lg bg-linear-to-br from-emerald-100 to-teal-100 p-1.5">
+          <div className="rounded-xl bg-primary/10 p-2 border border-primary/20">
             <DollarSign
-              className="h-3.5 w-3.5 text-emerald-600"
-              strokeWidth={2}
+              className="h-3.5 w-3.5 text-primary"
+              strokeWidth={2.5}
             />
           </div>
           <div className="min-w-0">
@@ -324,7 +324,7 @@ function CustomerCard({ customer }: { customer: AdminCustomer }) {
 // Desktop Table Row Component
 function CustomerRow({ customer }: { customer: AdminCustomer }) {
   return (
-    <tr className="hover:bg-emerald-50/50 border-b border-gray-200 transition-colors bg-white">
+    <tr className="hover:bg-gray-50 border-b border-gray-200 transition-colors bg-white">
       <td className="py-3 px-4">
         <Link
           href={`/admin/customers/${customer.id}`}
@@ -341,12 +341,12 @@ function CustomerRow({ customer }: { customer: AdminCustomer }) {
               />
             </div>
           ) : (
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-emerald-100 to-teal-100 border border-emerald-200">
-              <Mail className="h-5 w-5 text-emerald-600" strokeWidth={2} />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20">
+              <Mail className="h-5 w-5 text-primary" strokeWidth={2.5} />
             </div>
           )}
           <div className="min-w-0">
-            <p className="font-medium text-sm truncate text-gray-900 group-hover:text-emerald-700">
+            <p className="font-medium text-sm truncate text-gray-900 group-hover:text-primary">
               {customer.fullName || "No name"}
             </p>
             <p className="text-xs text-gray-600 truncate mt-0.5">
@@ -396,7 +396,7 @@ function CustomerRow({ customer }: { customer: AdminCustomer }) {
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 w-8 p-0 hover:bg-emerald-50 hover:text-emerald-700"
+              className="h-8 w-8 p-0 hover:bg-gray-100 hover:text-gray-900"
             >
               <MoreVertical className="h-4 w-4" strokeWidth={2} />
             </Button>
@@ -424,7 +424,7 @@ function CustomerTableSkeleton() {
     <div className="w-full space-y-4 sm:space-y-6">
       {/* Search Skeleton */}
       <div className="px-4 sm:px-6 pt-4 sm:pt-6">
-        <div className="h-10 w-full bg-emerald-300 rounded-lg animate-pulse" />
+        <div className="h-11 w-full bg-gray-200 rounded-xl animate-pulse" />
       </div>
 
       {/* Mobile Skeleton */}
@@ -432,15 +432,15 @@ function CustomerTableSkeleton() {
         {[1, 2, 3, 4, 5].map((i) => (
           <div key={i} className="p-4 space-y-3 bg-white">
             <div className="flex items-start gap-3">
-              <div className="h-10 w-10 bg-emerald-300 rounded-full animate-pulse" />
+              <div className="h-10 w-10 bg-gray-200 rounded-2xl animate-pulse" />
               <div className="flex-1 space-y-2">
-                <div className="h-4 w-32 bg-emerald-300 rounded animate-pulse" />
-                <div className="h-3 w-48 bg-emerald-300 rounded animate-pulse" />
+                <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
+                <div className="h-3 w-48 bg-gray-200 rounded animate-pulse" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <div className="h-12 bg-emerald-300 rounded animate-pulse" />
-              <div className="h-12 bg-emerald-300 rounded animate-pulse" />
+              <div className="h-12 bg-gray-200 rounded-xl animate-pulse" />
+              <div className="h-12 bg-gray-200 rounded-xl animate-pulse" />
             </div>
           </div>
         ))}
@@ -449,24 +449,24 @@ function CustomerTableSkeleton() {
       {/* Desktop Skeleton */}
       <div className="hidden md:block px-4 sm:px-6 pb-4 sm:pb-6">
         <table className="w-full">
-          <thead className="border border-gray-300 bg-linear-to-r from-emerald-50 to-teal-50">
+          <thead className="border border-gray-200 bg-linear-to-r from-gray-50 to-gray-100">
             <tr>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase">
+              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-700 uppercase">
                 Customer
               </th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase">
+              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-700 uppercase">
                 Contact
               </th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase">
+              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-700 uppercase">
                 Orders
               </th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase">
+              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-700 uppercase">
                 Total Spent
               </th>
-              <th className="text-left py-3 px-4 text-xs font-semibold text-emerald-700 uppercase">
+              <th className="text-left py-3 px-4 text-xs font-semibold text-gray-700 uppercase">
                 Joined
               </th>
-              <th className="text-right py-3 px-4 text-xs font-semibold text-emerald-700 uppercase">
+              <th className="text-right py-3 px-4 text-xs font-semibold text-gray-700 uppercase">
                 Actions
               </th>
             </tr>
@@ -476,24 +476,24 @@ function CustomerTableSkeleton() {
               <tr key={i}>
                 <td className="py-3 px-4">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 bg-emerald-300 rounded-full animate-pulse" />
-                    <div className="h-4 w-32 bg-emerald-300 rounded animate-pulse" />
+                    <div className="h-10 w-10 bg-gray-200 rounded-2xl animate-pulse" />
+                    <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
                   </div>
                 </td>
                 <td className="py-3 px-4">
-                  <div className="h-4 w-24 bg-emerald-300 rounded animate-pulse" />
+                  <div className="h-4 w-24 bg-gray-200 rounded animate-pulse" />
                 </td>
                 <td className="py-3 px-4">
-                  <div className="h-4 w-8 bg-emerald-300 rounded animate-pulse" />
+                  <div className="h-4 w-8 bg-gray-200 rounded animate-pulse" />
                 </td>
                 <td className="py-3 px-4">
-                  <div className="h-4 w-16 bg-emerald-300 rounded animate-pulse" />
+                  <div className="h-4 w-16 bg-gray-200 rounded animate-pulse" />
                 </td>
                 <td className="py-3 px-4">
-                  <div className="h-4 w-24 bg-emerald-300 rounded animate-pulse" />
+                  <div className="h-4 w-24 bg-gray-200 rounded animate-pulse" />
                 </td>
                 <td className="py-3 px-4 text-right">
-                  <div className="h-8 w-8 bg-emerald-300 rounded animate-pulse ml-auto" />
+                  <div className="h-8 w-8 bg-gray-200 rounded animate-pulse ml-auto" />
                 </td>
               </tr>
             ))}

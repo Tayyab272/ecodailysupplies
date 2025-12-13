@@ -9,12 +9,10 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Separator } from "@/components/ui/separator";
 import {
   Loader2,
   MapPin,
   CreditCard,
-  Package,
   Plus,
   Check,
   Leaf,
@@ -251,51 +249,61 @@ function CheckoutPageContent() {
   }
 
   return (
-    <div className="min-h-screenrelative overflow-hidden">
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-12">
-        <div className="mx-auto max-w-6xl">
+    <div className="min-h-screen bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-6 md:py-8">
+        <div className="mx-auto max-w-7xl">
           {/* Back Button */}
-          <Link href="/cart">
+          <Link href="/cart" className="mb-4 inline-block">
             <Button
               variant="ghost"
               size="sm"
-              className="mb-6 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 -ml-2"
+              className="text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" strokeWidth={2} />
               Back to Cart
             </Button>
           </Link>
 
-          {/* Page Header */}
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-                Secure Checkout
+          {/* Page Header - Compact */}
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-1">
+                Checkout
               </h1>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-emerald-600">
-              <ShieldCheck className="h-4 w-4" />
-              <span className="font-medium">SSL Encrypted • 100% Secure</span>
+              <div className="flex items-center gap-2 text-xs text-gray-600">
+                <ShieldCheck className="h-3 w-3 text-primary" />
+                <span>SSL Encrypted • 100% Secure</span>
+              </div>
             </div>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-12">
             {/* Left Column - Shipping & Billing */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-8 space-y-6">
               {/* Shipping Address Section */}
-              <Card className="p-6 md:p-8 bg-white rounded-2xl shadow-2xl border border-gray-300">
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-emerald-600 to-teal-600 shadow-lg">
-                    <MapPin className="h-6 w-6 text-white" strokeWidth={2} />
+              <Card className="p-5 md:p-6 bg-white rounded-lg border border-gray-300 shadow-sm">
+                <div className="mb-5 pb-4 border-b border-gray-300">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+                      <MapPin
+                        className="h-5 w-5 text-primary"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                        Step 1
+                      </span>
+                      <h2 className="text-lg md:text-xl font-bold text-gray-900 tracking-tight">
+                        Shipping Address
+                      </h2>
+                    </div>
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Shipping Address
-                  </h2>
                 </div>
 
                 {isLoadingAddresses ? (
                   <div className="flex items-center justify-center py-12">
-                    <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
+                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
                     <p className="ml-3 text-sm font-medium text-gray-600">
                       Loading addresses...
                     </p>
@@ -310,7 +318,7 @@ function CheckoutPageContent() {
                       {savedAddresses.map((address) => (
                         <div
                           key={address.id}
-                          className="flex items-start space-x-3 rounded-md hover:shadow-xl border border-emerald-200 p-4 transition-all hover:border-emerald-300 hover:bg-emerald-50/50"
+                          className="flex items-start space-x-3 rounded-lg border border-gray-300 p-4 transition-all hover:border-primary/50 hover:shadow-sm bg-white cursor-pointer"
                         >
                           <RadioGroupItem
                             value={address.id}
@@ -326,7 +334,7 @@ function CheckoutPageContent() {
                                 {address.first_name} {address.last_name}
                               </span>
                               {address.is_default && (
-                                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-700">
+                                <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-bold text-primary border border-primary/20">
                                   Default
                                 </span>
                               )}
@@ -356,7 +364,7 @@ function CheckoutPageContent() {
                     <Button
                       type="button"
                       variant="outline"
-                      className="mt-4 w-full border-2 border-emerald-200 hover:bg-emerald-100 cursor-pointer"
+                      className="mt-6 w-full border-2 border-gray-300 hover:bg-gray-50 hover:border-primary/50 hover:border-2 font-semibold transition-all duration-200 rounded-xl h-12"
                       onClick={() => setUseNewAddress(true)}
                     >
                       <Plus className="mr-2 h-4 w-4" />
@@ -367,27 +375,22 @@ function CheckoutPageContent() {
                   <>
                     {/* Guest Email Section */}
                     {!user?.id && (
-                      <div className="mb-6 p-4 bg-linear-to-r from-emerald-50 to-teal-50 rounded-xl border-2 border-emerald-200">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600">
-                            <span className="text-white text-sm font-bold">
-                              📧
-                            </span>
+                      <div className="mb-5 p-4 bg-gray-50 rounded-lg border border-gray-300">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+                            <span className="text-primary text-base">📧</span>
                           </div>
-                          <h3 className="text-base font-bold text-gray-900">
+                          <h3 className="text-sm font-bold text-gray-900">
                             Guest Checkout
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Enter your email to receive order confirmation and
-                          updates.
-                        </p>
                         <div className="space-y-2">
                           <Label
                             htmlFor="guest_email"
-                            className="text-sm font-semibold"
+                            className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                           >
-                            Email Address *
+                            Email Address{" "}
+                            <span className="text-red-500">*</span>
                           </Label>
                           <Input
                             id="guest_email"
@@ -396,20 +399,19 @@ function CheckoutPageContent() {
                             onChange={(e) => setGuestEmail(e.target.value)}
                             placeholder="your.email@example.com"
                             required
-                            className="h-11 border border-gray-300 focus:border-emerald-500 bg-white focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                            className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                           />
                         </div>
-                        <div className="mt-4 flex items-center gap-2 text-sm text-gray-600">
-                          <ShieldCheck className="h-4 w-4 text-emerald-600" />
+                        <div className="mt-3 flex items-center gap-2 text-xs text-gray-600">
+                          <ShieldCheck className="h-3 w-3 text-primary shrink-0" />
                           <span>
                             Have an account?{" "}
                             <Link
                               href="/auth/login?redirect=/checkout"
-                              className="text-emerald-600 hover:text-emerald-700 font-semibold underline"
+                              className="text-primary hover:text-primary/80 font-semibold transition-colors underline"
                             >
                               Sign in
-                            </Link>{" "}
-                            to use saved addresses
+                            </Link>
                           </span>
                         </div>
                       </div>
@@ -419,21 +421,21 @@ function CheckoutPageContent() {
                       <Button
                         type="button"
                         variant="outline"
-                        className="mb-4 w-full border-2 border-emerald-200 hover:bg-emerald-100 cursor-pointer"
+                        className="mb-4 w-full border border-gray-300 hover:bg-gray-50 hover:border-primary/50 font-medium transition-all duration-200 rounded-lg h-10 text-sm"
                         onClick={() => setUseNewAddress(false)}
                       >
-                        <Check className="mr-2 h-4 w-4" />
+                        <Check className="mr-2 h-3 w-3" />
                         Use Saved Address
                       </Button>
                     )}
 
-                    {/* New Address Form */}
+                    {/* New Address Form - Compact */}
                     <div className="space-y-4">
-                      <div className="grid gap-4 md:grid-cols-2">
+                      <div className="grid gap-3 md:grid-cols-2">
                         <div className="space-y-2">
                           <Label
                             htmlFor="first_name"
-                            className="text-sm font-semibold"
+                            className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                           >
                             First Name <span className="text-red-500">*</span>
                           </Label>
@@ -446,14 +448,14 @@ function CheckoutPageContent() {
                                 first_name: e.target.value,
                               })
                             }
-                            className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                            className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                             required
                           />
                         </div>
                         <div className="space-y-2">
                           <Label
                             htmlFor="last_name"
-                            className="text-sm font-semibold"
+                            className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                           >
                             Last Name <span className="text-red-500">*</span>
                           </Label>
@@ -466,7 +468,7 @@ function CheckoutPageContent() {
                                 last_name: e.target.value,
                               })
                             }
-                            className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                            className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                             required
                           />
                         </div>
@@ -475,7 +477,7 @@ function CheckoutPageContent() {
                       <div className="space-y-2">
                         <Label
                           htmlFor="company"
-                          className="text-sm font-semibold"
+                          className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                         >
                           Company (Optional)
                         </Label>
@@ -488,14 +490,14 @@ function CheckoutPageContent() {
                               company: e.target.value,
                             })
                           }
-                          className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                          className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                         />
                       </div>
 
                       <div className="space-y-2">
                         <Label
                           htmlFor="address_line_1"
-                          className="text-sm font-semibold"
+                          className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                         >
                           Address <span className="text-red-500">*</span>
                         </Label>
@@ -509,7 +511,7 @@ function CheckoutPageContent() {
                             })
                           }
                           placeholder="Street address"
-                          className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                          className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                           required
                         />
                       </div>
@@ -517,7 +519,7 @@ function CheckoutPageContent() {
                       <div className="space-y-2">
                         <Label
                           htmlFor="address_line_2"
-                          className="text-sm font-semibold"
+                          className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                         >
                           Apartment, suite, etc. (Optional)
                         </Label>
@@ -530,15 +532,15 @@ function CheckoutPageContent() {
                               address_line_2: e.target.value,
                             })
                           }
-                          className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                          className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                         />
                       </div>
 
-                      <div className="grid gap-4 md:grid-cols-3">
+                      <div className="grid gap-3 md:grid-cols-3">
                         <div className="space-y-2">
                           <Label
                             htmlFor="city"
-                            className="text-sm font-semibold"
+                            className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                           >
                             City <span className="text-red-500">*</span>
                           </Label>
@@ -551,14 +553,14 @@ function CheckoutPageContent() {
                                 city: e.target.value,
                               })
                             }
-                            className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                            className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                             required
                           />
                         </div>
                         <div className="space-y-2">
                           <Label
                             htmlFor="state"
-                            className="text-sm font-semibold"
+                            className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                           >
                             State <span className="text-red-500">*</span>
                           </Label>
@@ -571,14 +573,14 @@ function CheckoutPageContent() {
                                 state: e.target.value,
                               })
                             }
-                            className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                            className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                             required
                           />
                         </div>
                         <div className="space-y-2">
                           <Label
                             htmlFor="postal_code"
-                            className="text-sm font-semibold"
+                            className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                           >
                             ZIP Code <span className="text-red-500">*</span>
                           </Label>
@@ -591,7 +593,8 @@ function CheckoutPageContent() {
                                 postal_code: e.target.value,
                               })
                             }
-                            className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                            className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
+                            required
                           />
                         </div>
                       </div>
@@ -599,7 +602,7 @@ function CheckoutPageContent() {
                       <div className="space-y-2">
                         <Label
                           htmlFor="phone"
-                          className="text-sm font-semibold"
+                          className="text-xs font-bold text-gray-900 uppercase tracking-wider"
                         >
                           Phone (Optional)
                         </Label>
@@ -613,7 +616,7 @@ function CheckoutPageContent() {
                               phone: e.target.value,
                             })
                           }
-                          className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                          className="h-11 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary transition-all text-sm"
                         />
                       </div>
                     </div>
@@ -621,37 +624,20 @@ function CheckoutPageContent() {
                 )}
               </Card>
 
-              {/* Shipping Method Selection */}
-              <Card className="p-6 md:p-8 bg-white rounded-2xl shadow-2xl border border-gray-300">
-                <div className="mb-6 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-emerald-600 to-teal-600 shadow-lg">
-                    <Truck className="h-6 w-6 text-white" strokeWidth={2} />
-                  </div>
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Shipping Method
-                  </h2>
-                </div>
-
-                <ShippingSelector
-                  selectedShippingId={selectedShippingId}
-                  onShippingChange={setShippingMethod}
-                />
-              </Card>
-
               {/* Billing Note */}
-              <Card className="p-6 bg-white rounded-xl shadow-2xl border border-gray-300">
+              <Card className="p-4 bg-gray-50 rounded-lg border border-gray-300">
                 <div className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-teal-100 to-cyan-100">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 shrink-0">
                     <CreditCard
-                      className="h-5 w-5 text-teal-600"
-                      strokeWidth={2}
+                      className="h-4 w-4 text-primary"
+                      strokeWidth={1.5}
                     />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-1">
+                    <h3 className="font-bold text-gray-900 mb-1 text-sm">
                       Billing Address
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-xs text-gray-600 leading-relaxed">
                       Your billing address will be collected securely on the
                       next page during payment processing.
                     </p>
@@ -660,86 +646,116 @@ function CheckoutPageContent() {
               </Card>
             </div>
 
-            {/* Right Column - Order Summary */}
-            <div className="lg:col-span-1">
-              <Card className="sticky top-24 p-6 bg-white rounded-2xl shadow-2xl border border-gray-300">
-                {/* Cart Items */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    Cart Items
-                  </h3>
-                  <div className="space-y-3 max-h-60 overflow-y-auto">
-                    {items.map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex gap-3 p-2 rounded-lg hover:bg-emerald-50 transition-colors"
-                      >
-                        <div className="flex-1">
-                          <p className="font-semibold text-sm text-gray-900">
-                            {item.product.name}
-                          </p>
-                          {item.variant && (
-                            <p className="text-xs text-gray-500">
-                              {item.variant.name}
-                            </p>
-                          )}
-                          <p className="text-xs text-emerald-600 font-medium">
-                            Qty: {item.quantity}
-                          </p>
-                        </div>
-                        <div className="text-sm font-bold text-gray-900">
-                          £{(item.pricePerUnit * item.quantity).toFixed(2)}
-                        </div>
+            {/* Right Column - Order Summary & Shipping */}
+            <div className="lg:col-span-4">
+              <div className="sticky top-24 space-y-6">
+                {/* Shipping Method Selection - Moved here for visibility */}
+                <Card className="p-5 bg-white rounded-lg border border-gray-300 shadow-sm">
+                  <div className="mb-4 pb-4 border-b border-gray-300">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+                        <Truck
+                          className="h-5 w-5 text-primary"
+                          strokeWidth={1.5}
+                        />
                       </div>
-                    ))}
+                      <div>
+                        <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                          Step 2
+                        </span>
+                        <h3 className="text-base font-bold text-gray-900 tracking-tight">
+                          Shipping Method
+                        </h3>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                <Separator className="my-6 bg-gray-200" />
+                  <ShippingSelector
+                    selectedShippingId={selectedShippingId}
+                    onShippingChange={setShippingMethod}
+                  />
+                </Card>
 
-                {/* Order Summary with VAT */}
-                <OrderSummaryWithVAT summary={summary} showTitle={false} />
-
-                {/* Eco Badge */}
-                <div className="mt-6 p-3 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-xl border-2 border-emerald-200">
-                  <div className="flex items-center gap-2">
-                    <Leaf className="h-4 w-4 text-emerald-600" />
-                    <span className="text-xs font-semibold text-emerald-800">
-                      Eco-Friendly Packaging Included
-                    </span>
+                {/* Order Summary */}
+                <Card className="p-5 bg-white rounded-lg border border-gray-300 shadow-sm">
+                  {/* Cart Items */}
+                  <div className="mb-5 pb-4 border-b border-gray-300">
+                    <h3 className="text-base font-bold text-gray-900 mb-4 uppercase tracking-wider">
+                      Order Summary
+                    </h3>
+                    <div className="space-y-3 max-h-48 overflow-y-auto pr-2">
+                      {items.map((item) => (
+                        <div
+                          key={item.id}
+                          className="flex gap-3 p-3 rounded-lg border border-gray-300 hover:border-primary/30 hover:shadow-sm transition-all bg-white"
+                        >
+                          <div className="flex-1">
+                            <p className="font-semibold text-xs text-gray-900">
+                              {item.product.name}
+                            </p>
+                            {item.variant && (
+                              <p className="text-xs text-gray-500 mt-0.5">
+                                {item.variant.name}
+                              </p>
+                            )}
+                            <p className="text-xs text-primary font-medium mt-1">
+                              Qty: {item.quantity}
+                            </p>
+                          </div>
+                          <div className="text-sm font-bold text-gray-900">
+                            £{(item.pricePerUnit * item.quantity).toFixed(2)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {error && (
-                  <div className="mt-4 rounded-xl bg-red-50 border-2 border-red-200 p-3 text-sm text-red-800">
-                    {error}
+                  {/* Order Summary with VAT */}
+                  <OrderSummaryWithVAT summary={summary} showTitle={false} />
+
+                  {/* Eco Badge */}
+                  <div className="mt-5 p-3 bg-gray-50 rounded-lg border border-gray-300">
+                    <div className="flex items-center gap-2">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 shrink-0">
+                        <Leaf className="h-3 w-3 text-primary" />
+                      </div>
+                      <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                        Eco-Friendly Packaging Included
+                      </span>
+                    </div>
                   </div>
-                )}
 
-                <Button
-                  className="mt-6 w-full h-12 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
-                  size="lg"
-                  onClick={handleCheckout}
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Processing...
-                    </>
-                  ) : (
-                    <>
-                      <Check className="mr-2 h-5 w-5" />
-                      Continue to Payment
-                    </>
+                  {error && (
+                    <div className="mt-4 rounded-lg bg-red-50 border border-red-300 p-3 text-xs text-red-800 font-semibold">
+                      {error}
+                    </div>
                   )}
-                </Button>
 
-                <p className="mt-4 text-center text-xs text-gray-500 flex items-center justify-center gap-1">
-                  <ShieldCheck className="h-3 w-3" />
-                  Secure checkout powered by Stripe
-                </p>
-              </Card>
+                  <Button
+                    className="mt-5 w-full h-12 bg-primary text-white font-bold text-base hover:bg-primary/90 transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl"
+                    size="lg"
+                    onClick={handleCheckout}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Check className="mr-2 h-4 w-4" />
+                        Continue to Payment
+                      </>
+                    )}
+                  </Button>
+
+                  <p className="mt-4 text-center text-xs text-gray-500 flex items-center justify-center gap-2">
+                    <ShieldCheck className="h-3 w-3 text-primary" />
+                    Secure checkout powered by Stripe
+                  </p>
+                </Card>
+              </div>
             </div>
           </div>
         </div>

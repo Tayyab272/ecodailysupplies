@@ -26,16 +26,17 @@ export function ProductCard({ product }: ProductCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <Link href={`/products/${product.slug}`} className="flex flex-col h-full">
-        {/* Image Container - Maximized Height */}
-        <div className="relative flex-1 aspect-square w-full bg-white overflow-hidden">
+        {/* Image Container - Fixed Square Aspect Ratio */}
+        <div className="relative w-full aspect-square bg-white overflow-hidden">
           {/* Primary Image */}
-          <div className="relative w-full h-full transition-transform duration-700 ease-out">
+          <div className="absolute inset-0 transition-transform duration-700 ease-out">
             <Image
               src={primaryImage}
               alt={product.imageAlt || product.name}
               fill
-              className={`object-cover transition-opacity duration-500 ${isHovered && secondaryImage ? "opacity-0" : "opacity-100"
-                }`}
+              className={`object-cover object-center transition-opacity duration-500 ${
+                isHovered && secondaryImage ? "opacity-0" : "opacity-100"
+              }`}
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
             />
 
@@ -45,8 +46,9 @@ export function ProductCard({ product }: ProductCardProps) {
                 src={secondaryImage}
                 alt={product.imageAlt || product.name}
                 fill
-                className={`object-cover transition-opacity duration-500 ${isHovered ? "opacity-100" : "opacity-0"
-                  }`}
+                className={`object-cover object-center transition-opacity duration-500 ${
+                  isHovered ? "opacity-100" : "opacity-0"
+                }`}
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
               />
             )}
@@ -73,38 +75,38 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Product Info - Primary Background */}
-        <div className="bg-primary p-4 text-center z-20">
-          <h3 className="text-xs lg:text-base font-bold text-gray-900 mb-1 group-hover:underline decoration-white/50 underline-offset-4">
-            {product.name}
-          </h3>
+        <div className="bg-primary p-4 text-center z-20 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 className="text-xs lg:text-base font-bold text-gray-900 mb-1 group-hover:underline decoration-white/50 underline-offset-4">
+              {product.name}
+            </h3>
 
-          <div className="flex items-center justify-center gap-2 text-white/90">
-            {shouldShowPrice ? (
-              <>
-                <span className="text-md font-bold text-white">
-                  £{displayPrice.toFixed(2)}
-                </span>
-                {Number(product.discount) > 0 && (
-                  <span className="text-xs text-white/60 line-through">
-                    £
-                    {(
-                      displayPrice /
-                      (1 - Number(product.discount) / 100)
-                    ).toFixed(2)}
+            <div className="flex items-center justify-center gap-2 text-white/90">
+              {shouldShowPrice ? (
+                <>
+                  <span className="text-md font-bold text-white">
+                    £{displayPrice.toFixed(2)}
                   </span>
-                )}
-              </>
-            ) : (
-              <span className="text-sm font-medium italic">
-                View Price
-              </span>
-            )}
+                  {Number(product.discount) > 0 && (
+                    <span className="text-xs text-white/60 line-through">
+                      £
+                      {(
+                        displayPrice /
+                        (1 - Number(product.discount) / 100)
+                      ).toFixed(2)}
+                    </span>
+                  )}
+                </>
+              ) : (
+                <span className="text-sm font-medium italic">View Price</span>
+              )}
+            </div>
           </div>
 
           {/* Variant Count */}
           {hasVariants && (
-            <p className="text-[10px] text-white/50 mt-1 uppercase tracking-wider">
-              {product.variants!.length} Colors
+            <p className="text-[10px] text-white/90 mt-3 text-left uppercase tracking-wider">
+              {product.variants!.length} Options
             </p>
           )}
         </div>

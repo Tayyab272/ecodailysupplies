@@ -71,7 +71,6 @@ export default function SignUpPage() {
     }
 
     try {
-      console.log("Starting signup process...");
       const result = await signUp({
         email: formData.email,
         password: formData.password,
@@ -80,51 +79,46 @@ export default function SignUpPage() {
         company: formData.company || undefined,
       });
 
-      console.log("Signup result:", result);
-
       if (result.success) {
-        console.log("Signup successful, redirecting to verify-email page...");
         setError("");
         // Redirect to verify email page with user's email
         router.replace(
           `/auth/verify-email?email=${encodeURIComponent(formData.email)}`
         );
       } else {
-        console.error("Signup failed:", result.error);
         setError(result.error || "Failed to create account");
         setIsSubmitting(false);
       }
-    } catch (err) {
-      console.error("Signup exception:", err);
+    } catch {
       setError("An unexpected error occurred");
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="relative z-10 container mx-auto flex min-h-screen items-center justify-center px-6 py-16">
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
         <div className="w-full max-w-2xl">
           {/* Header */}
-          <div className="mb-10 space-y-6 text-center">
-            <Link href="/" className="inline-block group">
+          <div className="mb-8 text-center">
+            <Link href="/" className="inline-block mb-8 group">
               <Image
-                src="/logo.jpg"
+                src="/logo.webp"
                 alt="Logo"
                 width={120}
                 height={40}
                 className="h-10 w-auto transition-transform group-hover:scale-105"
               />
             </Link>
-            <div className="space-y-3">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+            <div className="space-y-2">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
                 Create Your Account
               </h1>
               <p className="text-sm text-gray-600">
                 Already registered?{" "}
                 <Link
                   href="/auth/login"
-                  className="font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
+                  className="font-semibold text-primary hover:text-primary/80 transition-colors"
                 >
                   Sign in here
                 </Link>
@@ -133,12 +127,12 @@ export default function SignUpPage() {
           </div>
 
           {/* Sign Up Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-gray-300 hover:shadow-2xl transition-all duration-300">
+          <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-8 md:p-10">
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Error Alert */}
               {error && (
-                <Alert className="border-red-200 bg-red-50">
-                  <AlertDescription className="text-sm text-red-800">
+                <Alert className="border-red-300 bg-red-50">
+                  <AlertDescription className="text-sm text-red-800 font-medium">
                     {error}
                   </AlertDescription>
                 </Alert>
@@ -150,7 +144,7 @@ export default function SignUpPage() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="fullName"
-                    className="text-sm font-semibold text-gray-900"
+                    className="text-sm font-bold text-gray-900 uppercase tracking-wider"
                   >
                     Full Name
                   </Label>
@@ -163,7 +157,7 @@ export default function SignUpPage() {
                     onChange={handleInputChange}
                     placeholder="John Doe"
                     disabled={isSubmitting || loading}
-                    className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                    className="h-12 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 transition-all"
                   />
                 </div>
 
@@ -171,7 +165,7 @@ export default function SignUpPage() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="email"
-                    className="text-sm font-semibold text-gray-900"
+                    className="text-sm font-bold text-gray-900 uppercase tracking-wider"
                   >
                     Email address <span className="text-red-500">*</span>
                   </Label>
@@ -185,7 +179,7 @@ export default function SignUpPage() {
                     onChange={handleInputChange}
                     placeholder="your.email@example.com"
                     disabled={isSubmitting || loading}
-                    className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                    className="h-12 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 transition-all"
                   />
                 </div>
 
@@ -193,9 +187,12 @@ export default function SignUpPage() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="phone"
-                    className="text-sm font-semibold text-gray-900"
+                    className="text-sm font-bold text-gray-900 uppercase tracking-wider"
                   >
-                    Phone Number
+                    Phone Number{" "}
+                    <span className="text-gray-500 font-normal normal-case">
+                      (Optional)
+                    </span>
                   </Label>
                   <Input
                     id="phone"
@@ -206,7 +203,7 @@ export default function SignUpPage() {
                     onChange={handleInputChange}
                     placeholder="+1 (555) 123-4567"
                     disabled={isSubmitting || loading}
-                    className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                    className="h-12 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 transition-all"
                   />
                 </div>
 
@@ -214,9 +211,12 @@ export default function SignUpPage() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="company"
-                    className="text-sm font-semibold text-gray-900"
+                    className="text-sm font-bold text-gray-900 uppercase tracking-wider"
                   >
-                    Company
+                    Company{" "}
+                    <span className="text-gray-500 font-normal normal-case">
+                      (Optional)
+                    </span>
                   </Label>
                   <Input
                     id="company"
@@ -227,7 +227,7 @@ export default function SignUpPage() {
                     onChange={handleInputChange}
                     placeholder="Your company"
                     disabled={isSubmitting || loading}
-                    className="h-11 border border-gray-300 focus:border-border-300 bg-transparent focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                    className="h-12 border border-gray-300 bg-white focus-visible:ring-primary focus-visible:ring-2 transition-all"
                   />
                 </div>
 
@@ -235,7 +235,7 @@ export default function SignUpPage() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="password"
-                    className="text-sm font-semibold text-gray-900"
+                    className="text-sm font-bold text-gray-900 uppercase tracking-wider"
                   >
                     Password <span className="text-red-500">*</span>
                   </Label>
@@ -250,11 +250,11 @@ export default function SignUpPage() {
                       onChange={handleInputChange}
                       placeholder="Create password"
                       disabled={isSubmitting || loading}
-                      className="h-11 border border-gray-300 focus:border-border-300 bg-transparent pr-10 focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                      className="h-12 border border-gray-300 bg-white pr-10 focus-visible:ring-primary focus-visible:ring-2 transition-all"
                     />
                     <button
                       type="button"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-emerald-600"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors"
                       onClick={() => setShowPassword(!showPassword)}
                       disabled={isSubmitting || loading}
                     >
@@ -271,7 +271,7 @@ export default function SignUpPage() {
                 <div className="space-y-2">
                   <Label
                     htmlFor="confirmPassword"
-                    className="text-sm font-semibold text-gray-900"
+                    className="text-sm font-bold text-gray-900 uppercase tracking-wider"
                   >
                     Confirm Password <span className="text-red-500">*</span>
                   </Label>
@@ -286,11 +286,11 @@ export default function SignUpPage() {
                       onChange={handleInputChange}
                       placeholder="Confirm password"
                       disabled={isSubmitting || loading}
-                      className="h-11 border border-gray-300 focus:border-border-300 bg-transparent pr-10 focus-visible:ring-emerald-400! focus-visible:ring-1! transition-all"
+                      className="h-12 border border-gray-300 bg-white pr-10 focus-visible:ring-primary focus-visible:ring-2 transition-all"
                     />
                     <button
                       type="button"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-emerald-600"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors"
                       onClick={() =>
                         setShowConfirmPassword(!showConfirmPassword)
                       }
@@ -309,7 +309,7 @@ export default function SignUpPage() {
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="group h-12 w-full bg-linear-to-r from-emerald-600 to-teal-600 text-base cursor-pointer font-semibold text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="group h-14 w-full bg-primary text-white font-bold text-base hover:bg-primary/90 transition-all duration-300 rounded-full shadow-lg hover:shadow-xl"
                 disabled={isSubmitting || loading}
               >
                 {isSubmitting ? (
@@ -330,12 +330,12 @@ export default function SignUpPage() {
             </form>
 
             {/* Additional Links */}
-            <div className="mt-6 pt-6 border-t-2 border-emerald-100 text-center">
+            <div className="mt-8 pt-6 border-t border-gray-200 text-center">
               <p className="text-sm text-gray-600">
                 Already have an account?{" "}
                 <Link
                   href="/auth/login"
-                  className="font-semibold ml-1 text-emerald-600 hover:text-emerald-700 transition-colors"
+                  className="font-semibold text-primary hover:text-primary/80 transition-colors"
                 >
                   Sign in
                 </Link>
@@ -349,14 +349,14 @@ export default function SignUpPage() {
               By creating an account, you agree to our{" "}
               <Link
                 href="/terms"
-                className="text-emerald-600 hover:text-emerald-700 font-medium"
+                className="text-primary hover:text-primary/80 font-medium transition-colors"
               >
                 Terms of Service
               </Link>{" "}
               and{" "}
               <Link
                 href="/privacy"
-                className="text-emerald-600 hover:text-emerald-700 font-medium"
+                className="text-primary hover:text-primary/80 font-medium transition-colors"
               >
                 Privacy Policy
               </Link>

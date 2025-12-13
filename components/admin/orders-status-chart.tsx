@@ -60,16 +60,16 @@ export function OrdersStatusChart({ initialData = [] }: OrdersStatusChartProps) 
         data: data.map((entry) => entry.count),
         backgroundColor: [
           "rgba(203, 213, 225, 0.8)", // Pending - slate-300
-          "rgba(94, 234, 212, 0.8)", // Processing - teal-300
-          "rgba(52, 211, 153, 0.8)", // Shipped - emerald-400
-          "rgba(5, 150, 105, 0.8)", // Delivered - emerald-600
+          "rgba(234, 91, 111, 0.35)", // Processing - primary/35
+          "rgba(234, 91, 111, 0.55)", // Shipped - primary/55
+          "rgba(234, 91, 111, 0.75)", // Delivered - primary/75
           "rgba(239, 68, 68, 0.8)", // Cancelled - red-500
         ],
         borderColor: [
           "rgb(203, 213, 225)", // slate-300
-          "rgb(94, 234, 212)", // teal-300
-          "rgb(52, 211, 153)", // emerald-400
-          "rgb(5, 150, 105)", // emerald-600
+          "rgba(234, 91, 111, 0.45)", // primary/45
+          "rgba(234, 91, 111, 0.65)", // primary/65
+          "rgba(234, 91, 111, 0.9)", // primary/90
           "rgb(239, 68, 68)", // red-500
         ],
         borderWidth: 2,
@@ -131,11 +131,11 @@ export function OrdersStatusChart({ initialData = [] }: OrdersStatusChartProps) 
       <div className="flex h-[400px] items-center justify-center">
         <div className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="rounded-full bg-linear-to-br from-emerald-100 to-teal-100 p-4 border border-emerald-200">
-              <Package className="mx-auto h-12 w-12 text-emerald-600" strokeWidth={2} />
+            <div className="rounded-2xl bg-primary/10 p-4 border-2 border-primary/20 shadow-lg">
+              <Package className="mx-auto h-12 w-12 text-primary" strokeWidth={2.5} />
             </div>
           </div>
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-300">
+          <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-gray-200/60">
             <p className="mt-4 text-lg font-medium text-gray-900">No orders yet</p>
             <p className="mt-2 text-sm text-gray-600">
               Order status data will appear here once orders are placed

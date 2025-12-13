@@ -106,11 +106,11 @@ export const metadata: Metadata = {
       "Professional packaging supplies with automatic bulk pricing. Next day delivery. Eco-friendly options.",
     images: [
       {
-        url: "/logo.jpg", // Relative URL - metadataBase will resolve it
+        url: "/logo.webp", // Relative URL - metadataBase will resolve it
         width: 1200,
         height: 630,
         alt: "Bubble Wrap Shop Premium Packaging Supplies",
-        type: "image/jpeg",
+        type: "image/webp",
       },
     ],
   },
@@ -121,7 +121,7 @@ export const metadata: Metadata = {
       "Professional packaging supplies with automatic bulk pricing. Next day delivery. Eco-friendly options.",
     images: [
       {
-        url: "/logo.jpg", // Relative URL - metadataBase will resolve it
+        url: "/logo.webp", // Relative URL - metadataBase will resolve it
         width: 1200,
         height: 630,
         alt: "Bubble Wrap Shop Premium Packaging Supplies",

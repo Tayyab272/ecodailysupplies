@@ -1,751 +1,708 @@
 import { Breadcrumbs } from "@/components/common";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { ReactNode } from "react";
+
+type TermsSection = {
+  id: string;
+  number: number;
+  title: string;
+  content: ReactNode;
+};
+
+const SECTIONS: TermsSection[] = [
+  {
+    id: "introduction",
+    number: 1,
+    title: "Introduction",
+    content: (
+      <>
+        <p>
+          These Terms and conditions apply to this website and to the
+          transactions related to our products and services. You may be bound by
+          additional contracts related to your relationship with us or any
+          products or services that you receive from us. If any provisions of
+          the additional contracts conflict with any provisions of these Terms,
+          the provisions of these additional contracts will control and prevail.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "binding",
+    number: 2,
+    title: "Binding",
+    content: (
+      <>
+        <p>
+          By registering with, accessing, or otherwise using this website, you
+          hereby agree to be bound by these Terms and conditions set forth
+          below. The mere use of this website implies the knowledge and
+          acceptance of these Terms and conditions. In some particular cases, we
+          can also ask you to explicitly agree.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "electronic-communication",
+    number: 3,
+    title: "Electronic communication",
+    content: (
+      <>
+        <p>
+          By using this website or communicating with us by electronic means,
+          you agree and acknowledge that we may communicate with you
+          electronically on our website or by sending an email to you, and you
+          agree that all agreements, notices, disclosures, and other
+          communications that we provide to you electronically satisfy any legal
+          requirement, including but not limited to the requirement that such
+          communications should be in writing.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "intellectual-property",
+    number: 4,
+    title: "Intellectual property",
+    content: (
+      <>
+        <p>
+          We or our licensors own and control all of the copyright and other
+          intellectual property rights in the website and the data, information,
+          and other resources displayed by or accessible within the website.
+        </p>
+        <h3 className="pt-2 text-base font-bold text-gray-900">
+          4.1 All the rights are reserved
+        </h3>
+        <p>
+          Unless specific content dictates otherwise, you are not granted a
+          license or any other right under Copyright, Trademark, Patent, or
+          other Intellectual Property Rights. This means that you will not use,
+          copy, reproduce, perform, display, distribute, embed into any
+          electronic medium, alter, reverse engineer, decompile, transfer,
+          download, transmit, monetize, sell, market, or commercialize any
+          resources on this website in any form, without our prior written
+          permission, except and only insofar as otherwise stipulated in
+          regulations of mandatory law (such as the right to quote).
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "newsletter",
+    number: 5,
+    title: "Newsletter",
+    content: (
+      <>
+        <p>
+          Notwithstanding the foregoing, you may forward our newsletter in the
+          electronic form to others who may be interested in visiting our
+          website.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "third-party-property",
+    number: 6,
+    title: "Third-party property",
+    content: (
+      <>
+        <p>
+          Our website may include hyperlinks or other references to other
+          party&apos;s websites. We do not monitor or review the content of
+          other party&apos;s websites which are linked to from this website.
+          Products or services offered by other websites shall be subject to the
+          applicable Terms and Conditions of those third parties. Opinions
+          expressed or material appearing on those websites are not necessarily
+          shared or endorsed by us.
+        </p>
+        <p>
+          We will not be responsible for any privacy practices or content of
+          these sites. You bear all risks associated with the use of these
+          websites and any related third-party services. We will not accept any
+          responsibility for any loss or damage in whatever manner, however
+          caused, resulting from your disclosure to third parties of personal
+          information.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "responsible-use",
+    number: 7,
+    title: "Responsible use",
+    content: (
+      <>
+        <p>
+          By visiting our website, you agree to use it only for the purposes
+          intended and as permitted by these Terms, any additional contracts
+          with us, and applicable laws, regulations, and generally accepted
+          online practices and industry guidelines. You must not use our website
+          or services to use, publish or distribute any material which consists
+          of (or is linked to) malicious computer software; use data collected
+          from our website for any direct marketing activity, or conduct any
+          systematic or automated data collection activities on or in relation
+          to our website.
+        </p>
+        <p>
+          Engaging in any activity that causes, or may cause, damage to the
+          website or that interferes with the performance, availability, or
+          accessibility of the website is strictly prohibited.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "registration",
+    number: 8,
+    title: "Registration",
+    content: (
+      <>
+        <p>
+          You may register for an account with our website. During this process,
+          you may be required to choose a password. You are responsible for
+          maintaining the confidentiality of passwords and account information
+          and agree not to share your passwords, account information, or secured
+          access to our website or services with any other person. You must not
+          allow any other person to use your account to access the website
+          because you are responsible for all activities that occur through the
+          use of your passwords or accounts. You must notify us immediately if
+          you become aware of any disclosure of your password.
+        </p>
+        <p>
+          After account termination, you will not attempt to register a new
+          account without our permission.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "refund-and-return-policy",
+    number: 9,
+    title: "Refund and Return policy",
+    content: (
+      <>
+        <h3 className="pt-2 text-base font-bold text-gray-900">
+          9.1 Right of withdrawal
+        </h3>
+        <p>
+          You have the right to withdraw from this contract within 30 days
+          without giving any reason.
+        </p>
+        <p>
+          The withdrawal period will expire after 30 days from the day on which
+          you acquire, or a third-party other than the carrier and indicated by
+          you acquires, physical possession of the goods.
+        </p>
+        <p>
+          To exercise the right of withdrawal, you must inform us of your
+          decision to withdraw from this contract by an unequivocal statement
+          (for example a letter sent by post, fax, or email). Our contact
+          details can be found below. You may use the attached model withdrawal
+          form, but it is not obligatory.
+        </p>
+        <p>
+          If you use this option, we will communicate to you an acknowledgement
+          of receipt of such a withdrawal on a durable medium (for example by
+          email) without delay.
+        </p>
+        <p>
+          To meet the withdrawal deadline, it is sufficient for you to send your
+          communication concerning your exercise of the right of withdrawal
+          before the withdrawal period has expired.
+        </p>
+
+        <h3 className="pt-2 text-base font-bold text-gray-900">
+          9.2 Effects of withdrawal
+        </h3>
+        <p>
+          If you withdraw from this contract, we shall reimburse you all
+          payments received from you, including the costs of delivery (with the
+          exception of the supplementary costs resulting from your choice of a
+          type of delivery other than the least expensive type of standard
+          delivery offered by us), without undue delay and in any event not
+          later than 14 days from the day on which we are informed about your
+          decision to withdraw from this contract. We will carry out such
+          reimbursement using the same means of payment as you used for the
+          initial transaction unless you have expressly agreed otherwise; in any
+          event, you will not incur any fees as a result of such reimbursement.
+        </p>
+        <p>We will collect the goods.</p>
+        <p>You will have to bear the direct cost of returning the goods.</p>
+        <p>
+          You are only liable for any diminished value of the goods resulting
+          from the handling other than what is necessary to establish the
+          nature, characteristics, and functioning of the goods.
+        </p>
+        <p>
+          Please note that there are some legal exceptions to the right to
+          withdraw, and some items can therefore not be returned or exchanged.
+          We will let you know if this applies in your particular case.
+        </p>
+        <p>
+          For details, please see our{" "}
+          <Link
+            href="/returns-policy"
+            className="text-primary underline hover:text-primary/80 font-medium"
+          >
+            Returns Policy
+          </Link>
+          .
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "content-posted-by-you",
+    number: 10,
+    title: "Content posted by you",
+    content: (
+      <>
+        <p>
+          We may provide various open communication tools on our website, such
+          as blog comments, blog posts, forums, message boards, ratings and
+          reviews, and various social media services. It might not be feasible
+          for us to screen or monitor all content that you or others may share
+          or submit on or through our website. However, we reserve the right to
+          review the content and to monitor all use of and activity on our
+          website, and remove or reject any content in our sole discretion. By
+          posting information or otherwise using any open communication tools as
+          mentioned, you agree that your content will comply with these Terms
+          and Conditions and must not be illegal or unlawful or infringe any
+          person&apos;s legal rights.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "idea-submission",
+    number: 11,
+    title: "Idea submission",
+    content: (
+      <>
+        <p>
+          Do not submit any ideas, inventions, works of authorship, or other
+          information that can be considered your own intellectual property that
+          you would like to present to us unless we have first signed an
+          agreement regarding the intellectual property or a non-disclosure
+          agreement. If you disclose it to us absent such written agreement, you
+          grant to us a worldwide, irrevocable, non-exclusive, royalty-free
+          license to use, reproduce, store, adapt, publish, translate and
+          distribute your content in any existing or future media.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "termination-of-use",
+    number: 12,
+    title: "Termination of use",
+    content: (
+      <>
+        <p>
+          We may, in our sole discretion, at any time modify or discontinue
+          access to, temporarily or permanently, the website or any Service
+          thereon. You agree that we will not be liable to you or any third
+          party for any such modification, suspension or discontinuance of your
+          access to, or use of, the website or any content that you may have
+          shared on the website. You will not be entitled to any compensation or
+          other payment, even if certain features, settings, and/or any Content
+          you have contributed or have come to rely on, are permanently lost.
+          You must not circumvent or bypass, or attempt to circumvent or bypass,
+          any access restriction measures on our website.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "warranties-and-liability",
+    number: 13,
+    title: "Warranties and liability",
+    content: (
+      <>
+        <p>
+          Nothing in this section will limit or exclude any warranty implied by
+          law that it would be unlawful to limit or to exclude. This website and
+          all content on the website are provided on an &quot;as is&quot; and
+          &quot;as available&quot; basis and may include inaccuracies or
+          typographical errors. We expressly disclaim all warranties of any
+          kind, whether express or implied, as to the availability, accuracy, or
+          completeness of the Content. We make no warranty that:
+        </p>
+        <ul className="ml-5 list-disc space-y-2 text-gray-600">
+          <li>
+            this website or our products or services will meet your
+            requirements;
+          </li>
+          <li>
+            this website will be available on an uninterrupted, timely, secure,
+            or error-free basis;
+          </li>
+          <li>
+            the quality of any product or service purchased or obtained by you
+            through this website will meet your expectations.
+          </li>
+        </ul>
+        <p>
+          Nothing on this website constitutes or is meant to constitute, legal,
+          financial or medical advice of any kind. If you require advice you
+          should consult an appropriate professional.
+        </p>
+        <p>
+          The following provisions of this section will apply to the maximum
+          extent permitted by applicable law and will not limit or exclude our
+          liability in respect of any matter which it would be unlawful or
+          illegal for us to limit or to exclude our liability. In no event will
+          we be liable for any direct or indirect damages (including any damages
+          for loss of profits or revenue, loss or corruption of data, software
+          or database, or loss of or harm to property or data) incurred by you
+          or any third party, arising from your access to, or use of, our
+          website.
+        </p>
+        <p>
+          Except to the extent any additional contract expressly states
+          otherwise, our maximum liability to you for all damages arising out of
+          or related to the website or any products and services marketed or
+          sold through the website, regardless of the form of legal action that
+          imposes liability (whether in contract, equity, negligence, intended
+          conduct, tort or otherwise) will be limited to the total price that
+          you paid to us to purchase such products or services or use the
+          website. Such limit will apply in the aggregate to all of your claims,
+          actions and causes of action of every kind and nature.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "privacy",
+    number: 14,
+    title: "Privacy",
+    content: (
+      <>
+        <p>
+          To access our website and/or services, you may be required to provide
+          certain information about yourself as part of the registration
+          process. You agree that any information you provide will always be
+          accurate, correct, and up to date.
+        </p>
+        <p>
+          We take your personal data seriously and are committed to protecting
+          your privacy. We will not use your email address for unsolicited mail.
+          Any emails sent by us to you will only be in connection with the
+          provision of agreed products or services.
+        </p>
+        <p>
+          We have developed a policy to address any privacy concerns you may
+          have. For more information, please see our{" "}
+          <Link
+            href="/privacy"
+            className="text-primary underline hover:text-primary/80 font-medium"
+          >
+            Privacy Statement
+          </Link>{" "}
+          and our{" "}
+          <Link
+            href="/privacy#cookies"
+            className="text-primary underline hover:text-primary/80 font-medium"
+          >
+            Cookie Policy
+          </Link>
+          .
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "export-restrictions-legal-compliance",
+    number: 15,
+    title: "Export restrictions / Legal compliance",
+    content: (
+      <>
+        <p>
+          Access to the website from territories or countries where the Content
+          or purchase of the products or Services sold on the website is illegal
+          is prohibited. You may not use this website in violation of export
+          laws and regulations of United Kingdom.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "assignment",
+    number: 16,
+    title: "Assignment",
+    content: (
+      <>
+        <p>
+          You may not assign, transfer or sub-contract any of your rights and/or
+          obligations under these Terms and conditions, in whole or in part, to
+          any third party without our prior written consent. Any purported
+          assignment in violation of this Section will be null and void.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "breaches-of-these-terms-and-conditions",
+    number: 17,
+    title: "Breaches of these Terms and conditions",
+    content: (
+      <>
+        <p>
+          Without prejudice to our other rights under these Terms and
+          Conditions, if you breach these Terms and Conditions in any way, we
+          may take such action as we deem appropriate to deal with the breach,
+          including temporarily or permanently suspending your access to the
+          website, contacting your internet service provider to request that
+          they block your access to the website, and/or commence legal action
+          against you.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "force-majeure",
+    number: 18,
+    title: "Force majeure",
+    content: (
+      <>
+        <p>
+          Except for obligations to pay money hereunder, no delay, failure or
+          omission by either party to carry out or observe any of its
+          obligations hereunder will be deemed to be a breach of these Terms and
+          conditions if and for as long as such delay, failure or omission
+          arises from any cause beyond the reasonable control of that party.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "indemnification",
+    number: 19,
+    title: "Indemnification",
+    content: (
+      <>
+        <p>
+          You agree to indemnify, defend and hold us harmless, from and against
+          any and all claims, liabilities, damages, losses and expenses,
+          relating to your violation of these Terms and conditions, and
+          applicable laws, including intellectual property rights and privacy
+          rights. You will promptly reimburse us for our damages, losses, costs
+          and expenses relating to or arising out of such claims.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "waiver",
+    number: 20,
+    title: "Waiver",
+    content: (
+      <>
+        <p>
+          Failure to enforce any of the provisions set out in these Terms and
+          Conditions and any Agreement, or failure to exercise any option to
+          terminate, shall not be construed as waiver of such provisions and
+          shall not affect the validity of these Terms and Conditions or of any
+          Agreement or any part thereof, or the right thereafter to enforce each
+          and every provision.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "language",
+    number: 21,
+    title: "Language",
+    content: (
+      <>
+        <p>
+          These Terms and Conditions will be interpreted and construed
+          exclusively in English. All notices and correspondence will be written
+          exclusively in that language.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "entire-agreement",
+    number: 22,
+    title: "Entire agreement",
+    content: (
+      <>
+        <p>
+          These Terms and Conditions, together with our privacy statement and
+          cookie policy, constitute the entire agreement between you and Eco
+          Daily Supplies Ltd in relation to your use of this website.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "updating-of-these-terms-and-conditions",
+    number: 23,
+    title: "Updating of these Terms and conditions",
+    content: (
+      <>
+        <p>
+          We may update these Terms and Conditions from time to time. It is your
+          obligation to periodically check these Terms and Conditions for
+          changes or updates. The date provided at the beginning of these Terms
+          and Conditions is the latest revision date. Changes to these Terms and
+          Conditions will become effective upon such changes being posted to
+          this website. Your continued use of this website following the posting
+          of changes or updates will be considered notice of your acceptance to
+          abide by and be bound by these Terms and Conditions.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "choice-of-law-and-jurisdiction",
+    number: 24,
+    title: "Choice of Law and Jurisdiction",
+    content: (
+      <>
+        <p>
+          These Terms and Conditions shall be governed by the laws of United
+          Kingdom. Any disputes relating to these Terms and Conditions shall be
+          subject to the jurisdiction of the courts of United Kingdom. If any
+          part or provision of these Terms and Conditions is found by a court or
+          other authority to be invalid and/or unenforceable under applicable
+          law, such part or provision will be modified, deleted and/or enforced
+          to the maximum extent permissible so as to give effect to the intent
+          of these Terms and Conditions. The other provisions will not be
+          affected.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "contact-information",
+    number: 25,
+    title: "Contact information",
+    content: (
+      <>
+        <p>This website is owned and operated by Eco Daily Supplies Ltd.</p>
+        <p>
+          You may contact us regarding these Terms and Conditions by writing or
+          emailing us at the following address:{" "}
+          <a
+            href="mailto:info@ecodailysupplies.com"
+            className="text-primary underline hover:text-primary/80 font-medium"
+          >
+            info@ecodailysupplies.com
+          </a>
+        </p>
+        <p>
+          Unit Cw10 Challenge Way Entrance, Ik Business Park, Blackburn,
+          England, BB1 5QF
+        </p>
+      </>
+    ),
+  },
+];
+
+const toc = SECTIONS.map((s) => ({
+  id: s.id,
+  label: `${s.number}. ${s.title}`,
+}));
 
 export default function TermsAndConditions() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Decorative Background Blobs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-      <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-
-      {/* Breadcrumbs */}
-      <div className="relative z-10 border-b border-emerald-200 bg-white/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-6">
+    <div className="min-h-screen bg-gray-50">
+      <div className="border-b border-gray-200 bg-white/80 backdrop-blur-xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-5">
           <Breadcrumbs
-            items={[{ label: "Terms & Conditions", href: "/terms-conditions" }]}
+            items={[{ label: "Terms & Conditions", href: "/terms" }]}
           />
         </div>
       </div>
 
-      {/* Content Section */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl">
-          {/* Page Header */}
-          <div className="mb-16 md:mb-20 text-center">
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900">
-              Terms &{" "}
-              <span className="block bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mt-2">
-                Conditions
-              </span>
-            </h1>
-            <p className="text-lg text-gray-600 md:text-xl max-w-full mx-auto mb-4">
-              Please read these terms carefully before using our services.
-            </p>
-          </div>
-
-          {/* Main Content */}
-          <div className="space-y-8 md:space-y-12">
-            {/* Overview Section */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Overview
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  This website is operated by Bubble Wrap Shop. Throughout the
-                  site, the terms &quot;we&quot;, &quot;us&quot; and
-                  &quot;our&quot; refer to Bubble Wrap Shop. Bubble Wrap Shop
-                  offers this website, including all information, tools and
-                  Services available from this site to you, the user,
-                  conditioned upon your acceptance of all terms, conditions,
-                  policies and notices stated here.
-                </p>
-                <p>
-                  By visiting our site and/or purchasing something from us, you
-                  engage in our &quot;Service&quot; and agree to be bound by the
-                  following terms and conditions (&quot;Terms of Service&quot;,
-                  &quot;Terms&quot;), including those additional terms and
-                  conditions and policies referenced herein and/or available by
-                  hyperlink. These Terms of Service apply to all users of the
-                  site, including without limitation users who are browsers,
-                  vendors, customers, merchants, and/or contributors of content.
-                </p>
-                <p>
-                  Please read these Terms of Service carefully before accessing
-                  or using our website. By accessing or using any part of the
-                  site, you agree to be bound by these Terms of Service. If you
-                  do not agree to all the terms and conditions of this
-                  agreement, then you may not access the website or use any
-                  Services. If these Terms of Service are considered an offer,
-                  acceptance is expressly limited to these Terms of Service.
-                </p>
-                <p>
-                  Any new features or tools which are added to the current store
-                  shall also be subject to the Terms of Service. You can review
-                  the most current version of the Terms of Service at any time
-                  on this page. We reserve the right to update, change or
-                  replace any part of these Terms of Service by posting updates
-                  and/or changes to our website. It is your responsibility to
-                  check this page periodically for changes. Your continued use
-                  of or access to the website following the posting of any
-                  changes constitutes acceptance of those changes.
-                </p>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-10 sm:py-12">
+        <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <div className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                On this page
               </div>
-            </section>
-
-            {/* Section 1 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 1 - Online Store Terms
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  By agreeing to these Terms of Service, you represent that you
-                  are at least the age of majority in your state or province of
-                  residence, or that you are the age of majority in your state
-                  or province of residence and you have given us your consent to
-                  allow any of your minor dependents to use this site.
-                </p>
-                <p>
-                  You may not use our products for any illegal or unauthorized
-                  purpose nor may you, in the use of the Service, violate any
-                  laws in your jurisdiction (including but not limited to
-                  copyright laws).
-                </p>
-                <p>
-                  You must not transmit any worms or viruses or any code of a
-                  destructive nature.
-                </p>
-                <p>
-                  A breach or violation of any of the Terms will result in an
-                  immediate termination of your Services.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 2 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 2 - General Conditions
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  We reserve the right to refuse Service to anyone for any
-                  reason at any time.
-                </p>
-                <p>
-                  You understand that your content (not including credit card
-                  information), may be transferred unencrypted and involve (a)
-                  transmissions over various networks; and (b) changes to
-                  conform and adapt to technical requirements of connecting
-                  networks or devices. Credit card information is always
-                  encrypted during transfer over networks.
-                </p>
-                <p>
-                  You agree not to reproduce, duplicate, copy, sell, resell or
-                  exploit any portion of the Service, use of the Service, or
-                  access to the Service or any contact on the website through
-                  which the Service is provided, without express written
-                  permission by us.
-                </p>
-                <p>
-                  The headings used in this agreement are included for
-                  convenience only and will not limit or otherwise affect these
-                  Terms.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 3 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 3 - Accuracy, Completeness and Timeliness of Information
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  We are not responsible if information made available on this
-                  site is not accurate, complete or current. The material on
-                  this site is provided for general information only and should
-                  not be relied upon or used as the sole basis for making
-                  decisions without consulting primary, more accurate, more
-                  complete or more timely sources of information. Any reliance
-                  on the material on this site is at your own risk.
-                </p>
-                <p>
-                  This site may contain certain historical information.
-                  Historical information, necessarily, is not current and is
-                  provided for your reference only. We reserve the right to
-                  modify the contents of this site at any time, but we have no
-                  obligation to update any information on our site. You agree
-                  that it is your responsibility to monitor changes to our site.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 4 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 4 - Modifications to the Service and Prices
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  Prices for our products are subject to change without notice.
-                </p>
-                <p>
-                  We reserve the right at any time to modify or discontinue the
-                  Service (or any part or content thereof) without notice at any
-                  time.
-                </p>
-                <p>
-                  We shall not be liable to you or to any third-party for any
-                  modification, price change, suspension or discontinuance of
-                  the Service.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 5 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 5 - Products or Services
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  Certain products or Services may be available exclusively
-                  online through the website. These products or Services may
-                  have limited quantities and are subject to return or exchange
-                  only according to our Refund Policy.
-                </p>
-                <p>
-                  We have made every effort to display as accurately as possible
-                  the colors and images of our products that appear at the
-                  store. We cannot guarantee that your computer monitor&apos;s
-                  display of any color will be accurate.
-                </p>
-                <p>
-                  We reserve the right, but are not obligated, to limit the
-                  sales of our products or Services to any person, geographic
-                  region or jurisdiction. We may exercise this right on a
-                  case-by-case basis. We reserve the right to limit the
-                  quantities of any products or Services that we offer. All
-                  descriptions of products or product pricing are subject to
-                  change at anytime without notice, at the sole discretion of
-                  us. We reserve the right to discontinue any product at any
-                  time. Any offer for any product or Service made on this site
-                  is void where prohibited.
-                </p>
-                <p>
-                  We do not warrant that the quality of any products, Services,
-                  information, or other material purchased or obtained by you
-                  will meet your expectations, or that any errors in the Service
-                  will be corrected.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 6 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 6 - Accuracy of Billing and Account Information
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  We reserve the right to refuse any order you place with us. We
-                  may, in our sole discretion, limit or cancel quantities
-                  purchased per person, per household or per order. These
-                  restrictions may include orders placed by or under the same
-                  customer account, the same credit card, and/or orders that use
-                  the same billing and/or shipping address. In the event that we
-                  make a change to or cancel an order, we may attempt to notify
-                  you by contacting the email and/or billing address/phone
-                  number provided at the time the order was made. We reserve the
-                  right to limit or prohibit orders that, in our sole judgment,
-                  appear to be placed by dealers, resellers or distributors.
-                </p>
-                <p>
-                  You agree to provide current, complete and accurate purchase
-                  and account information for all purchases made at our store.
-                  You agree to promptly update your account and other
-                  information, including your email address and credit card
-                  numbers and expiration dates, so that we can complete your
-                  transactions and contact you as needed.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 7 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 7 - Optional Tools
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  We may provide you with access to third-party tools over which
-                  we neither monitor nor have any control nor input.
-                </p>
-                <p>
-                  You acknowledge and agree that we provide access to such tools
-                  &quot;as is&quot; and &quot;as available&quot; without any
-                  warranties, representations or conditions of any kind and
-                  without any endorsement. We shall have no liability whatsoever
-                  arising from or relating to your use of optional third-party
-                  tools.
-                </p>
-                <p>
-                  Any use by you of the optional tools offered through the site
-                  is entirely at your own risk and discretion and you should
-                  ensure that you are familiar with and approve of the terms on
-                  which tools are provided by the relevant third-party
-                  provider(s).
-                </p>
-                <p>
-                  We may also, in the future, offer new Services and/or features
-                  through the website (including the release of new tools and
-                  resources). Such new features and/or Services shall also be
-                  subject to these Terms of Service.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 8 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 8 - Third-Party Links
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  Certain content, products and Services available via our
-                  Service may include materials from third-parties.
-                </p>
-                <p>
-                  Third-party links on this site may direct you to third-party
-                  websites that are not affiliated with us. We are not
-                  responsible for examining or evaluating the content or
-                  accuracy and we do not warrant and will not have any liability
-                  or responsibility for any third-party materials or websites,
-                  or for any other materials, products, or Services of
-                  third-parties.
-                </p>
-                <p>
-                  We are not liable for any harm or damages related to the
-                  purchase or use of goods, Services, resources, content, or any
-                  other transactions made in connection with any third-party
-                  websites. Please review carefully the third-party&apos;s
-                  policies and practices and make sure you understand them
-                  before you engage in any transaction. Complaints, claims,
-                  concerns, or questions regarding third-party products should
-                  be directed to the third-party.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 9 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 9 - User Comments, Feedback and Other Submissions
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  If, at our request, you send certain specific submissions (for
-                  example contest entries) or without a request from us, you
-                  send creative ideas, suggestions, proposals, plans, or other
-                  materials, whether online, by email, by postal mail, or
-                  otherwise (collectively, &apos;comments&apos;), you agree that
-                  we may, at any time, without restriction, edit, copy, publish,
-                  distribute, translate and otherwise use in any medium any
-                  comments that you forward to us. We are and shall be under no
-                  obligation (1) to maintain any comments in confidence; (2) to
-                  pay compensation for any comments; or (3) to respond to any
-                  comments.
-                </p>
-                <p>
-                  We may, but have no obligation to, monitor, edit or remove
-                  content that we determine in our sole discretion to be
-                  unlawful, offensive, threatening, libelous, defamatory,
-                  pornographic, obscene or otherwise objectionable or violates
-                  any party&apos;s intellectual property or these Terms of
-                  Service.
-                </p>
-                <p>
-                  You agree that your comments will not violate any right of any
-                  third-party, including copyright, trademark, privacy,
-                  personality or other personal or proprietary right. You
-                  further agree that your comments will not contain libelous or
-                  otherwise unlawful, abusive or obscene material, or contain
-                  any computer virus or other malware that could in any way
-                  affect the operation of the Service or any related website.
-                  You may not use a false email address, pretend to be someone
-                  other than yourself, or otherwise mislead us or third-parties
-                  as to the origin of any comments. You are solely responsible
-                  for any comments you make and their accuracy. We take no
-                  responsibility and assume no liability for any comments posted
-                  by you or any third-party.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 10 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 10 - Personal Information
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  Your submission of personal information through the store is
-                  governed by our Privacy Policy.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 11 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 11 - Errors, Inaccuracies and Omissions
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  Occasionally there may be information on our site or in the
-                  Service that contains typographical errors, inaccuracies or
-                  omissions that may relate to product descriptions, pricing,
-                  promotions, offers, product shipping charges, transit times
-                  and availability. We reserve the right to correct any errors,
-                  inaccuracies or omissions, and to change or update information
-                  or cancel orders if any information in the Service or on any
-                  related website is inaccurate at any time without prior notice
-                  (including after you have submitted your order).
-                </p>
-                <p>
-                  We undertake no obligation to update, amend or clarify
-                  information in the Service or on any related website,
-                  including without limitation, pricing information, except as
-                  required by law. No specified update or refresh date applied
-                  in the Service or on any related website, should be taken to
-                  indicate that all information in the Service or on any related
-                  website has been modified or updated.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 12 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 12 - Prohibited Uses
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  In addition to other prohibitions as set forth in the Terms of
-                  Service, you are prohibited from using the site or its
-                  content: (a) for any unlawful purpose; (b) to solicit others
-                  to perform or participate in any unlawful acts; (c) to violate
-                  any international, federal, provincial or state regulations,
-                  rules, laws, or local ordinances; (d) to infringe upon or
-                  violate our intellectual property rights or the intellectual
-                  property rights of others; (e) to harass, abuse, insult, harm,
-                  defame, slander, disparage, intimidate, or discriminate based
-                  on gender, sexual orientation, religion, ethnicity, race, age,
-                  national origin, or disability; (f) to submit false or
-                  misleading information; (g) to upload or transmit viruses or
-                  any other type of malicious code that will or may be used in
-                  any way that will affect the functionality or operation of the
-                  Service or of any related website, other websites, or the
-                  Internet; (h) to collect or track the personal information of
-                  others; (i) to spam, phish, pharm, pretext, spider, crawl, or
-                  scrape; (j) for any obscene or immoral purpose; or (k) to
-                  interfere with or circumvent the security features of the
-                  Service or any related website, other websites, or the
-                  Internet. We reserve the right to terminate your use of the
-                  Service or any related website for violating any of the
-                  prohibited uses.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 13 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 13 - Disclaimer of Warranties; Limitation of Liability
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  We do not guarantee, represent or warrant that your use of our
-                  Service will be uninterrupted, timely, secure or error-free.
-                </p>
-                <p>
-                  We do not warrant that the results that may be obtained from
-                  the use of the Service will be accurate or reliable.
-                </p>
-                <p>
-                  You agree that from time to time we may remove the Service for
-                  indefinite periods of time or cancel the Service at any time,
-                  without notice to you.
-                </p>
-                <p>
-                  You expressly agree that your use of, or inability to use, the
-                  Service is at your sole risk. The Service and all products and
-                  Services delivered to you through the Service are (except as
-                  expressly stated by us) provided &apos;as is&apos; and
-                  &apos;as available&apos; for your use, without any
-                  representation, warranties or conditions of any kind, either
-                  express or implied, including all implied warranties or
-                  conditions of merchantability, merchantable quality, fitness
-                  for a particular purpose, durability, title, and
-                  non-infringement.
-                </p>
-                <p>
-                  In no case shall Bubble Wrap Shop, our directors, officers,
-                  employees, affiliates, agents, contractors, interns,
-                  suppliers, Service providers or licensors be liable for any
-                  injury, loss, claim, or any direct, indirect, incidental,
-                  punitive, special, or consequential damages of any kind,
-                  including, without limitation lost profits, lost revenue, lost
-                  savings, loss of data, replacement costs, or any similar
-                  damages, whether based in contract, tort (including
-                  negligence), strict liability or otherwise, arising from your
-                  use of any of the Service or any products procured using the
-                  Service, or for any other claim related in any way to your use
-                  of the Service or any product, including, but not limited to,
-                  any errors or omissions in any content, or any loss or damage
-                  of any kind incurred as a result of the use of the Service or
-                  any content (or product) posted, transmitted, or otherwise
-                  made available via the Service, even if advised of their
-                  possibility. Because some states or jurisdictions do not allow
-                  the exclusion or the limitation of liability for consequential
-                  or incidental damages, in such states or jurisdictions, our
-                  liability shall be limited to the maximum extent permitted by
-                  law.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 14 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 14 - Indemnification
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  You agree to indemnify, defend and hold harmless Bubble Wrap
-                  Shop and our parent, subsidiaries, affiliates, partners,
-                  officers, directors, agents, contractors, licensors, Service
-                  providers, subcontractors, suppliers, interns and employees,
-                  harmless from any claim or demand, including reasonable
-                  attorneys&apos; fees, made by any third-party due to or
-                  arising out of your breach of these Terms of Service or the
-                  documents they incorporate by reference, or your violation of
-                  any law or the rights of a third-party.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 15 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 15 - Severability
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  In the event that any provision of these Terms of Service is
-                  determined to be unlawful, void or unenforceable, such
-                  provision shall nonetheless be enforceable to the fullest
-                  extent permitted by applicable law, and the unenforceable
-                  portion shall be deemed to be severed from these Terms of
-                  Service, such determination shall not affect the validity and
-                  enforceability of any other remaining provisions.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 16 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 16 - Termination
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  The obligations and liabilities of the parties incurred prior
-                  to the termination date shall survive the termination of this
-                  agreement for all purposes.
-                </p>
-                <p>
-                  These Terms of Service are effective unless and until
-                  terminated by either you or us. You may terminate these Terms
-                  of Service at any time by notifying us that you no longer wish
-                  to use our Services, or when you cease using our site.
-                </p>
-                <p>
-                  If in our sole judgment you fail, or we suspect that you have
-                  failed, to comply with any term or provision of these Terms of
-                  Service, we also may terminate this agreement at any time
-                  without notice and you will remain liable for all amounts due
-                  up to and including the date of termination; and/or
-                  accordingly may deny you access to our Services (or any part
-                  thereof).
-                </p>
-              </div>
-            </section>
-
-            {/* Section 17 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 17 - Entire Agreement
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  The failure of us to exercise or enforce any right or
-                  provision of these Terms of Service shall not constitute a
-                  waiver of such right or provision.
-                </p>
-                <p>
-                  These Terms of Service and any policies or operating rules
-                  posted by us on this site or in respect to the Service
-                  constitutes the entire agreement and understanding between you
-                  and us and governs your use of the Service, superseding any
-                  prior or contemporaneous agreements, communications and
-                  proposals, whether oral or written, between you and us
-                  (including, but not limited to, any prior versions of the
-                  Terms of Service).
-                </p>
-                <p>
-                  Any ambiguities in the interpretation of these Terms of
-                  Service shall not be construed against the drafting party.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 18 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 18 - Governing Law
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  These Terms of Service and any separate agreements whereby we
-                  provide you Services shall be governed by and construed in
-                  accordance with the laws of the United Kingdom.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 19 */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 19 - Changes to Terms of Service
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  You can review the most current version of the Terms of
-                  Service at any time at this page.
-                </p>
-                <p>
-                  We reserve the right, at our sole discretion, to update,
-                  change or replace any part of these Terms of Service by
-                  posting updates and changes to our website. It is your
-                  responsibility to check our website periodically for changes.
-                  Your continued use of or access to our website or the Service
-                  following the posting of any changes to these Terms of Service
-                  constitutes acceptance of those changes.
-                </p>
-              </div>
-            </section>
-
-            {/* Section 20 - Contact Information */}
-            <section className="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Section 20 - Contact Information
-              </h2>
-              <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
-                <p>
-                  Questions about the Terms of Service should be sent to us at{" "}
+              <nav className="mt-4 space-y-2">
+                {toc.map((item) => (
                   <a
-                    href="mailto:sales@bubblewrapshop.co.uk"
-                    className="text-emerald-600 underline hover:text-emerald-700 font-medium"
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className="block text-sm font-medium text-gray-600 hover:text-gray-900"
                   >
-                    sales@bubblewrapshop.co.uk
+                    {item.label}
                   </a>
-                  .
-                </p>
-                <p>Our contact information is posted below:</p>
-                <div className="mt-4 space-y-2">
-                  <p>
-                    <strong className="text-gray-900">Company Name:</strong>{" "}
-                    Bubble wrap shop (Blackburn) Limited
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">Email:</strong>{" "}
-                    <a
-                      href="mailto:sales@bubblewrapshop.co.uk"
-                      className="text-emerald-600 underline hover:text-emerald-700 font-medium"
+                ))}
+              </nav>
+            </div>
+          </aside>
+
+          <div>
+            <div className="mb-8 sm:mb-10">
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary border border-primary/20 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                <ShieldCheck className="h-3.5 w-3.5" strokeWidth={2.5} />
+                Legal
+              </div>
+              <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
+                Terms &amp; conditions
+              </h1>
+              <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl">
+                The Terms and Conditions were last updated on July 24, 2024
+              </p>
+            </div>
+
+            <div className="space-y-6 sm:space-y-8">
+              {SECTIONS.map((section) => (
+                <section
+                  key={section.id}
+                  id={section.id}
+                  className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                >
+                  <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
+                    <span className="text-gray-400 mr-2">
+                      {section.number}.
+                    </span>
+                    {section.title}
+                  </h2>
+                  <div className="space-y-4 text-base leading-relaxed text-gray-600 md:text-lg">
+                    {section.content}
+                  </div>
+                </section>
+              ))}
+
+              <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+                      Need help?
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-600">
+                      If you have questions about these Terms, contact our team.
+                    </p>
+                  </div>
+                  <Button
+                    asChild
+                    className="rounded-full bg-gray-900 hover:bg-black"
+                  >
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2"
                     >
-                      sales@bubblewrapshop.co.uk
-                    </a>
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">Phone:</strong>{" "}
-                    <a
-                      href="tel:01254916167"
-                      className="text-emerald-600 underline hover:text-emerald-700 font-medium"
-                    >
-                      01254 916167
-                    </a>
-                  </p>
-                  <p>
-                    <strong className="text-gray-900">Address:</strong> Bubble
-                    Wrap Shop (NW) Ltd, Unit BR16 Blakewater Road, Blackburn,
-                    England, BB1 5QF, United Kingdom
-                  </p>
+                      Contact us
+                      <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+                    </Link>
+                  </Button>
                 </div>
               </div>
-            </section>
-          </div>
-
-          {/* CTA Section */}
-          <section className="relative mt-18 border-t bg-linear-to-br from-emerald-600 to-teal-600 py-20 md:py-28 lg:py-32 overflow-hidden">
-            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
-              <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-                {/* Heading */}
-                <h2 className="mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Questions About Our
-                  <span className="block mt-2 text-white">
-                    Terms & Conditions?
-                  </span>
-                </h2>
-
-                {/* Description */}
-                <p className="mb-10 text-base md:text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed lg:mb-12">
-                  Our team is here to help you understand our terms and answer
-                  any questions you may have.
-                </p>
-
-                {/* CTA Button */}
-                <Button asChild variant="ghost" className="w-fit group">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-3 px-8 py-4 mt-4 text-base font-semibold border border-white/20 text-white bg-white/20 rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-                  >
-                    Contact Support
-                    <ArrowRight
-                      className="h-5 w-5 transition-transform group-hover:translate-x-1"
-                      strokeWidth={2.5}
-                    />
-                  </Link>
-                </Button>
-              </div>
             </div>
-          </section>
+          </div>
         </div>
       </div>
     </div>

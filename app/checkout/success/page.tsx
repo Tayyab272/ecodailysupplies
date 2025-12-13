@@ -10,6 +10,7 @@ import {
   Loader2,
   AlertCircle,
   Download,
+  Check,
 } from "lucide-react";
 import { useCartStore } from "@/lib/stores/cart-store";
 import { useAuth } from "@/components/auth/auth-provider";
@@ -173,20 +174,20 @@ function CheckoutSuccessContent() {
 
   if (loading) {
     return (
-      <div className="relative min-h-screen overflow-hidden">
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] min-h-screen flex items-center justify-center py-16 md:py-24">
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center py-16 md:py-24">
           <div className="mx-auto max-w-2xl text-center">
             <div className="mb-8 flex justify-center">
               <div className="relative">
-                <div className="relative w-24 h-24  rounded-full flex items-center justify-center">
+                <div className="relative w-24 h-24 rounded-full flex items-center justify-center bg-white border-2 border-gray-200">
                   <Loader2
-                    className="w-12 h-12 text-emerald-600 animate-spin"
+                    className="w-12 h-12 text-primary animate-spin"
                     strokeWidth={2}
                   />
                 </div>
               </div>
             </div>
-            <h2 className="mb-4 text-3xl sm:text-4xl font-bold text-gray-900">
+            <h2 className="mb-4 text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
               Verifying Payment
             </h2>
             <p className="text-lg text-gray-600">
@@ -201,12 +202,12 @@ function CheckoutSuccessContent() {
   // Error state - only show error if there's an explicit error OR (not loading AND no order)
   if (error || (!loading && !order)) {
     return (
-      <div className="relative min-h-screen overflow-hidden">
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] min-h-screen flex items-center justify-center py-16 md:py-24">
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center py-16 md:py-24">
           <div className="mx-auto max-w-2xl text-center">
             <div className="mb-8 flex justify-center">
               <div className="relative">
-                <div className="relative w-24 h-24 bg-linear-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center border-4 border-red-200">
+                <div className="relative w-24 h-24 bg-red-50 rounded-full flex items-center justify-center border-2 border-red-200">
                   <AlertCircle
                     className="w-12 h-12 text-red-600"
                     strokeWidth={2}
@@ -214,13 +215,13 @@ function CheckoutSuccessContent() {
                 </div>
               </div>
             </div>
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900">
+            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight">
               Payment Verification
-              <span className="block bg-linear-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mt-2">
+              <span className="block text-red-600 mt-2">
                 Failed
               </span>
             </h1>
-            <div className="mb-8 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
+            <div className="mb-8 bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-300">
               <p className="text-lg text-gray-600 md:text-xl">
                 {error ||
                   "We couldn't verify your payment. Please contact support."}
@@ -229,14 +230,14 @@ function CheckoutSuccessContent() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
                 asChild
-                className="inline-flex items-center gap-2 px-8 py-6 text-base font-semibold bg-linear-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:from-emerald-700 hover:to-teal-700"
+                className="inline-flex items-center gap-2 px-8 py-6 text-base font-bold bg-primary text-white rounded-full hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <Link href="/account/orders">View Orders</Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
-                className="inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-emerald-300 text-emerald-700 bg-white rounded-xl hover:bg-emerald-50 hover:border-emerald-600 transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-gray-300 text-gray-700 bg-white rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
               >
                 <Link href="/">Go Home</Link>
               </Button>
@@ -297,33 +298,37 @@ function CheckoutSuccessContent() {
   const orderData = order!;
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-16 md:py-24">
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12 md:py-16">
         <div className="mx-auto max-w-3xl">
           {/* Thank You Message */}
           <div className="mb-12 text-center">
-            <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900">
+            <div className="mb-8 inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-primary/10 border-2 border-primary/20">
+              <Check className="h-10 w-10 text-primary" strokeWidth={2} />
+            </div>
+            <h1 className="mb-4 text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 tracking-tight">
               Thank You for Your
-              <span className="block bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mt-2">
+              <span className="block text-primary mt-2">
                 Order!
               </span>
             </h1>
-            <p className="mb-4 text-lg text-gray-600 md:text-xl">
+            <p className="mb-6 text-lg text-gray-600 md:text-xl">
               Your order has been successfully placed
             </p>
-            <div className="inline-block rounded-full bg-linear-to-r from-emerald-100 to-teal-100 px-4 py-2 border border-emerald-200">
-              <p className="text-sm font-medium text-emerald-700">
-                Order ID: <span className="font-mono">{orderData.id}</span>
+            <div className="inline-block rounded-full bg-gray-100 px-6 py-3 border border-gray-300">
+              <p className="text-sm font-semibold text-gray-700">
+                Order ID: <span className="font-mono text-primary">{orderData.id}</span>
               </p>
             </div>
           </div>
 
           {/* Order Details */}
-          <div className="mb-8 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-            <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-              Order Details
-            </h2>
+          <div className="mb-8 bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-300">
+            <div className="mb-6 pb-6 border-b border-gray-200">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+                Order Details
+              </h2>
+            </div>
 
             {/* Order Items */}
             <div className="mb-6 space-y-4">
@@ -370,49 +375,53 @@ function CheckoutSuccessContent() {
             </div>
 
             {/* Order Summary */}
-            <div className="border-t border-gray-300 pt-6 mt-6 space-y-3">
-              <div className="flex justify-between text-gray-600">
-                <span>Subtotal</span>
-                <span className="text-gray-900">
+            <div className="border-t border-gray-200 pt-6 mt-6 space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600 font-medium">Subtotal</span>
+                <span className="font-semibold text-gray-900">
                   £{orderData.subtotal.toFixed(2)}
                 </span>
               </div>
               {orderData.discount > 0 && (
-                <div className="flex justify-between text-gray-600">
-                  <span>Discount</span>
-                  <span className="text-emerald-600">
+                <div className="flex justify-between items-center text-primary">
+                  <span className="font-medium">Discount</span>
+                  <span className="font-semibold">
                     -£{orderData.discount.toFixed(2)}
                   </span>
                 </div>
               )}
-              <div className="flex justify-between text-gray-600">
-                <span>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600 font-medium">
                   Shipping
                   {orderData.shippingMethod && (
                     <>
                       {" "}
-                      <span className="text-xs">
+                      <span className="text-xs text-gray-500">
                         ({SHIPPING_OPTIONS.find(opt => opt.id === orderData.shippingMethod)?.name || orderData.shippingMethod})
                       </span>
                     </>
                   )}
                 </span>
-                <span className="text-gray-900">
-                  {orderData.shipping === 0 ? 'Free' : `£${orderData.shipping.toFixed(2)}`}
+                <span className="font-semibold text-gray-900">
+                  {orderData.shipping === 0 ? (
+                    <span className="text-primary font-bold">Free</span>
+                  ) : (
+                    `£${orderData.shipping.toFixed(2)}`
+                  )}
                 </span>
               </div>
               {orderData.vatAmount && orderData.vatAmount > 0 && (
-                <div className="flex justify-between text-gray-600">
-                  <span>VAT (20%)</span>
-                  <span className="text-gray-900">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600 font-medium">VAT (20%)</span>
+                  <span className="font-semibold text-gray-900">
                     £{orderData.vatAmount.toFixed(2)}
                   </span>
                 </div>
               )}
-              <div className="border-t border-gray-300 pt-3 mt-3">
+              <div className="border-t-2 border-gray-200 pt-4 mt-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-xl font-bold text-gray-900">Total</span>
-                  <span className="text-2xl font-bold bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                  <span className="text-xl font-bold text-gray-900 uppercase tracking-wider">Total</span>
+                  <span className="text-2xl font-bold text-gray-900">
                     £{orderData.total.toFixed(2)}
                   </span>
                 </div>
@@ -422,11 +431,12 @@ function CheckoutSuccessContent() {
 
           {/* Shipping Address */}
           {orderData.shippingAddress && (
-            <div className="mb-8 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300">
-              <h3 className="mb-6 text-xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="h-1 w-8 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full"></div>
-                Shipping Address
-              </h3>
+            <div className="mb-8 bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-300">
+              <div className="mb-6 pb-6 border-b border-gray-200">
+                <h3 className="text-xl font-bold text-gray-900 tracking-tight">
+                  Shipping Address
+                </h3>
+              </div>
               <div className="space-y-2 text-base text-gray-600">
                 <p className="font-medium text-gray-900">
                   {orderData.shippingAddress.fullName}
@@ -448,7 +458,8 @@ function CheckoutSuccessContent() {
               onClick={handleDownloadReceipt}
               disabled={downloadingReceipt}
               size="lg"
-              className="flex-1 inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-emerald-300 text-emerald-700 bg-white rounded-xl hover:bg-emerald-50 hover:border-emerald-600 transition-all duration-300 hover:scale-105"
+              variant="outline"
+              className="flex-1 inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-gray-300 text-gray-700 bg-white rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
             >
               {downloadingReceipt ? (
                 <>
@@ -465,7 +476,7 @@ function CheckoutSuccessContent() {
             <Button
               asChild
               size="lg"
-              className="flex-1 inline-flex items-center gap-2 px-8 py-6 text-base font-semibold bg-linear-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:from-emerald-700 hover:to-teal-700"
+              className="flex-1 inline-flex items-center gap-2 px-8 py-6 text-base font-bold bg-primary text-white rounded-full hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <Link href={`/account/orders/${orderData.id}`}>
                 <Package className="h-5 w-5" strokeWidth={2} />
@@ -476,7 +487,7 @@ function CheckoutSuccessContent() {
               asChild
               variant="outline"
               size="lg"
-              className="flex-1 inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-gray-300 text-gray-700 bg-white rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 hover:scale-105"
+              className="flex-1 inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-gray-300 text-gray-700 bg-white rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
             >
               <Link href="/products">
                 <Home className="h-5 w-5" strokeWidth={2} />
@@ -486,7 +497,7 @@ function CheckoutSuccessContent() {
           </div>
 
           {/* Email Confirmation Notice */}
-          <div className="mt-8 bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-300 text-center">
+          <div className="mt-8 bg-white rounded-lg p-6 md:p-8 shadow-sm border border-gray-300 text-center">
             <p className="text-base text-gray-600 md:text-lg">
               A confirmation email will be sent shortly with all the details and
               tracking information.
@@ -502,20 +513,20 @@ export default function CheckoutSuccessPage() {
   return (
     <Suspense
       fallback={
-        <div className="relative min-h-screen overflow-hidden">
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] min-h-screen flex items-center justify-center py-16 md:py-24">
+        <div className="min-h-screen bg-gray-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center justify-center py-16 md:py-24">
             <div className="mx-auto max-w-2xl text-center">
               <div className="mb-8 flex justify-center">
                 <div className="relative">
-                  <div className="relative w-24 h-24  rounded-full flex items-center justify-center border-4 border-emerald-200">
+                  <div className="relative w-24 h-24 rounded-full flex items-center justify-center bg-white border-2 border-gray-200">
                     <Loader2
-                      className="w-12 h-12 text-emerald-600 animate-spin"
+                      className="w-12 h-12 text-primary animate-spin"
                       strokeWidth={2}
                     />
                   </div>
                 </div>
               </div>
-              <h2 className="mb-4 text-3xl sm:text-4xl font-bold text-gray-900">
+              <h2 className="mb-4 text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
                 Loading...
               </h2>
               <p className="text-lg text-gray-600">

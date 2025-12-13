@@ -74,11 +74,11 @@ export function AccountDashboardClient({
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
-      {/* Mobile/Tablet Top Tabs (< 1024px) */}
+      {/* Mobile/Tablet Top Tabs (< 1024px) - Premium Style */}
       <div className="lg:hidden mb-6">
-        <div className="rounded-xl border border-gray-300 bg-white shadow-lg overflow-hidden">
-          <div className="overflow-x-auto">
-            <nav className="flex min-w-max">
+        <div className="rounded-2xl border border-gray-300/60 bg-white/80 backdrop-blur-xl shadow-xl overflow-hidden">
+          <div className="overflow-x-auto scrollbar-hide">
+            <nav className="flex min-w-max bg-gradient-to-r from-gray-50/50 to-white p-1">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -87,14 +87,23 @@ export function AccountDashboardClient({
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
                     className={cn(
-                      "flex flex-1 items-center justify-center gap-2 px-4 py-3 text-sm font-medium transition-all whitespace-nowrap border-b-2",
+                      "flex flex-1 items-center justify-center gap-2 px-5 py-3.5 text-sm font-bold transition-all duration-300 whitespace-nowrap relative rounded-xl",
                       isActive
-                        ? "border-emerald-600 bg-emerald-50 text-emerald-700"
-                        : "border-transparent text-gray-600 hover:bg-emerald-50/50 hover:text-emerald-700"
+                        ? "bg-linear-to-br from-primary to-primary/90 text-white shadow-lg shadow-primary/20 scale-105"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-white/60"
                     )}
                   >
-                    <Icon className="h-4 w-4" strokeWidth={2} />
+                    <Icon
+                      className={cn(
+                        "h-4 w-4 transition-all duration-300",
+                        isActive ? "text-white scale-110" : "text-gray-500"
+                      )}
+                      strokeWidth={2.5}
+                    />
                     <span className="hidden sm:inline">{tab.label}</span>
+                    {isActive && (
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 w-8 bg-white/60 rounded-full"></div>
+                    )}
                   </button>
                 );
               })}
@@ -103,30 +112,89 @@ export function AccountDashboardClient({
         </div>
       </div>
 
-      {/* Desktop Sidebar Navigation (≥ 1024px) */}
-      <aside className="hidden lg:block ">
-        <div className="sticky top-4 rounded-xl border border-gray-300 bg-white shadow-lg overflow-hidden">
-          <nav className="divide-y divide-gray-200">
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => handleTabChange(tab.id)}
-                  className={cn(
-                    "w-full flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all last:border-0",
-                    isActive
-                      ? "bg-emerald-600 text-white"
-                      : "text-gray-600 hover:bg-emerald-50 hover:text-emerald-700"
-                  )}
-                >
-                  <Icon className="h-5 w-5" strokeWidth={2} />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </nav>
+      {/* Desktop Sidebar Navigation (≥ 1024px) - Premium Dashboard Style */}
+      <aside className="hidden lg:block">
+        <div className="sticky top-4">
+          <div className="rounded-2xl border border-gray-300/60 bg-white/80 backdrop-blur-xl shadow-2xl overflow-hidden">
+            {/* Sidebar Header */}
+            <div className="px-5 py-4 border-b border-gray-300/50 bg-linear-to-r from-primary/5 to-transparent">
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                Navigation
+              </span>
+            </div>
+
+            {/* Navigation Items */}
+            <nav className="p-2">
+              {tabs.map((tab, index) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabChange(tab.id)}
+                    className={cn(
+                      "w-full flex items-center gap-3 px-4 py-3.5 mb-1 text-sm font-bold transition-all duration-300 relative rounded-xl group",
+                      isActive
+                        ? "bg-linear-to-r from-primary to-primary/90 text-white shadow-lg shadow-primary/25"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-50/80"
+                    )}
+                    style={{
+                      animationDelay: `${index * 50}ms`,
+                    }}
+                  >
+                    {/* Active Indicator Bar */}
+                    {isActive && (
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-1 bg-white/40 rounded-r-full"></div>
+                    )}
+
+                    {/* Icon Container */}
+                    <div
+                      className={cn(
+                        "relative flex items-center justify-center transition-all duration-300",
+                        isActive ? "scale-110" : "group-hover:scale-105"
+                      )}
+                    >
+                      {/* Icon Glow Effect for Active */}
+                      {isActive && (
+                        <div className="absolute inset-0 bg-white/20 blur-md rounded-lg"></div>
+                      )}
+                      <Icon
+                        className={cn(
+                          "relative h-5 w-5 transition-all duration-300 z-10",
+                          isActive
+                            ? "text-white"
+                            : "text-gray-500 group-hover:text-primary"
+                        )}
+                        strokeWidth={2.5}
+                      />
+                    </div>
+
+                    {/* Label */}
+                    <span
+                      className={cn(
+                        "relative z-10 transition-all duration-300",
+                        isActive && "tracking-wide"
+                      )}
+                    >
+                      {tab.label}
+                    </span>
+
+                    {/* Active Badge */}
+                    {isActive && (
+                      <div className="ml-auto">
+                        <div className="h-1.5 w-1.5 rounded-full bg-white/60"></div>
+                      </div>
+                    )}
+
+                    {/* Hover Effect Overlay */}
+                    {!isActive && (
+                      <div className="absolute inset-0 rounded-xl bg-linear-to-r from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
         </div>
       </aside>
 

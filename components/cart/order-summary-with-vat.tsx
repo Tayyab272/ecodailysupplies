@@ -31,9 +31,9 @@ export function OrderSummaryWithVAT({
 
         {/* Discount */}
         {summary.discount > 0 && (
-          <div className="flex justify-between text-emerald-600">
-            <span>Discount</span>
-            <span>-£{summary.discount.toFixed(2)}</span>
+          <div className="flex justify-between text-primary">
+            <span className="font-medium">Discount</span>
+            <span className="font-semibold">-£{summary.discount.toFixed(2)}</span>
           </div>
         )}
 
@@ -46,10 +46,12 @@ export function OrderSummaryWithVAT({
           {shippingOption && (
             <div className="flex justify-between text-gray-600">
               <span>{shippingOption.name}</span>
-              <span className="font-medium text-gray-900">
-                {shippingOption.price === 0
-                  ? "Free"
-                  : `£${shippingOption.price.toFixed(2)}`}
+              <span className="font-semibold text-gray-900">
+                {shippingOption.price === 0 ? (
+                  <span className="text-primary font-bold">Free</span>
+                ) : (
+                  `£${shippingOption.price.toFixed(2)}`
+                )}
               </span>
             </div>
           )}
@@ -67,9 +69,9 @@ export function OrderSummaryWithVAT({
         <div className="border-t border-gray-900 my-4" />
 
         {/* Total */}
-        <div className="flex justify-between text-base font-semibold">
-          <span className="text-gray-900">Total</span>
-          <span className="text-gray-900 text-lg">
+        <div className="flex justify-between items-center pt-3 border-t border-gray-200">
+          <span className="text-base font-bold text-gray-900 uppercase tracking-wider">Total</span>
+          <span className="text-xl font-bold text-gray-900">
             £{summary.total.toFixed(2)}
           </span>
         </div>
