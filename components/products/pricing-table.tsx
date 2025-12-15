@@ -28,10 +28,10 @@ export function PricingTable({
   };
 
   return (
-    <div className="w-full overflow-hidden rounded-lg border border-gray-300 bg-white shadow-sm">
+    <div className="w-full overflow-hidden rounded-xl border border-gray-300 bg-white">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-gray-300 bg-gray-50">
+          <tr className="border-b border-gray-300 bg-linear-to-r from-gray-50 to-gray-100">
             <th className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider text-gray-900">
               Quantity
             </th>
@@ -53,7 +53,7 @@ export function PricingTable({
           ) : (
             <>
               {/* Show base price row first */}
-              <tr className="border-b border-gray-300 hover:bg-gray-50/50 transition-colors">
+              <tr className="border-b border-gray-300 hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-4 font-bold text-sm text-gray-900 uppercase tracking-wide">
                   1+ units
                 </td>
@@ -74,7 +74,7 @@ export function PricingTable({
                 return (
                   <tr
                     key={index}
-                    className="border-b border-gray-300 transition-all hover:bg-primary/5 last:border-0"
+                    className="border-b border-gray-300 transition-colors hover:bg-primary/5 last:border-0"
                   >
                     <td className="px-4 py-4 font-bold text-sm text-gray-900 uppercase tracking-wide">
                       {quantityRange}

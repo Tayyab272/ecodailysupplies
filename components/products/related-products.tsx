@@ -28,20 +28,20 @@ export function RelatedProducts({
   }
 
   return (
-    <section className="mt-16 md:mt-20 lg:mt-24 border-t-2 border-primary pt-12 md:pt-16">
-      <div className="flex items-center justify-between mb-8">
+    <section className="mt-10 md:mt-12 lg:mt-14 border-t border-gray-300 pt-8 md:pt-10">
+      <div className="flex items-start justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1.5">
             Related Products
           </h2>
           {categoryName && (
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-600">
               More {categoryName.toLowerCase()} products you might like
             </p>
           )}
         </div>
         {categorySlug && (
-          <Button asChild variant="outline" className="hidden sm:flex">
+          <Button asChild variant="outline" className="hidden sm:flex rounded-xl">
             <Link href={`/products?category=${categorySlug}`}>
               View All
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -50,7 +50,7 @@ export function RelatedProducts({
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
         {relatedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
@@ -58,7 +58,7 @@ export function RelatedProducts({
 
       {categorySlug && (
         <div className="mt-8 text-center sm:hidden">
-          <Button asChild variant="outline" className="w-full sm:w-auto">
+          <Button asChild variant="outline" className="w-full sm:w-auto rounded-xl">
             <Link href={`/products?category=${categorySlug}`}>
               View All {categoryName || "Products"}
               <ArrowRight className="ml-2 h-4 w-4" />

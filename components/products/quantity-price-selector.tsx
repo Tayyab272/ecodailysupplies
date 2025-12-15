@@ -34,9 +34,11 @@ export function QuantityPriceSelector({
     minQuantity,
     baseQuantity > 0 ? baseQuantity + (initialQuantity - 1) : initialQuantity
   );
-  
+
   const [quantity, setQuantity] = useState(displayQuantity);
-  const [quantityInput, setQuantityInput] = useState<string>(displayQuantity.toString());
+  const [quantityInput, setQuantityInput] = useState<string>(
+    displayQuantity.toString()
+  );
 
   // Update quantity when initialQuantity, baseQuantity, or minQuantity changes
   useEffect(() => {
@@ -58,7 +60,7 @@ export function QuantityPriceSelector({
       const total = quantityOptionPrice * quantity;
       const baseTotal = adjustedBasePrice * quantity;
       const savingsAmount = Math.max(0, baseTotal - total);
-      
+
       return {
         activeTier: null, // No tier when using quantity option price
         pricePerUnit: quantityOptionPrice,
@@ -79,7 +81,9 @@ export function QuantityPriceSelector({
 
     // Find the appropriate tier based on quantity
     // Sort tiers by minQuantity descending to find the highest applicable tier
-    const sortedTiers = [...pricingTiers].sort((a, b) => b.minQuantity - a.minQuantity);
+    const sortedTiers = [...pricingTiers].sort(
+      (a, b) => b.minQuantity - a.minQuantity
+    );
     const tier = sortedTiers.find((t) => {
       const minMatch = quantity >= t.minQuantity;
       const maxMatch = t.maxQuantity ? quantity <= t.maxQuantity : true;
@@ -96,9 +100,10 @@ export function QuantityPriceSelector({
     }
 
     // Calculate price per unit using discount percentage
-    const unitPrice = tier.discount > 0
-      ? adjustedBasePrice * (1 - tier.discount / 100)
-      : adjustedBasePrice;
+    const unitPrice =
+      tier.discount > 0
+        ? adjustedBasePrice * (1 - tier.discount / 100)
+        : adjustedBasePrice;
 
     const total = unitPrice * quantity;
     const baseTotal = adjustedBasePrice * quantity;
@@ -110,7 +115,13 @@ export function QuantityPriceSelector({
       totalPrice: total,
       savings: savingsAmount,
     };
-  }, [quantity, pricingTiers, basePrice, variantPriceAdjustment, quantityOptionPrice]);
+  }, [
+    quantity,
+    pricingTiers,
+    basePrice,
+    variantPriceAdjustment,
+    quantityOptionPrice,
+  ]);
 
   // Sync input when quantity changes externally
   useEffect(() => {
@@ -120,12 +131,12 @@ export function QuantityPriceSelector({
   const handleQuantityChange = (value: string) => {
     // Allow empty string for easier editing
     setQuantityInput(value);
-    
+
     // Only update if it's a valid number
     if (value === "") {
       return; // Allow empty temporarily
     }
-    
+
     const numValue = parseInt(value, 10);
     if (!isNaN(numValue) && numValue >= minQuantity) {
       setQuantity(numValue);
@@ -151,7 +162,10 @@ export function QuantityPriceSelector({
       {/* Quantity Input - Premium Style */}
       {showQuantityInput && (
         <div className="space-y-3">
-          <Label htmlFor="quantity" className="text-xs font-bold uppercase tracking-wider text-gray-900">
+          <Label
+            htmlFor="quantity"
+            className="text-xs font-bold uppercase tracking-wider text-gray-900"
+          >
             Quantity
           </Label>
           <div className="flex items-center gap-3">
@@ -169,7 +183,7 @@ export function QuantityPriceSelector({
                 }
               }}
               onBlur={handleQuantityBlur}
-              className="w-24 h-12 text-center text-lg font-bold border-2 border-gray-200 focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary rounded-md transition-all"
+              className="w-24 h-11 text-center text-lg font-bold border border-gray-300 focus-visible:ring-primary focus-visible:ring-2 focus-visible:border-primary rounded-xl transition-shadow"
               aria-label={`Quantity (minimum ${minQuantity})`}
             />
             {baseQuantity > 0 && (
@@ -182,7 +196,7 @@ export function QuantityPriceSelector({
       )}
 
       {/* Dynamic Price Display - Premium Style */}
-      <div className="space-y-3 rounded-lg border-2 border-gray-200 bg-gray-50/50 p-6">
+      <div className="space-y-3 rounded-xl border border-gray-300 bg-gray-50/60 p-5">
         <div className="flex items-baseline gap-2">
           <span className="text-3xl font-bold text-gray-900 tracking-tight">
             £{pricePerUnit.toFixed(2)}
@@ -192,7 +206,7 @@ export function QuantityPriceSelector({
           </span>
         </div>
         {quantity > 1 && (
-          <div className="flex items-center gap-2 pt-2 border-t border-gray-200">
+          <div className="flex items-center gap-2 pt-2 border-t border-gray-300">
             <span className="text-sm font-medium text-gray-600 uppercase tracking-wide">
               Total:
             </span>
@@ -202,7 +216,7 @@ export function QuantityPriceSelector({
           </div>
         )}
         {activeTier && (
-          <div className="mt-3 flex items-center gap-2 flex-wrap pt-3 border-t border-gray-200">
+          <div className="mt-3 flex items-center gap-2 flex-wrap pt-3 border-t border-gray-300">
             {activeTier.label && (
               <div className="inline-flex items-center rounded-md bg-primary px-3 py-1.5 text-xs font-bold text-white uppercase tracking-wider shadow-sm">
                 {activeTier.label}

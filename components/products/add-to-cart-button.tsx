@@ -42,7 +42,7 @@ export function AddToCartButton({
   return (
     <Button
       size="lg"
-      className="w-full bg-primary text-white hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed rounded-md font-bold uppercase tracking-wider text-sm py-6"
+      className="w-full rounded-xl bg-primary py-5 text-sm font-bold uppercase tracking-wider text-white shadow-sm transition-colors hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
       disabled={disabled}
       onClick={handleClick}
     >

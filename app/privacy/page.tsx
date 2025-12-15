@@ -196,7 +196,7 @@ const toc = [
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="border-b border-gray-200 bg-white/80 backdrop-blur-xl">
+      <div className="border-b border-grey-300 bg-white/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-5">
           <Breadcrumbs
             items={[{ label: "Privacy Policy", href: "/privacy" }]}
@@ -207,7 +207,7 @@ export default function PrivacyPolicyPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-10 sm:py-12">
         <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[240px_1fr] lg:gap-10">
           <aside className="hidden lg:block">
-            <div className="sticky top-24 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <div className="sticky top-24 rounded-2xl border border-grey-300 bg-white p-5 shadow-sm">
               <div className="text-xs font-bold uppercase tracking-wider text-gray-500">
                 On this page
               </div>
@@ -244,7 +244,7 @@ export default function PrivacyPolicyPage() {
             <div className="space-y-6 sm:space-y-8">
               <section
                 id="intro"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   Overview
@@ -290,7 +290,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="purpose-data-retention"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   1. Purpose, data and retention period
@@ -305,7 +305,7 @@ export default function PrivacyPolicyPage() {
                   {PURPOSES.map((p) => (
                     <div
                       key={p.id}
-                      className="rounded-xl border border-gray-200 bg-gray-50 p-5"
+                      className="rounded-xl border border-grey-300 bg-gray-50 p-5"
                     >
                       <h3 className="text-base font-bold text-gray-900">
                         {p.title}
@@ -348,7 +348,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="sharing"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   2. Sharing with other parties
@@ -358,17 +358,17 @@ export default function PrivacyPolicyPage() {
                     We only share or disclose this data to processors for the
                     following purposes:
                   </p>
-                  <div className="mt-2 overflow-x-auto rounded-xl border border-gray-200 bg-white">
+                  <div className="mt-2 overflow-x-auto rounded-xl border border-grey-300 bg-white">
                     <table className="min-w-full">
                       <thead className="bg-linear-to-r from-gray-50 to-gray-100">
                         <tr>
-                          <th className="border-b border-gray-200 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
+                          <th className="border-b border-grey-300 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                             Name
                           </th>
-                          <th className="border-b border-gray-200 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
+                          <th className="border-b border-grey-300 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                             Country
                           </th>
-                          <th className="border-b border-gray-200 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
+                          <th className="border-b border-grey-300 px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                             Purpose
                           </th>
                         </tr>
@@ -398,7 +398,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="cookies"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   3. Cookies
@@ -413,7 +413,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="disclosure-practices"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   4. Disclosure practices
@@ -440,7 +440,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="security"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   5. Security
@@ -459,7 +459,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="third-party-websites"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   6. Third-party websites
@@ -478,7 +478,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="amendments"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   7. Amendments to this privacy statement
@@ -495,7 +495,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="access-modify"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   8. Accessing and modifying your data
@@ -548,7 +548,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="complaints"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   9. Submitting a complaint
@@ -560,7 +560,7 @@ export default function PrivacyPolicyPage() {
                     have the right to submit a complaint to the Information
                     Commissioner&apos;s Office:
                   </p>
-                  <div className="mt-2 rounded-xl border border-gray-200 bg-gray-50 p-5">
+                  <div className="mt-2 rounded-xl border border-grey-300 bg-gray-50 p-5">
                     <p className="text-sm font-semibold text-gray-900">
                       Wycliffe House
                     </p>
@@ -574,7 +574,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="children"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   10. Children
@@ -592,7 +592,7 @@ export default function PrivacyPolicyPage() {
 
               <section
                 id="contact"
-                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-gray-200"
+                className="bg-white rounded-2xl p-5 sm:p-7 shadow-sm border border-grey-300"
               >
                 <h2 className="mb-5 text-xl sm:text-2xl font-bold tracking-tight text-gray-900">
                   11. Contact details

@@ -31,12 +31,9 @@ function ProductPageContent({
       backUrl="/products"
       showHomeButton
     >
-      <div className="space-y-8 md:space-y-10 lg:space-y-12">
-        {/* Purchase Section - Premium Card */}
-        <div className="relative">
-          {/* Decorative accent line - Premium Style */}
-          <div className="absolute -top-4 left-0 right-0 h-px bg-linear-to-r from-transparent via-gray-200 to-transparent hidden md:block" />
-
+      <div className="space-y-5 md:space-y-6">
+        {/* Purchase Section */}
+        <div>
           <ErrorBoundary
             title="Unable to Load Purchase Options"
             description="There was an error loading the purchase section. Please refresh the page or try again."
@@ -47,13 +44,8 @@ function ProductPageContent({
           </ErrorBoundary>
         </div>
 
-        {/* Product Info Accordion - Premium Card */}
-        <div className="relative">
-          {/* Visual separator with subtle animation */}
-          <div className="absolute -top-6 left-0 right-0 flex items-center justify-center md:hidden">
-            <div className="h-px w-16 bg-gray-300" />
-          </div>
-
+        {/* Product Info */}
+        <div>
           <ErrorBoundary
             title="Unable to Load Product Information"
             description="There was an error loading product details. Please refresh the page or try again."

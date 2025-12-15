@@ -177,12 +177,12 @@ export function ProductPurchaseSection({
   }, [calculatedPricePerUnit, totalQuantity]);
 
   return (
-    <div className="space-y-8 bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8">
+    <div className="space-y-6 rounded-2xl border border-gray-300 bg-white p-5 shadow-sm sm:p-6">
       {/* Total Amount Display - Premium Style (Top) */}
-      <div className="pb-6 border-b border-gray-300">
+      <div className="pb-5 border-b border-gray-300">
         <div className="flex flex-col gap-2">
           <div className="flex items-baseline gap-3">
-            <span className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+            <span className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
               £{totalAmount.toFixed(2)}
             </span>
             <span className="text-sm font-medium text-gray-500 uppercase tracking-wider">
@@ -207,7 +207,7 @@ export function ProductPurchaseSection({
 
       {/* Variant Selector */}
       {product.variants && product.variants.length > 0 && (
-        <div className="space-y-4 pb-8 border-b border-gray-300">
+        <div className="space-y-4 pb-6 border-b border-gray-300">
           <VariantSelector
             variants={product.variants}
             label="Size"
@@ -220,7 +220,7 @@ export function ProductPurchaseSection({
       {selectedVariant?.quantityOptions &&
         selectedVariant.quantityOptions.length > 0 && (
           <div
-            className="space-y-4 pb-8 border-b border-gray-300"
+            className="space-y-4 pb-6 border-b border-gray-300"
             key={selectedVariant.id}
           >
             <QuantityOptionsSelector
@@ -246,7 +246,7 @@ export function ProductPurchaseSection({
 
       {/* Quantity Selector & Price Display */}
       {/* Show quantity selector for all products, including those with quantity options */}
-      <div className="space-y-4 pb-8 border-b border-gray-300">
+      <div className="space-y-4 pb-6 border-b border-gray-300">
         {selectedVariant?.quantityOptions &&
         selectedVariant.quantityOptions.length > 0 ? (
           // Quantity selector for products with quantity options
@@ -313,7 +313,7 @@ export function ProductPurchaseSection({
 
       {/* Pricing Table */}
       {product.pricingTiers && product.pricingTiers.length > 0 && (
-        <div className="space-y-4 pb-8 border-b border-gray-300">
+        <div className="space-y-4 pb-6 border-b border-gray-300">
           <div className="flex items-center gap-2">
             <div className="h-1 w-1 rounded-full bg-primary"></div>
             <h3 className="text-xs font-bold uppercase tracking-wider text-gray-900">

@@ -23,14 +23,14 @@ export function ProductInfoAccordion({
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8">
+    <div className="rounded-2xl border border-gray-300 bg-white p-5 shadow-sm sm:p-6">
       <Accordion type="multiple" className="w-full">
         {description && (
           <AccordionItem
             value="description"
             className="border-b border-gray-300"
           >
-            <AccordionTrigger className="py-5 text-sm font-bold uppercase tracking-wider text-gray-900 hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:border-b [&[data-state=open]]:border-gray-200">
+            <AccordionTrigger className="py-5 text-sm font-bold uppercase tracking-wider text-gray-900 hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:border-b [&[data-state=open]]:border-gray-300">
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                 Description
@@ -49,7 +49,7 @@ export function ProductInfoAccordion({
             value="specifications"
             className="border-b border-gray-300"
           >
-            <AccordionTrigger className="py-5 text-sm font-bold uppercase tracking-wider text-gray-900 hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:border-b [&[data-state=open]]:border-gray-200">
+            <AccordionTrigger className="py-5 text-sm font-bold uppercase tracking-wider text-gray-900 hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:border-b [&[data-state=open]]:border-gray-300">
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                 Specifications
@@ -80,7 +80,7 @@ export function ProductInfoAccordion({
             value="delivery"
             className="border-b border-gray-300 last:border-0"
           >
-            <AccordionTrigger className="py-5 text-sm font-bold uppercase tracking-wider text-gray-900 hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:border-b [&[data-state=open]]:border-gray-200">
+            <AccordionTrigger className="py-5 text-sm font-bold uppercase tracking-wider text-gray-900 hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:border-b [&[data-state=open]]:border-gray-300">
               <div className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                 Shipping & Delivery
@@ -93,7 +93,7 @@ export function ProductInfoAccordion({
                 </p>
                 {/* Additional Shipping Info - Premium Style */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-300">
-                  <div className="flex items-start gap-3 p-4 bg-white rounded-lg border-2 border-gray-200 hover:border-primary transition-colors">
+                  <div className="flex items-start gap-3 p-4 bg-white rounded-xl border border-gray-300 hover:border-gray-300 transition-colors">
                     <div className="p-2 rounded-md bg-primary/10 shrink-0">
                       <svg
                         className="w-5 h-5 text-primary"
@@ -118,7 +118,7 @@ export function ProductInfoAccordion({
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 p-4 bg-white rounded-lg border-2 border-gray-200 hover:border-primary transition-colors">
+                  <div className="flex items-start gap-3 p-4 bg-white rounded-xl border border-gray-300 hover:border-gray-300 transition-colors">
                     <div className="p-2 rounded-md bg-primary/10 shrink-0">
                       <svg
                         className="w-5 h-5 text-primary"

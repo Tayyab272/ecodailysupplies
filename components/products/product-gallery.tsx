@@ -49,8 +49,8 @@ export function ProductGallery({
     <div className="space-y-5 md:space-y-6">
       {/* Main Image Container - Premium Shopify Style */}
       <div className="relative group">
-        {/* White background with subtle shadow */}
-        <div className="relative aspect-square w-full overflow-hidden bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-500 group-hover:shadow-xl">
+        {/* Main image sits inside the page card; keep this container clean to avoid double borders */}
+        <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-gray-50">
           <Image
             src={displayImages[selectedImageIndex]}
             alt={getImageAlt(selectedImageIndex)}
@@ -78,14 +78,14 @@ export function ProductGallery({
             <>
               <button
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 backdrop-blur-sm border border-gray-200 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-lg z-10"
+                className="absolute left-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 backdrop-blur-sm border border-gray-300 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-lg z-10"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="h-5 w-5" strokeWidth={2} />
               </button>
               <button
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 backdrop-blur-sm border border-gray-200 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-lg z-10"
+                className="absolute right-4 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/95 backdrop-blur-sm border border-gray-300 text-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary shadow-lg z-10"
                 aria-label="Next image"
               >
                 <ChevronRight className="h-5 w-5" strokeWidth={2} />
@@ -109,7 +109,7 @@ export function ProductGallery({
                 className={`relative aspect-square w-20 md:w-24 shrink-0 overflow-hidden rounded-lg transition-all duration-300 border-2 bg-white ${
                   index === selectedImageIndex
                     ? "border-primary shadow-lg scale-105 ring-2 ring-primary/20"
-                    : "border-gray-200 hover:border-gray-300 hover:shadow-md"
+                    : "border-gray-300 hover:border-gray-300 hover:shadow-md"
                 }`}
                 aria-label={`View ${getImageAlt(index)}`}
               >

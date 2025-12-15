@@ -122,7 +122,7 @@ export function QuantityOptionsSelector({
                 key={option.quantity}
                 value={option.quantity.toString()}
                 aria-label={`Select ${option.label}`}
-                className="relative h-12 min-w-24 px-4 border-2 border-gray-300 bg-white data-[state=on]:border-primary data-[state=on]:bg-primary data-[state=on]:text-white data-[state=on]:font-bold hover:border-gray-300 transition-all duration-300 rounded-md text-sm"
+                className="relative h-11 min-w-24 px-4 rounded-xl border border-gray-300 bg-white text-sm font-medium text-gray-900 transition-colors hover:border-gray-300 data-[state=on]:border-primary data-[state=on]:bg-primary data-[state=on]:text-white data-[state=on]:font-bold data-[state=on]:shadow-sm data-[state=on]:ring-2 data-[state=on]:ring-primary/20"
               >
                 {option.label}
                 {discountPercent !== null && discountPercent > 0 && (

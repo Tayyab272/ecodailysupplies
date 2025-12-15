@@ -24,34 +24,34 @@ export function ProductHeader({
   ];
 
   return (
-    <div className="space-y-6 pb-8 md:pb-12 border-b border-gray-100">
+    <div className="space-y-3 pb-4 md:pb-5 border-b border-gray-300">
       {/* Breadcrumbs */}
       <Breadcrumbs items={breadcrumbItems} />
 
       {/* Product Title & Category */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {/* Category Link (if available) */}
         {category && categorySlug && (
           <Link
             href={`/products?category=${categorySlug}`}
-            className="inline-flex items-center text-xs font-bold text-gray-600 uppercase tracking-wider hover:text-gray-900 transition-colors mb-2"
+            className="inline-flex items-center gap-1.5 rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-700 uppercase tracking-wider hover:bg-gray-50 hover:text-gray-900 transition-colors"
           >
             {category}
-            <ArrowRight className="ml-1.5 h-3 w-3" />
+            <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         )}
 
         {/* Product Title */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
           {productName}
         </h1>
 
         {/* Product Code / SKU - Minimal Badge */}
-        <div className="flex items-center gap-3 pt-2">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
             SKU
           </span>
-          <span className="px-3 py-1 bg-gray-100 rounded-md text-sm font-bold text-gray-900 border border-gray-200">
+          <span className="px-3 py-1 bg-gray-100 rounded-lg text-sm font-bold text-gray-900 border border-gray-300">
             {productCode}
           </span>
         </div>
