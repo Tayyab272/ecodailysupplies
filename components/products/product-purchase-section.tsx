@@ -210,7 +210,7 @@ export function ProductPurchaseSection({
         <div className="space-y-4 pb-6 border-b border-gray-300">
           <VariantSelector
             variants={product.variants}
-            label="Size"
+            label="Variant"
             onVariantChange={handleVariantChange}
           />
         </div>
