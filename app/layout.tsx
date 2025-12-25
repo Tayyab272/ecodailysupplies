@@ -9,7 +9,7 @@ import { CartProvider } from "@/components/cart/cart-provider";
 import { getAllCategories } from "@/sanity/lib";
 // import Chatbot from "@/components/common/Chatbot";
 // PERFORMANCE: Vercel Speed Insights & Analytics
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { Analytics } from "@vercel/analytics/react";
 
 /**
@@ -244,7 +244,7 @@ export default async function RootLayout({
           </CartProvider>
         </AuthProvider>
         {/* PERFORMANCE: Real-time performance monitoring */}
-        <SpeedInsights />
+       
         <Analytics />
       </body>
     </html>

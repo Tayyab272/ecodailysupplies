@@ -1,6 +1,14 @@
 import createImageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import type { Image } from "sanity";
+// Define a minimal Image type if needed, or import from the correct Sanity schema types package
+export type Image = {
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+  _type: "image";
+  [key: string]: any;
+};
 import { dataset, projectId } from "../env";
 
 // Single builder instance

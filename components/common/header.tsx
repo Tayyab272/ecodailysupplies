@@ -191,7 +191,7 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
                 href="/b2b-request"
                 className="text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-200"
               >
-                B2B Request
+                Wholesale
               </Link>
               <Link
                 href="/about"
