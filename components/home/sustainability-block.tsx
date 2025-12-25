@@ -55,7 +55,7 @@ export function SustainabilityBlock() {
               {/* Placeholder for a premium packaging image - Using a dark/abstract one or a box image */}
               <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black opacity-50 z-10" />
               <Image
-                src="https://images.unsplash.com/photo-1605647540924-852290f6b0d5?q=80&w=2000&auto=format&fit=crop"
+                src="https://pub-20f982007aa54df4849bcd969b89a1bf.r2.dev/eco-friendly.png"
                 alt="Premium Packaging"
                 fill
                 className="object-cover opacity-80"

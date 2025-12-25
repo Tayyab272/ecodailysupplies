@@ -79,22 +79,21 @@ export function Footer() {
             <h4 className="font-bold mb-6 text-lg">Contact</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-zinc-400">
-                <Phone className="h-5 w-5 shrink-0 mt-0.5" />
-                <span>01254 916167</span>
+                <MapPin className="h-5 w-5 shrink-0 mt-0.5" />
+                <span>
+                  Unit CW10,<br />
+                  Challenge Way Entrance IK Business Park,<br />
+                  Blackburn,<br />
+                  BB1 5QF
+                </span>
               </li>
               <li className="flex items-start gap-3 text-zinc-400">
                 <Mail className="h-5 w-5 shrink-0 mt-0.5" />
-                <span>sales@bubblewrapshop.co.uk</span>
+                <span>info@ecodailysupplies.com</span>
               </li>
               <li className="flex items-start gap-3 text-zinc-400">
-                <MapPin className="h-5 w-5 shrink-0 mt-0.5" />
-                <span>
-                  Unit BR16
-                  <br />
-                  Blakewater Road,
-                  <br />
-                  Blackburn, BB1 5QF
-                </span>
+                <Phone className="h-5 w-5 shrink-0 mt-0.5" />
+                <span>07397057703</span>
               </li>
             </ul>
           </div>

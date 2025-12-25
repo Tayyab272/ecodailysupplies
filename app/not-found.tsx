@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Decorative Background Blobs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
       <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
 
@@ -16,7 +16,7 @@ export default function NotFound() {
         <div className="mx-auto max-w-2xl text-center">
           {/* 404 Number */}
           <div className="mb-6">
-            <h1 className="text-8xl sm:text-9xl md:text-[12rem] font-bold bg-linear-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+            <h1 className="text-8xl sm:text-9xl md:text-[12rem] font-bold bg-primary  bg-clip-text text-transparent">
               404
             </h1>
           </div>
@@ -24,10 +24,10 @@ export default function NotFound() {
           {/* Error Icon */}
           <div className="mb-8 flex justify-center">
             <div className="relative">
-              <div className="absolute inset-0 bg-linear-to-r from-emerald-600 to-teal-600 rounded-full blur-2xl opacity-30 animate-pulse"></div>
-              <div className="relative w-24 h-24 bg-linear-to-br from-emerald-100 to-teal-100 rounded-full flex items-center justify-center border-4 border-emerald-200">
+              <div className="absolute inset-0 bg-linear-to-r from-primary to-teal-600 rounded-full blur-2xl opacity-30 animate-pulse"></div>
+              <div className="relative w-24 h-24 bg-primary  rounded-full flex items-center justify-center border-4 border-primary-200">
                 <FileQuestion
-                  className="w-12 h-12 text-emerald-600"
+                  className="w-12 h-12 text-white"
                   strokeWidth={2}
                 />
               </div>
@@ -37,7 +37,7 @@ export default function NotFound() {
           {/* Heading */}
           <h2 className="mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900">
             Page Not
-            <span className="block bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mt-2">
+            <span className="block bg-primary bg-clip-text text-transparent mt-2">
               Found
             </span>
           </h2>
@@ -57,7 +57,7 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               asChild
-              className="inline-flex items-center gap-2 px-8 py-6 text-base font-semibold bg-linear-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:from-emerald-700 hover:to-teal-700"
+              className="inline-flex items-center gap-2 px-8 py-6 text-base font-semibold bg-primary text-white rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             >
               <Link href="/">
                 <Home className="w-5 h-5" strokeWidth={2} />
@@ -67,7 +67,7 @@ export default function NotFound() {
             <Button
               asChild
               variant="outline"
-              className="inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-emerald-300 text-emerald-700 bg-white rounded-xl hover:bg-emerald-50 hover:border-emerald-600 transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-6 text-base font-semibold border-2 border-primary text-primary bg-white rounded-xl hover:bg-primary-50 hover:border-primary-600 transition-all duration-300 hover:scale-105"
             >
               <Link href="/products">
                 <Search className="w-5 h-5" strokeWidth={2} />
@@ -85,25 +85,25 @@ export default function NotFound() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/products"
-                className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
+                className="text-primary hover:text-primary font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
               >
                 Products
               </Link>
               <Link
                 href="/faq"
-                className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
+                className="text-primary hover:text-primary font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
               >
                 FAQ
               </Link>
               <Link
                 href="/sustainability"
-                className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
+                className="text-primary hover:text-primary font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
               >
                 Sustainability
               </Link>
               <Link
                 href="/contact"
-                className="text-emerald-600 hover:text-emerald-700 font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
+                className="text-primary hover:text-primary font-medium text-sm underline decoration-2 underline-offset-2 transition-colors"
               >
                 Contact
               </Link>

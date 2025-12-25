@@ -46,7 +46,7 @@ export function CategoryList({ categories }: CategoryListProps) {
                                 href={`/products?category=${category.slug}`}
                                 className="group block h-full"
                             >
-                                <div className="relative h-full flex flex-col bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 group-hover:border-black group-hover:shadow-md">
+                                <div className="relative h-full flex flex-col bg-white border border-gray-200 rounded-lg overflow-hidden transition-all duration-300 group-hover:border-primary group-hover:shadow-md">
                                     {/* Image Container */}
                                     <div className="relative aspect-square w-full bg-gray-50">
                                         <div className="absolute inset-0 p-4 flex items-center justify-center">

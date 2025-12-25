@@ -19,57 +19,80 @@ import {
 // For development, use `npm run dev` which has hot reloading
 export const revalidate = false;
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
 
 /**
  * Homepage Metadata
  * SEO optimization for the homepage with comprehensive UK-focused keywords
- * Targeting both B2C and B2B customers
+ * Targeting both B2C and B2B customers with emphasis on eco-friendly and sustainable packaging
  */
 export const metadata: Metadata = {
   title:
-    "Packaging Supplies UK | Bubble Wrap, Boxes & Wholesale Packaging | Bubble Wrap Shop",
+    "Eco-Friendly Packaging Supplies UK | Sustainable Bubble Wrap, Boxes & Biodegradable Packaging | EcoDailySupplies",
   description:
-    "UK's leading supplier of packaging supplies. Buy bubble wrap, cardboard boxes, packing tape, and protective packaging materials online. Wholesale pricing available. Next day delivery across the UK. Serving both businesses and consumers.",
+    "UK's premier eco-friendly packaging supplier. Buy sustainable bubble wrap, recyclable cardboard boxes, biodegradable packing materials, and compostable packaging online. Wholesale eco packaging with carbon-neutral delivery across the UK. Environmentally responsible packaging solutions for businesses and consumers.",
   keywords: [
-    "packaging supplies UK",
-    "bubble wrap UK",
-    "packaging boxes UK",
-    "wholesale packaging UK",
-    "bulk packaging supplies",
-    "cardboard boxes UK",
-    "packing tape UK",
-    "shipping boxes UK",
-    "protective packaging UK",
-    "next day delivery packaging",
-    "UK packaging supplier",
-    "B2B packaging UK",
-    "corporate packaging supplies",
     "eco-friendly packaging UK",
-    "packaging materials UK",
-    "bubble wrap online",
-    "cheap packaging supplies",
-    "packaging wholesale",
-    "Blackburn packaging supplier",
-    "Lancashire packaging",
+    "sustainable packaging supplies UK",
+    "biodegradable bubble wrap UK",
+    "recyclable packaging UK",
+    "green packaging solutions UK",
+    "compostable packaging UK",
+    "eco packaging wholesale UK",
+    "sustainable cardboard boxes UK",
+    "environmentally friendly packaging UK",
+    "plastic-free packaging UK",
+    "carbon-neutral packaging delivery",
+    "recycled packaging materials UK",
+    "eco bubble wrap UK",
+    "sustainable shipping supplies UK",
+    "biodegradable packing tape UK",
+    "FSC certified boxes UK",
+    "zero waste packaging UK",
+    "eco-conscious packaging supplier",
+    "green business packaging UK",
+    "sustainable B2B packaging UK",
+    "eco packaging materials online",
+    "renewable packaging resources UK",
+    "ethical packaging supplies UK",
+    "earth-friendly packaging UK",
+    "eco daily supplies",
+    "EDS packaging UK",
+    "sustainable packaging next day delivery",
+    "bulk eco packaging UK",
+    "wholesale sustainable packaging",
+    "eco-friendly packaging Blackburn",
+    "Lancashire sustainable packaging",
   ],
   openGraph: {
     title:
-      "Packaging Supplies UK | Bubble Wrap, Boxes & Wholesale | Bubble Wrap Shop",
+      "Eco-Friendly Packaging Supplies UK | Sustainable Solutions | EcoDailySupplies",
     description:
-      "UK's leading supplier of packaging supplies. Buy bubble wrap, cardboard boxes, and protective packaging. Wholesale pricing available. Next day delivery across the UK.",
+      "UK's leading eco-friendly packaging supplier. Sustainable bubble wrap, recyclable boxes, and biodegradable materials. Wholesale pricing with carbon-neutral delivery across the UK.",
     url: siteUrl,
-    siteName: "Bubble Wrap Shop - Premium Packaging Supplies UK",
+    siteName: "EcoDailySupplies (EDS) - Premium Sustainable Packaging UK",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Packaging Supplies UK | Bubble Wrap, Boxes & Wholesale | Bubble Wrap Shop",
+      "Eco-Friendly Packaging Supplies UK | Sustainable Solutions | EcoDailySupplies",
     description:
-      "UK's leading supplier of packaging supplies. Wholesale pricing. Next day delivery across the UK.",
+      "UK's premier sustainable packaging supplier. Eco-friendly materials, wholesale pricing, carbon-neutral delivery nationwide.",
   },
   alternates: {
     canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -84,25 +107,26 @@ export default async function Home() {
   const organizationStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Bubble Wrap Shop",
-    legalName: "Bubble wrap shop (Blackburn) Limited",
+    name: "EcoDailySupplies",
+    alternateName: "EDS",
+    legalName: "EcoDailySupplies Limited",
     url: siteUrl,
     logo: `${siteUrl}/logo.webp`,
     description:
-      "Premium packaging supplies with automatic bulk pricing. Next day delivery. Eco-friendly options.",
+      "UK's leading eco-friendly packaging supplier offering sustainable, biodegradable, and recyclable packaging materials. Carbon-neutral delivery, automatic bulk pricing, and commitment to environmental responsibility.",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+44-7882-851632",
       contactType: "Customer Service",
       areaServed: "GB",
       availableLanguage: "English",
-      email: "sales@bubblewrapshop.co.uk",
+      email: "sales@ecodailysupplies.co.uk",
     },
     sameAs: [
       // Add social media links when available
-      // "https://www.facebook.com/bubblewrapshop",
-      // "https://www.twitter.com/bubblewrapshop",
-      // "https://www.linkedin.com/company/bubblewrapshop",
+      // "https://www.facebook.com/ecodailysupplies",
+      // "https://www.twitter.com/ecodailysupplies",
+      // "https://www.linkedin.com/company/ecodailysupplies",
     ],
     address: {
       "@type": "PostalAddress",
@@ -112,6 +136,13 @@ export default async function Home() {
       postalCode: "BB1 5QF",
       addressCountry: "GB",
     },
+    foundingDate: "2024",
+    slogan: "Sustainable Packaging for a Greener Tomorrow",
+    brand: {
+      "@type": "Brand",
+      name: "EcoDailySupplies",
+      slogan: "Eco-Friendly Packaging Solutions",
+    },
   };
 
   // LocalBusiness Structured Data (JSON-LD) for Local SEO
@@ -119,13 +150,16 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${siteUrl}#organization`,
-    name: "Bubble Wrap Shop",
-    legalName: "Bubble wrap shop (Blackburn) Limited",
+    name: "EcoDailySupplies",
+    alternateName: "EDS",
+    legalName: "EcoDailySupplies Limited",
     image: `${siteUrl}/logo.webp`,
     url: siteUrl,
     telephone: "+44-7882-851632",
-    email: "sales@bubblewrapshop.co.uk",
+    email: "sales@ecodailysupplies.co.uk",
     priceRange: "££",
+    paymentAccepted: "Credit Card, Debit Card, Bank Transfer, PayPal",
+    currenciesAccepted: "GBP",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Unit BR16 Blakewater Road",
@@ -156,15 +190,54 @@ export default async function Home() {
       name: "United Kingdom",
     },
     description:
-      "Premium packaging supplies with automatic bulk pricing. Next day delivery across the UK. Eco-friendly options available.",
+      "Premium eco-friendly and sustainable packaging supplies with automatic bulk pricing. Carbon-neutral next day delivery across the UK. Biodegradable, recyclable, and compostable packaging solutions for environmentally conscious businesses and consumers.",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Eco-Friendly Packaging Products",
+      itemListElement: [
+        {
+          "@type": "OfferCatalog",
+          name: "Sustainable Bubble Wrap",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Product",
+                name: "Biodegradable Bubble Wrap",
+              },
+            },
+          ],
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "Recyclable Cardboard Boxes",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Product",
+                name: "FSC Certified Shipping Boxes",
+              },
+            },
+          ],
+        },
+        {
+          "@type": "OfferCatalog",
+          name: "Compostable Packaging Materials",
+        },
+      ],
+    },
   };
 
   // Website Structured Data (JSON-LD) for SEO
   const websiteStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Bubble Wrap Shop - Premium Packaging Supplies",
+    name: "EcoDailySupplies - Premium Eco-Friendly Packaging Supplies",
+    alternateName: "EDS",
     url: siteUrl,
+    description:
+      "UK's leading supplier of sustainable, eco-friendly packaging materials including biodegradable bubble wrap, recyclable boxes, and compostable packaging solutions.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -173,6 +246,35 @@ export default async function Home() {
       },
       "query-input": "required name=search_term_string",
     },
+    publisher: {
+      "@type": "Organization",
+      name: "EcoDailySupplies",
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/logo.webp`,
+      },
+    },
+  };
+
+  // Store Structured Data for E-commerce
+  const storeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    name: "EcoDailySupplies",
+    image: `${siteUrl}/logo.webp`,
+    url: siteUrl,
+    telephone: "+44-7882-851632",
+    email: "sales@ecodailysupplies.co.uk",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Unit BR16 Blakewater Road",
+      addressLocality: "Blackburn",
+      addressRegion: "England",
+      postalCode: "BB1 5QF",
+      addressCountry: "GB",
+    },
+    priceRange: "££",
+    paymentAccepted: "Credit Card, Debit Card, Bank Transfer, PayPal",
   };
 
   return (
@@ -194,6 +296,12 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(websiteStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(storeStructuredData),
         }}
       />
 
