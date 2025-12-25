@@ -40,14 +40,14 @@ export function ProductShowcase({
                         Product Showcase
                     </h2>
 
-                    {/* Sliding Pill Tabs */}
-                    <div className="relative inline-flex bg-white p-1.5 rounded-full shadow-sm border border-gray-300">
+                    {/* Sliding Pill Tabs - Responsive */}
+                    <div className="relative inline-flex bg-white p-1 sm:p-1.5 rounded-full shadow-sm border border-gray-300 w-full max-w-md sm:max-w-none sm:w-auto overflow-hidden">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={cn(
-                                    "relative z-10 px-8 py-3 text-sm font-bold rounded-full transition-colors duration-300",
+                                    "relative z-10 flex-1 sm:flex-none px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-bold rounded-full transition-colors duration-300 whitespace-nowrap",
                                     activeTab === tab.id ? "text-white" : "text-gray-900 hover:text-gray-600"
                                 )}
                             >
