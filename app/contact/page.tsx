@@ -264,8 +264,15 @@ export default function ContactPage() {
                     <Mail className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-gray-900">Email</div>
-                    <div className="text-gray-600 text-sm break-all">info@ecodailysupplies.com</div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                      Email
+                    </h3>
+                    <a
+                      href="mailto:sales@bubblewrapshop.co.uk"
+                      className="block text-sm font-medium text-gray-900 hover:text-primary transition-colors break-all"
+                    >
+                      sales@bubblewrapshop.co.uk
+                    </a>
                   </div>
                 </div>
               </div>
@@ -277,8 +284,19 @@ export default function ContactPage() {
                     <Phone className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-gray-900">Telephone</div>
-                    <div className="text-gray-600 text-sm">07397057703</div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                      Phone
+                    </h3>
+                    <a
+                      href="tel:01254916167"
+                      className="block text-sm font-medium text-gray-900 hover:text-primary transition-colors mb-2"
+                    >
+                      01254 916167
+                    </a>
+                    <div className="flex items-center gap-2 text-xs text-gray-600">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span>Mon - Fri, 9 AM - 6 PM BST</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -290,13 +308,18 @@ export default function ContactPage() {
                     <MapPin className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-gray-900">Office Address</div>
-                    <div className="text-gray-600 text-sm">
-                      Unit CW10,<br />
-                      Challenge Way Entrance IK Business Park,<br />
-                      Blackburn,<br />
-                      BB1 5QF
-                    </div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
+                      Office
+                    </h3>
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      Bubble wrap shop (Blackburn) Limited
+                      <br />
+                      Unit BR16 Blakewater Road
+                      <br />
+                      Blackburn, England, BB1 5QF
+                      <br />
+                      United Kingdom
+                    </p>
                   </div>
                 </div>
               </div>
