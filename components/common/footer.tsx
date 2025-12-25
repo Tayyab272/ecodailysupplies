@@ -19,25 +19,40 @@ export function Footer() {
           <div className="lg:col-span-4 pr-12">
             <Link href="/" className="inline-block mb-6">
               {/* <div className="h-10 w-40 bg-zinc-800 rounded animate-pulse" />  */}
-
               <Image
                 src="/logo.webp" // User might need a white logo variant
-                alt="Bubble Wrap Shop"
+                alt="EcoDailySupplies - Eco-Friendly Packaging Supplies UK"
                 width={160}
                 height={50}
                 className="h-10 w-auto"
               />
             </Link>
             <p className="text-zinc-400 leading-relaxed mb-8">
-              Your trusted partner for premium packaging solutions. We blend
-              durability with aesthetics to ensure your products arrive safely
-              and in style.
+              Your trusted partner for premium eco-friendly packaging solutions.
+              We combine sustainability with quality to ensure your products
+              arrive safely while protecting our planet for future generations.
             </p>
             <div className="flex items-center gap-4">
-              <SocialLink href="#" icon={<Instagram className="h-5 w-5" />} />
-              <SocialLink href="#" icon={<Facebook className="h-5 w-5" />} />
-              <SocialLink href="#" icon={<Twitter className="h-5 w-5" />} />
-              <SocialLink href="#" icon={<Linkedin className="h-5 w-5" />} />
+              <SocialLink
+                href="#"
+                icon={<Instagram className="h-5 w-5" />}
+                aria-label="Follow us on Instagram"
+              />
+              <SocialLink
+                href="#"
+                icon={<Facebook className="h-5 w-5" />}
+                aria-label="Follow us on Facebook"
+              />
+              <SocialLink
+                href="#"
+                icon={<Twitter className="h-5 w-5" />}
+                aria-label="Follow us on Twitter"
+              />
+              <SocialLink
+                href="#"
+                icon={<Linkedin className="h-5 w-5" />}
+                aria-label="Follow us on LinkedIn"
+              />
             </div>
           </div>
 
@@ -51,6 +66,9 @@ export function Footer() {
                 Best Sellers
               </FooterLink>
               <FooterLink href="/products?sort=newest">New Arrivals</FooterLink>
+              <FooterLink href="/products?filter=eco-friendly">
+                Eco-Friendly Range
+              </FooterLink>
             </ul>
           </div>
 
@@ -58,7 +76,7 @@ export function Footer() {
             <h4 className="font-bold mb-6 text-lg">Company</h4>
             <ul className="space-y-4">
               <FooterLink href="/about">About Us</FooterLink>
-              {/* <FooterLink href="/sustainability">Sustainability</FooterLink> */}
+              <FooterLink href="/sustainability">Sustainability</FooterLink>
               <FooterLink href="/careers">Careers</FooterLink>
               <FooterLink href="/blog">Blog</FooterLink>
             </ul>
@@ -80,18 +98,28 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-zinc-400">
                 <Phone className="h-5 w-5 shrink-0 mt-0.5" />
-                <span>01254 916167</span>
+                <a
+                  href="tel:+447397057703"
+                  className="hover:text-white transition-colors"
+                >
+                  07397 057703
+                </a>
               </li>
               <li className="flex items-start gap-3 text-zinc-400">
                 <Mail className="h-5 w-5 shrink-0 mt-0.5" />
-                <span>sales@bubblewrapshop.co.uk</span>
+                <a
+                  href="mailto:info@ecodailysupplies.com"
+                  className="hover:text-white transition-colors"
+                >
+                  info@ecodailysupplies.com
+                </a>
               </li>
               <li className="flex items-start gap-3 text-zinc-400">
                 <MapPin className="h-5 w-5 shrink-0 mt-0.5" />
                 <span>
-                  Unit BR16
+                  Unit CW10, Challenge Way
                   <br />
-                  Blakewater Road,
+                  Entrance IK Business Park,
                   <br />
                   Blackburn, BB1 5QF
                 </span>
@@ -103,7 +131,8 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-zinc-900 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-zinc-500">
           <p>
-            © {new Date().getFullYear()} Bubble Wrap Shop. All rights reserved.
+            © {new Date().getFullYear()} EcoDailySupplies (EDS). All rights
+            reserved.
           </p>
           <div className="flex gap-6">
             <Link

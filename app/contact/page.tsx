@@ -268,10 +268,10 @@ export default function ContactPage() {
                       Email
                     </h3>
                     <a
-                      href="mailto:sales@bubblewrapshop.co.uk"
+                      href="mailto:sales@ecodailysupplies.co.uk"
                       className="block text-sm font-medium text-gray-900 hover:text-primary transition-colors break-all"
                     >
-                      sales@bubblewrapshop.co.uk
+                      sales@ecodailysupplies.co.uk
                     </a>
                   </div>
                 </div>
@@ -288,10 +288,10 @@ export default function ContactPage() {
                       Phone
                     </h3>
                     <a
-                      href="tel:01254916167"
+                      href="tel:07397057703"
                       className="block text-sm font-medium text-gray-900 hover:text-primary transition-colors mb-2"
                     >
-                      01254 916167
+                      07397 057703
                     </a>
                     <div className="flex items-center gap-2 text-xs text-gray-600">
                       <Clock className="h-3.5 w-3.5" />
@@ -312,10 +312,9 @@ export default function ContactPage() {
                       Office
                     </h3>
                     <p className="text-sm text-gray-700 leading-relaxed">
-                      Bubble wrap shop (Blackburn) Limited
+                      Eco Daily Supplies Ltd
                       <br />
-                      Unit BR16 Blakewater Road
-                      <br />
+                      Unit Cw10 Challenge Way Entrance, Ik Business Park,
                       Blackburn, England, BB1 5QF
                       <br />
                       United Kingdom
@@ -454,7 +453,7 @@ export default function ContactPage() {
                         id="phone"
                         name="phone"
                         type="tel"
-                        placeholder="01254 916167"
+                        placeholder="07397 057703"
                         onChange={handleInputChange}
                         className={`h-11 border ${
                           errors.phone
