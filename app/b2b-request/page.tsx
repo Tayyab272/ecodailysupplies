@@ -124,7 +124,7 @@ export default function B2BRequestPage() {
           </Link>
 
           {/* Link to Wholesale Page - Premium Style */}
-          <div className="mb-12 bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8">
+          {/* <div className="mb-12 bg-white rounded-lg border border-gray-300 shadow-sm p-6 md:p-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex-1">
                 <p className="text-sm md:text-base text-gray-700 mb-1">
@@ -149,7 +149,7 @@ export default function B2BRequestPage() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </div> */}
 
           {/* Benefits Section - Premium Style */}
           <div className="grid gap-6 md:grid-cols-3 mb-16">

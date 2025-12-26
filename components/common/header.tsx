@@ -547,7 +547,7 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
                   className="block rounded-xl px-4 py-3 text-sm font-medium text-gray-900 hover:bg-gray-50 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  B2B Request
+                  Wholesale
                 </Link>
                 {/* <Link
                   href="/sustainability"
