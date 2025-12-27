@@ -125,13 +125,13 @@ export function AdminDashboardClient({
                     <Icon
                       className={cn(
                         "h-4 w-4 transition-all duration-300",
-                        isActive ? "text-white scale-110" : "text-gray-500"
+                        isActive ? "text-primary scale-110" : "text-gray-500"
                       )}
                       strokeWidth={2.5}
                     />
                     <span className="hidden sm:inline">{tab.label}</span>
                     {isActive && (
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 w-8 bg-white/60 rounded-full"></div>
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 w-8 bg-primary/60 rounded-full"></div>
                     )}
                     {showBadge && (
                       <span

@@ -13,23 +13,23 @@ export const ORDER_STATUS_CONFIG: Record<
   { className: string; label: string }
 > = {
   pending: {
-    className: "bg-slate-300 text-slate-700",
+    className: "bg-amber-100 text-amber-700",
     label: "Pending",
   },
   processing: {
-    className: "bg-teal-300 text-teal-700",
+    className: "bg-blue-100 text-blue-700",
     label: "Processing",
   },
   shipped: {
-    className: "bg-emerald-400 text-emerald-700",
+    className: "bg-primary/20 text-primary",
     label: "Shipped",
   },
   delivered: {
-    className: "bg-emerald-600 text-white",
+    className: "bg-primary text-white",
     label: "Delivered",
   },
   cancelled: {
-    className: "bg-red-500 text-white",
+    className: "bg-red-100 text-red-600",
     label: "Cancelled",
   },
 };
