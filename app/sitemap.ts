@@ -16,7 +16,7 @@ import { groq } from "next-sanity";
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
-    process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+    process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
   const baseDate = new Date();
 
   // Static pages with optimized priorities and change frequencies

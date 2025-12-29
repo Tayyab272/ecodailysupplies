@@ -22,7 +22,7 @@ const getEmailDomain = (): string => {
   if (process.env.RESEND_EMAIL_DOMAIN) {
     return process.env.RESEND_EMAIL_DOMAIN;
   }
-  return "ecodailysupplies.co.uk";
+  return "ecodailysupplies.com";
 };
 
 const emailDomain = getEmailDomain();
@@ -132,14 +132,14 @@ export async function sendOrderConfirmationEmail(
         </div>
         
         <p style="margin-top: 20px;">
-          <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk"}/admin?tab=orders" 
+          <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com"}/admin?tab=orders" 
              style="background: #059669; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
             View Order in Admin Dashboard
           </a>
         </p>
         
         <p style="color: #6b7280; font-size: 12px; margin-top: 30px;">
-          This is an automated notification from Bubble wrap shop (Blackburn) Limited.
+          This is an automated notification from EcoDailySupplies Ltd.
         </p>
       </div>
     `;
@@ -304,7 +304,7 @@ export async function sendOrderShippedEmail(
       <p><strong>Tracking Number:</strong> ${trackingNumber}</p>
       <p>You can track your package using the tracking number above.</p>
       <p>Thank you for your order!</p>
-      <p>- Bubble wrap shop (Blackburn) Limited Team</p>
+      <p>- EcoDailySupplies Ltd Team</p>
     `;
 
     const result = await resend.emails.send({
@@ -388,14 +388,14 @@ export async function sendB2BRequestEmail(request: {
         </div>
         
         <p style="margin-top: 20px;">
-          <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk"}/admin?tab=b2b-requests" 
+          <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com"}/admin?tab=b2b-requests" 
              style="background: #059669; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
             View in Admin Dashboard
           </a>
         </p>
         
         <p style="color: #6b7280; font-size: 12px; margin-top: 30px;">
-          This is an automated notification from Bubble wrap shop (Blackburn) Limited.
+          This is an automated notification from EcoDailySupplies Ltd.
         </p>
       </div>
     `;
@@ -452,9 +452,9 @@ export async function sendTestEmail(
     const result = await resend.emails.send({
       from: EMAIL_CONFIG.from.noreply,
       to: toEmail,
-      subject: "Bubble Wrap Shop - Test Email",
+      subject: "EcoDailySupplies - Test Email",
       html: `
-        <h1>Test Email from Bubble Wrap Shop</h1>
+        <h1>Test Email from EcoDailySupplies</h1>
         <p>If you're receiving this, your email configuration is working correctly!</p>
         <p>Environment: ${process.env.NODE_ENV}</p>
         <p>Timestamp: ${new Date().toISOString()}</p>

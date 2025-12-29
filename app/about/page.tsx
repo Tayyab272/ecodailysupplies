@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 /**
  * About Page Metadata - SEO Optimized for UK

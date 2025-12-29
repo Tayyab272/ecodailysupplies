@@ -12,7 +12,7 @@ import { MetadataRoute } from "next";
  * - Optimized for Google UK and Bing UK
  */
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
   return {
     rules: [
@@ -104,7 +104,7 @@ export default function robots(): MetadataRoute.Robots {
       `${siteUrl}/sitemap.xml`,
       `${siteUrl}/sitemap-images.xml`,
     ],
-    host: "ecodailysupplies.co.uk",
+    host: "ecodailysupplies.com",
   };
 }
 

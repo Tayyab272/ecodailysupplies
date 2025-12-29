@@ -32,7 +32,7 @@ const inter = Inter({
 
 // Get base URL for metadata
 const baseUrl =
-  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -267,7 +267,7 @@ export default async function RootLayout({
                   },
                   image: `${baseUrl}/og-image.webp`,
                   description: "UK's trusted supplier of eco-friendly packaging. Sustainable bubble wrap, recyclable cardboard boxes, and biodegradable packing materials with free delivery over £50.",
-                  email: "sales@ecodailysupplies.co.uk",
+                  email: "sales@ecodailysupplies.com",
                   telephone: "+447397057703",
                   address: {
                     "@type": "PostalAddress",
@@ -297,7 +297,7 @@ export default async function RootLayout({
                       "@type": "ContactPoint",
                       telephone: "+447397057703",
                       contactType: "sales",
-                      email: "sales@ecodailysupplies.co.uk",
+                      email: "sales@ecodailysupplies.com",
                       areaServed: "GB",
                       availableLanguage: "English",
                     },
@@ -305,7 +305,7 @@ export default async function RootLayout({
                       "@type": "ContactPoint",
                       telephone: "+447397057703",
                       contactType: "customer service",
-                      email: "sales@ecodailysupplies.co.uk",
+                      email: "sales@ecodailysupplies.com",
                       areaServed: "GB",
                       availableLanguage: "English",
                     },
@@ -318,7 +318,7 @@ export default async function RootLayout({
                   image: `${baseUrl}/og-image.webp`,
                   url: baseUrl,
                   telephone: "+447397057703",
-                  email: "sales@ecodailysupplies.co.uk",
+                  email: "sales@ecodailysupplies.com",
                   priceRange: "£",
                   address: {
                     "@type": "PostalAddress",

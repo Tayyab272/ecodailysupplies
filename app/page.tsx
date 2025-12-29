@@ -19,7 +19,7 @@ import {
 // For development, use `npm run dev` which has hot reloading
 export const revalidate = false;
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 /**
  * Homepage Metadata - Optimized for UK Google Rankings
@@ -136,7 +136,7 @@ export default async function Home() {
       contactType: "Customer Service",
       areaServed: "GB",
       availableLanguage: "English",
-      email: "sales@ecodailysupplies.co.uk",
+      email: "sales@ecodailysupplies.com",
     },
     sameAs: [
       // Add social media links when available
@@ -172,7 +172,7 @@ export default async function Home() {
     image: `${siteUrl}/logo.webp`,
     url: siteUrl,
     telephone: "+44-7882-851632",
-    email: "sales@ecodailysupplies.co.uk",
+    email: "sales@ecodailysupplies.com",
     priceRange: "££",
     paymentAccepted: "Credit Card, Debit Card, Bank Transfer, PayPal",
     currenciesAccepted: "GBP",
@@ -280,7 +280,7 @@ export default async function Home() {
     image: `${siteUrl}/logo.webp`,
     url: siteUrl,
     telephone: "+44-7882-851632",
-    email: "sales@ecodailysupplies.co.uk",
+    email: "sales@ecodailysupplies.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Unit BR16 Blakewater Road",

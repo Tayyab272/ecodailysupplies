@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | EcoDailySupplies UK",
@@ -612,10 +612,10 @@ const SECTIONS: TermsSection[] = [
           You may contact us regarding these Terms and Conditions by writing or
           emailing us at the following address:{" "}
           <a
-            href="mailto:sales@ecodailysupplies.co.uk"
+            href="mailto:sales@ecodailysupplies.com"
             className="text-primary underline hover:text-primary/80 font-medium"
           >
-            sales@ecodailysupplies.co.uk
+            sales@ecodailysupplies.com
           </a>
         </p>
         <p>

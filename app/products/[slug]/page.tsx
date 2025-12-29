@@ -15,7 +15,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const BRAND_NAME = "EcoDailySupplies";
-const DEFAULT_SITE_URL = "https://ecodailysupplies.co.uk";
+const DEFAULT_SITE_URL = "https://ecodailysupplies.com";
 
 // PERFORMANCE: Code split ProductGallery (heavy image component)
 const ProductGallery = dynamic(

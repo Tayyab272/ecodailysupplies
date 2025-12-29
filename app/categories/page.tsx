@@ -11,7 +11,7 @@ import { ArrowRight, Grid3X3 } from "lucide-react";
 // For development, use `npm run dev` which has hot reloading
 export const revalidate = false;
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 export const metadata: Metadata = {
   title: "Packaging Categories UK | Boxes, Bubble Wrap & Mailing Bags | EcoDailySupplies",

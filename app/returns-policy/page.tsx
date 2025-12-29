@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 export const metadata: Metadata = {
   title: "Returns & Refund Policy | EcoDailySupplies UK",
@@ -74,10 +74,10 @@ export default function RefundPolicyPage() {
                 <p>
                   To start a return, you can contact us at{" "}
                   <a
-                    href="mailto:sales@ecodailysupplies.co.uk"
+                    href="mailto:sales@ecodailysupplies.com"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@ecodailysupplies.co.uk
+                    sales@ecodailysupplies.com
                   </a>
                   . Please note that returns will need to be sent to the
                   following address:{" "}
@@ -94,10 +94,10 @@ export default function RefundPolicyPage() {
                 <p>
                   You can always contact us for any return question at{" "}
                   <a
-                    href="mailto:sales@ecodailysupplies.co.uk"
+                    href="mailto:sales@ecodailysupplies.com"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@ecodailysupplies.co.uk
+                    sales@ecodailysupplies.com
                   </a>
                   .
                 </p>
@@ -191,10 +191,10 @@ export default function RefundPolicyPage() {
                   If more than 15 business days have passed since we&apos;ve
                   approved your return, please contact us at{" "}
                   <a
-                    href="mailto:sales@ecodailysupplies.co.uk"
+                    href="mailto:sales@ecodailysupplies.com"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@ecodailysupplies.co.uk
+                    sales@ecodailysupplies.com
                   </a>
                   .
                 </p>

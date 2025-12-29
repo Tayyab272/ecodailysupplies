@@ -20,7 +20,7 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
     if (typeof window === "undefined") return;
 
     const siteUrl =
-      process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+      process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
     const breadcrumbList = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",

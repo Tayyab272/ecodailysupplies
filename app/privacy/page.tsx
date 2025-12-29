@@ -2,7 +2,7 @@ import { Breadcrumbs } from "@/components/common";
 import { ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | EcoDailySupplies UK",
@@ -35,7 +35,7 @@ type Processor = {
   purpose: string;
 };
 
-const WEBSITE_URL = "https://ecodailysupplies.co.uk";
+const WEBSITE_URL = "https://ecodailysupplies.com";
 const LAST_UPDATED = "July 24, 2024";
 
 const PURPOSES: Purpose[] = [
@@ -635,10 +635,10 @@ export default function PrivacyPolicyPage() {
                   <p>
                     Email:{" "}
                     <a
-                      href="mailto:sales@ecodailysupplies.co.uk"
+                      href="mailto:sales@ecodailysupplies.com"
                       className="text-primary underline hover:text-primary/80 font-medium"
                     >
-                      sales@ecodailysupplies.co.uk
+                      sales@ecodailysupplies.com
                     </a>
                   </p>
                   <p>

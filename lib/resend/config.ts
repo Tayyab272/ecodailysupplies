@@ -44,7 +44,7 @@ const getEmailDomain = (): string => {
     return process.env.RESEND_EMAIL_DOMAIN;
   }
   // Default to verified domain
-  return "ecodailysupplies.co.uk";
+  return "ecodailysupplies.com";
 };
 
 const emailDomain = getEmailDomain();

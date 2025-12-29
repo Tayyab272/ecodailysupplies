@@ -13,7 +13,7 @@ import {
 import { B2BRequestForm } from "@/components/b2b/b2b-request-form";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 export const metadata: Metadata = {
   title: "Wholesale Packaging UK | B2B Bulk Order Quote | EcoDailySupplies",
