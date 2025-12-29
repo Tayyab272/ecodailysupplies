@@ -59,24 +59,23 @@ const useVerifiedDomain = isProduction || !!process.env.RESEND_EMAIL_DOMAIN;
  * Uses verified domain when available (production or RESEND_EMAIL_DOMAIN is set)
  */
 export const EMAIL_CONFIG = {
-  // From addresses
+  // From addresses - using sales@ for better deliverability
   from: {
     orders: useVerifiedDomain
-      ? `EcoDailySupplies Orders <sales@${emailDomain}>`
-      : "EcoDailySupplies Orders <onboarding@resend.dev>",
+      ? `Eco Daily Supplies <sales@${emailDomain}>`
+      : "Eco Daily Supplies <onboarding@resend.dev>",
     support: useVerifiedDomain
-      ? `EcoDailySupplies Support <info@${emailDomain}>`
-      : "EcoDailySupplies Support <onboarding@resend.dev>",
+      ? `Eco Daily Supplies <sales@${emailDomain}>`
+      : "Eco Daily Supplies <onboarding@resend.dev>",
     noreply: useVerifiedDomain
-      ? `EcoDailySupplies <noreply@${emailDomain}>`
-      : "EcoDailySupplies <onboarding@resend.dev>",
+      ? `Eco Daily Supplies <sales@${emailDomain}>`
+      : "Eco Daily Supplies <onboarding@resend.dev>",
   },
 
   // Reply-to addresses
   replyTo: {
-    support: useVerifiedDomain
-      ? `info@${emailDomain}`
-      : process.env.RESEND_TEST_EMAIL || "testveot@gmail.com",
+    support: `info@${emailDomain}`,
+    orders: `info@${emailDomain}`,
   },
 
   // BCC addresses for internal tracking (optional)
@@ -85,17 +84,27 @@ export const EMAIL_CONFIG = {
     contact: process.env.RESEND_BCC_CONTACT || undefined,
   },
 
-  // Email subjects
+  // Email subjects - professional, non-spammy format
   subjects: {
     orderConfirmation: (orderNumber: string) =>
-      `Order Confirmation - #${orderNumber}`,
+      `Your Eco Daily Supplies Order #${orderNumber}`,
     orderShipped: (orderNumber: string) =>
-      `Your Order Has Shipped - #${orderNumber}`,
+      `Your Order #${orderNumber} Has Been Dispatched`,
     orderDelivered: (orderNumber: string) =>
-      `Your Order Has Been Delivered - #${orderNumber}`,
-    contactFormSubmission: "New Contact Form Submission",
-    passwordReset: "Reset Your Password",
-    welcome: "Welcome to EcoDailySupplies",
+      `Your Order #${orderNumber} Has Been Delivered`,
+    contactFormSubmission: "New Contact Form Enquiry",
+    passwordReset: "Password Reset Request",
+    welcome: "Welcome to Eco Daily Supplies",
+  },
+
+  // Company details for footer (important for spam prevention)
+  company: {
+    name: "Eco Daily Supplies Ltd",
+    address: "Unit CW10, Challenge Way, Blackburn, BB1 5QF, United Kingdom",
+    website: "https://ecodailysupplies.com",
+    phone: "+44 7397 057703",
+    email: "info@ecodailysupplies.com",
+    companyNumber: "16187854",
   },
 
   // Default settings

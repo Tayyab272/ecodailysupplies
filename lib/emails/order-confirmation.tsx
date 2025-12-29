@@ -1,9 +1,11 @@
 /**
  * Order Confirmation Email Template
  *
- * This email is sent to customers after successful payment.
- * It includes order details, items, shipping address, and total.
- * Styled to match the website's "Immersive Minimalism & Performant Luxury" theme.
+ * Optimized for deliverability with:
+ * - Preheader text for preview
+ * - Proper text-to-image ratio
+ * - Physical address in footer
+ * - Clean, professional design
  */
 
 import * as React from "react";
@@ -17,298 +19,302 @@ interface OrderConfirmationEmailProps {
 export const OrderConfirmationEmail: React.FC<
   Readonly<OrderConfirmationEmailProps>
 > = ({ order, customerEmail }) => {
-  const orderDate = order.createdAt.toLocaleDateString("en-US", {
+  const orderDate = order.createdAt.toLocaleDateString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
 
-  // Theme colors matching website
-  const colors = {
-    primary: "#0f172a", // slate-900 (near black)
-    primaryText: "#ffffff",
-    accent: "#059669", // emerald-600
-    accentLight: "#10b981", // emerald-500
-    accentGradient: "linear-gradient(135deg, #059669 0%, #14b8a6 100%)", // emerald-600 to teal-500
-    background: "#ffffff",
-    cardBackground: "#f8fafc", // slate-50
-    text: "#0f172a", // slate-900
-    textMuted: "#64748b", // slate-500
-    textLight: "#94a3b8", // slate-400
-    border: "#e2e8f0", // slate-200
-    success: "#059669", // emerald-600
-  };
+  const preheaderText = `Thank you for your order #${order.orderNumber}. Your order total is £${order.total.toFixed(2)}.`;
 
   return (
-    <html>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        `}</style>
+        <meta name="color-scheme" content="light" />
+        <meta name="supported-color-schemes" content="light" />
+        <title>{`Your Eco Daily Supplies Order #${order.orderNumber}`}</title>
       </head>
       <body
         style={{
-          fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          fontFamily: 'Arial, Helvetica, sans-serif',
           lineHeight: "1.6",
-          color: colors.text,
-          backgroundColor: "#f1f5f9", // slate-100
+          color: "#333333",
+          backgroundColor: "#f5f5f5",
           margin: 0,
           padding: 0,
-          WebkitFontSmoothing: "antialiased",
-          MozOsxFontSmoothing: "grayscale",
         }}
       >
+        {/* Preheader text - hidden but shown in email preview */}
+        <div
+          style={{
+            display: "none",
+            fontSize: "1px",
+            color: "#f5f5f5",
+            lineHeight: "1px",
+            maxHeight: 0,
+            maxWidth: 0,
+            opacity: 0,
+            overflow: "hidden",
+          }}
+        >
+          {preheaderText}
+          {/* Padding to push other content out of preview */}
+          &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        </div>
+
         <table
+          role="presentation"
           width="100%"
           cellPadding="0"
           cellSpacing="0"
-          style={{ backgroundColor: "#f1f5f9", padding: "32px 16px" }}
+          style={{ backgroundColor: "#f5f5f5", padding: "32px 16px" }}
         >
           <tr>
             <td align="center">
               <table
+                role="presentation"
                 width="600"
                 cellPadding="0"
                 cellSpacing="0"
                 style={{
-                  backgroundColor: colors.background,
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+                  backgroundColor: "#ffffff",
                   maxWidth: "600px",
+                  borderRadius: "8px",
+                  overflow: "hidden",
                 }}
               >
-                {/* Header with Emerald Gradient */}
+                {/* Header */}
                 <tr>
                   <td
                     style={{
-                      background: colors.accentGradient,
-                      padding: "40px 32px",
+                      backgroundColor: "#1a1a1a",
+                      padding: "28px 32px",
                       textAlign: "center",
                     }}
                   >
                     <h1
                       style={{
                         margin: 0,
-                        color: colors.primaryText,
-                        fontSize: "28px",
-                        fontWeight: "700",
-                        letterSpacing: "-0.02em",
-                        fontFamily: '"Inter", sans-serif',
+                        color: "#ffffff",
+                        fontSize: "22px",
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
                       }}
                     >
-                      BUBBLE WRAP SHOP
+                      Eco Daily Supplies
                     </h1>
-                    <div
+                    <p
                       style={{
-                        marginTop: "8px",
-                        height: "2px",
-                        width: "60px",
-                        backgroundColor: "rgba(255, 255, 255, 0.3)",
-                        marginLeft: "auto",
-                        marginRight: "auto",
+                        margin: "6px 0 0",
+                        color: "#cccccc",
+                        fontSize: "13px",
                       }}
-                    />
+                    >
+                      Sustainable Packaging Solutions
+                    </p>
                   </td>
                 </tr>
 
-                {/* Main Content */}
+                {/* Order Confirmed Message */}
                 <tr>
-                  <td style={{ padding: "48px 32px" }}>
-                    {/* Thank You Message */}
+                  <td style={{ padding: "40px 32px 24px", textAlign: "center" }}>
+                    <table
+                      role="presentation"
+                      cellPadding="0"
+                      cellSpacing="0"
+                      style={{ margin: "0 auto 20px" }}
+                    >
+                      <tr>
+                        <td
+                          style={{
+                            width: "56px",
+                            height: "56px",
+                            backgroundColor: "#e8f5e9",
+                            borderRadius: "50%",
+                            textAlign: "center",
+                            verticalAlign: "middle",
+                          }}
+                        >
+                          <span style={{ fontSize: "24px", color: "#2e7d32" }}>
+                            &#10003;
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+
                     <h2
                       style={{
-                        margin: "0 0 12px",
-                        fontSize: "24px",
-                        fontWeight: "700",
-                        color: colors.text,
-                        fontFamily: '"Inter", sans-serif',
-                        letterSpacing: "-0.01em",
+                        margin: "0 0 8px",
+                        fontSize: "22px",
+                        fontWeight: "bold",
+                        color: "#1a1a1a",
                       }}
                     >
-                      Thank You for Your Order!
+                      Order Confirmed
                     </h2>
                     <p
                       style={{
-                        margin: "0 0 32px",
-                        color: colors.textMuted,
-                        fontSize: "16px",
-                        lineHeight: "1.6",
+                        margin: 0,
+                        color: "#666666",
+                        fontSize: "15px",
                       }}
                     >
-                      Your order has been confirmed and will be shipped soon.
+                      Thank you for your order. We will notify you when it has been dispatched.
                     </p>
+                  </td>
+                </tr>
 
-                    {/* Order Details Card */}
+                {/* Order Details */}
+                <tr>
+                  <td style={{ padding: "0 32px 24px" }}>
                     <table
+                      role="presentation"
                       width="100%"
                       cellPadding="0"
                       cellSpacing="0"
                       style={{
-                        backgroundColor: colors.cardBackground,
+                        backgroundColor: "#f9f9f9",
                         borderRadius: "8px",
-                        padding: "24px",
-                        marginBottom: "32px",
-                        border: `1px solid ${colors.border}`,
+                        border: "1px solid #e0e0e0",
                       }}
                     >
                       <tr>
-                        <td>
-                          <table width="100%" cellPadding="0" cellSpacing="0">
+                        <td style={{ padding: "18px 20px" }}>
+                          <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
                             <tr>
-                              <td style={{ paddingBottom: "12px" }}>
-                                <span
+                              <td width="50%">
+                                <p
                                   style={{
+                                    margin: "0 0 4px",
                                     fontSize: "12px",
-                                    fontWeight: "500",
-                                    color: colors.textMuted,
+                                    fontWeight: "bold",
+                                    color: "#888888",
                                     textTransform: "uppercase",
-                                    letterSpacing: "0.1em",
-                                    display: "block",
-                                    marginBottom: "4px",
                                   }}
                                 >
                                   Order Number
-                                </span>
-                                <strong
+                                </p>
+                                <p
                                   style={{
-                                    color: colors.text,
-                                    fontSize: "16px",
-                                    fontWeight: "600",
+                                    margin: 0,
+                                    fontSize: "15px",
+                                    fontWeight: "bold",
+                                    color: "#1a1a1a",
                                   }}
                                 >
                                   #{order.orderNumber}
-                                </strong>
+                                </p>
                               </td>
-                            </tr>
-                            <tr>
-                              <td style={{ paddingBottom: "12px" }}>
-                                <span
+                              <td width="50%" align="right">
+                                <p
                                   style={{
+                                    margin: "0 0 4px",
                                     fontSize: "12px",
-                                    fontWeight: "500",
-                                    color: colors.textMuted,
+                                    fontWeight: "bold",
+                                    color: "#888888",
                                     textTransform: "uppercase",
-                                    letterSpacing: "0.1em",
-                                    display: "block",
-                                    marginBottom: "4px",
                                   }}
                                 >
-                                  Date
-                                </span>
-                                <span style={{ color: colors.text, fontSize: "16px" }}>
+                                  Order Date
+                                </p>
+                                <p
+                                  style={{
+                                    margin: 0,
+                                    fontSize: "15px",
+                                    color: "#1a1a1a",
+                                  }}
+                                >
                                   {orderDate}
-                                </span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <span
-                                  style={{
-                                    fontSize: "12px",
-                                    fontWeight: "500",
-                                    color: colors.textMuted,
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.1em",
-                                    display: "block",
-                                    marginBottom: "4px",
-                                  }}
-                                >
-                                  Email
-                                </span>
-                                <span style={{ color: colors.text, fontSize: "16px" }}>
-                                  {customerEmail}
-                                </span>
+                                </p>
                               </td>
                             </tr>
                           </table>
                         </td>
                       </tr>
                     </table>
+                  </td>
+                </tr>
 
-                    {/* Order Items */}
+                {/* Order Items */}
+                <tr>
+                  <td style={{ padding: "0 32px 24px" }}>
                     <h3
                       style={{
-                        margin: "0 0 20px",
-                        fontSize: "18px",
-                        fontWeight: "600",
-                        color: colors.text,
-                        fontFamily: '"Inter", sans-serif',
-                        letterSpacing: "-0.01em",
+                        margin: "0 0 14px",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        color: "#1a1a1a",
                       }}
                     >
-                      Order Items
+                      Items Ordered
                     </h3>
                     <table
+                      role="presentation"
                       width="100%"
                       cellPadding="0"
                       cellSpacing="0"
                       style={{
-                        borderTop: `1px solid ${colors.border}`,
-                        marginBottom: "24px",
+                        borderTop: "1px solid #e0e0e0",
                       }}
                     >
                       {order.items.map((item, index) => (
                         <tr key={index}>
                           <td
                             style={{
-                              padding: "20px 0",
-                              borderBottom: `1px solid ${colors.border}`,
+                              padding: "14px 0",
+                              borderBottom: "1px solid #f0f0f0",
                             }}
                           >
-                            <table width="100%" cellPadding="0" cellSpacing="0">
+                            <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
                               <tr>
-                                <td width="70%" style={{ verticalAlign: "top" }}>
-                                  <strong
+                                <td style={{ verticalAlign: "top" }}>
+                                  <p
                                     style={{
-                                      color: colors.text,
-                                      fontSize: "16px",
-                                      fontWeight: "600",
-                                      display: "block",
-                                      marginBottom: "6px",
+                                      margin: "0 0 4px",
+                                      fontSize: "15px",
+                                      fontWeight: "bold",
+                                      color: "#1a1a1a",
                                     }}
                                   >
                                     {item.product?.name || "Product"}
-                                  </strong>
+                                  </p>
                                   {item.variant && (
-                                    <div
+                                    <p
                                       style={{
-                                        fontSize: "14px",
-                                        color: colors.textMuted,
-                                        marginBottom: "4px",
+                                        margin: "0 0 2px",
+                                        fontSize: "13px",
+                                        color: "#666666",
                                       }}
                                     >
                                       {item.variant.name}
-                                    </div>
+                                    </p>
                                   )}
-                                  <div
+                                  <p
                                     style={{
-                                      fontSize: "14px",
-                                      color: colors.textMuted,
+                                      margin: 0,
+                                      fontSize: "13px",
+                                      color: "#888888",
                                     }}
                                   >
-                                    Qty: {item.quantity}
-                                  </div>
+                                    Qty: {item.quantity} x £{item.pricePerUnit.toFixed(2)}
+                                  </p>
                                 </td>
                                 <td
-                                  width="30%"
                                   align="right"
                                   style={{ verticalAlign: "top" }}
                                 >
-                                  <strong
+                                  <p
                                     style={{
-                                      color: colors.text,
-                                      fontSize: "16px",
-                                      fontWeight: "600",
+                                      margin: 0,
+                                      fontSize: "15px",
+                                      fontWeight: "bold",
+                                      color: "#1a1a1a",
                                     }}
                                   >
-                                    £
-                                    {(
-                                      item.pricePerUnit * item.quantity
-                                    ).toFixed(2)}
-                                  </strong>
+                                    £{(item.pricePerUnit * item.quantity).toFixed(2)}
+                                  </p>
                                 </td>
                               </tr>
                             </table>
@@ -319,45 +325,50 @@ export const OrderConfirmationEmail: React.FC<
 
                     {/* Order Summary */}
                     <table
+                      role="presentation"
                       width="100%"
                       cellPadding="0"
                       cellSpacing="0"
-                      style={{ marginBottom: "32px" }}
+                      style={{ marginTop: "14px" }}
                     >
                       <tr>
                         <td
-                          width="70%"
-                          align="right"
-                          style={{ padding: "8px 0", color: colors.textMuted }}
+                          style={{
+                            padding: "6px 0",
+                            fontSize: "14px",
+                            color: "#666666",
+                          }}
                         >
-                          Subtotal:
+                          Subtotal
                         </td>
                         <td
-                          width="30%"
                           align="right"
-                          style={{ padding: "8px 0" }}
+                          style={{
+                            padding: "6px 0",
+                            fontSize: "14px",
+                            color: "#1a1a1a",
+                          }}
                         >
-                          <strong style={{ color: colors.text }}>£{order.subtotal.toFixed(2)}</strong>
+                          £{order.subtotal.toFixed(2)}
                         </td>
                       </tr>
                       {order.discount > 0 && (
                         <tr>
                           <td
-                            align="right"
                             style={{
-                              padding: "8px 0",
-                              color: colors.success,
-                              fontWeight: "500",
+                              padding: "6px 0",
+                              fontSize: "14px",
+                              color: "#2e7d32",
                             }}
                           >
-                            Discount:
+                            Discount
                           </td>
                           <td
                             align="right"
                             style={{
-                              padding: "8px 0",
-                              color: colors.success,
-                              fontWeight: "600",
+                              padding: "6px 0",
+                              fontSize: "14px",
+                              color: "#2e7d32",
                             }}
                           >
                             -£{order.discount.toFixed(2)}
@@ -366,113 +377,118 @@ export const OrderConfirmationEmail: React.FC<
                       )}
                       <tr>
                         <td
-                          align="right"
-                          style={{ padding: "8px 0", color: colors.textMuted }}
+                          style={{
+                            padding: "6px 0",
+                            fontSize: "14px",
+                            color: "#666666",
+                          }}
                         >
-                          Shipping:
+                          Shipping
                         </td>
-                        <td align="right" style={{ padding: "8px 0" }}>
-                          <strong style={{ color: colors.text }}>£{order.shipping.toFixed(2)}</strong>
+                        <td
+                          align="right"
+                          style={{
+                            padding: "6px 0",
+                            fontSize: "14px",
+                            color: "#1a1a1a",
+                          }}
+                        >
+                          {order.shipping === 0 ? "FREE" : `£${order.shipping.toFixed(2)}`}
                         </td>
                       </tr>
                       {(order as any).vatAmount && (order as any).vatAmount > 0 && (
                         <tr>
                           <td
-                            align="right"
                             style={{
-                              padding: "8px 0",
-                              color: colors.textMuted,
+                              padding: "6px 0",
+                              fontSize: "14px",
+                              color: "#666666",
                             }}
                           >
-                            VAT (20%):
+                            VAT (20%)
                           </td>
-                          <td align="right" style={{ padding: "8px 0" }}>
-                            <strong style={{ color: colors.text }}>
-                              £{((order as any).vatAmount).toFixed(2)}
-                            </strong>
+                          <td
+                            align="right"
+                            style={{
+                              padding: "6px 0",
+                              fontSize: "14px",
+                              color: "#1a1a1a",
+                            }}
+                          >
+                            £{((order as any).vatAmount).toFixed(2)}
                           </td>
                         </tr>
                       )}
                       <tr>
                         <td
-                          align="right"
                           style={{
-                            padding: "20px 0 8px",
-                            fontSize: "18px",
-                            fontWeight: "600",
-                            borderTop: `2px solid ${colors.border}`,
-                            color: colors.text,
+                            padding: "14px 0 0",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            color: "#1a1a1a",
+                            borderTop: "2px solid #e0e0e0",
                           }}
                         >
-                          Total:
+                          Total
                         </td>
                         <td
                           align="right"
                           style={{
-                            padding: "20px 0 8px",
-                            fontSize: "18px",
-                            fontWeight: "700",
-                            borderTop: `2px solid ${colors.border}`,
-                            color: colors.text,
+                            padding: "14px 0 0",
+                            fontSize: "16px",
+                            fontWeight: "bold",
+                            color: "#1a1a1a",
+                            borderTop: "2px solid #e0e0e0",
                           }}
                         >
                           £{order.total.toFixed(2)}
                         </td>
                       </tr>
                     </table>
+                  </td>
+                </tr>
 
-                    {/* Shipping Address */}
+                {/* Shipping Address */}
+                <tr>
+                  <td style={{ padding: "0 32px 24px" }}>
                     <h3
                       style={{
-                        margin: "0 0 20px",
-                        fontSize: "18px",
-                        fontWeight: "600",
-                        color: colors.text,
-                        fontFamily: '"Inter", sans-serif',
-                        letterSpacing: "-0.01em",
+                        margin: "0 0 14px",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        color: "#1a1a1a",
                       }}
                     >
-                      Shipping Address
+                      Delivery Address
                     </h3>
                     <table
+                      role="presentation"
                       width="100%"
                       cellPadding="0"
                       cellSpacing="0"
                       style={{
-                        backgroundColor: colors.cardBackground,
+                        backgroundColor: "#f9f9f9",
                         borderRadius: "8px",
-                        padding: "24px",
-                        marginBottom: "32px",
-                        border: `1px solid ${colors.border}`,
+                        border: "1px solid #e0e0e0",
                       }}
                     >
                       <tr>
-                        <td>
-                          <div
+                        <td style={{ padding: "18px 20px" }}>
+                          <p
                             style={{
-                              lineHeight: "1.8",
-                              color: colors.text,
-                              fontSize: "15px",
+                              margin: 0,
+                              fontSize: "14px",
+                              color: "#333333",
+                              lineHeight: "1.6",
                             }}
                           >
-                            <strong style={{ display: "block", marginBottom: "4px" }}>
-                              {order.shippingAddress.fullName}
-                            </strong>
+                            <strong>{order.shippingAddress.fullName}</strong>
+                            <br />
                             {order.shippingAddress.address}
                             {(() => {
                               const addr2 =
-                                (
-                                  order.shippingAddress as unknown as Record<
-                                    string,
-                                    unknown
-                                  >
-                                )?.address2 ||
-                                (
-                                  order.shippingAddress as unknown as Record<
-                                    string,
-                                    unknown
-                                  >
-                                )?.address_line_2;
+                                (order.shippingAddress as unknown as Record<string, unknown>)?.address2 ||
+                                (order.shippingAddress as unknown as Record<string, unknown>)?.address_line_2;
                               return addr2 ? (
                                 <>
                                   <br />
@@ -481,38 +497,33 @@ export const OrderConfirmationEmail: React.FC<
                               ) : null;
                             })()}
                             <br />
-                            {order.shippingAddress.city},{" "}
-                            {order.shippingAddress.state}{" "}
-                            {order.shippingAddress.zipCode}
+                            {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zipCode}
                             <br />
                             {order.shippingAddress.country}
-                          </div>
+                          </p>
                         </td>
                       </tr>
                     </table>
+                  </td>
+                </tr>
 
-                    {/* CTA Button with Emerald Gradient */}
-                    <table
-                      width="100%"
-                      cellPadding="0"
-                      cellSpacing="0"
-                      style={{ marginTop: "32px" }}
-                    >
+                {/* CTA Button */}
+                <tr>
+                  <td style={{ padding: "0 32px 32px" }}>
+                    <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
                       <tr>
                         <td align="center">
                           <a
-                            href={`${process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk"}/account/orders/${order.id}`}
+                            href={`https://ecodailysupplies.com/account/orders/${order.id}`}
                             style={{
                               display: "inline-block",
-                              background: colors.accentGradient,
-                              color: colors.primaryText,
-                              padding: "14px 32px",
+                              backgroundColor: "#1a1a1a",
+                              color: "#ffffff",
+                              padding: "14px 28px",
                               textDecoration: "none",
-                              borderRadius: "8px",
-                              fontWeight: "600",
-                              fontSize: "16px",
-                              fontFamily: '"Inter", sans-serif',
-                              boxShadow: "0 4px 6px -1px rgba(5, 150, 105, 0.2)",
+                              borderRadius: "6px",
+                              fontWeight: "bold",
+                              fontSize: "14px",
                             }}
                           >
                             View Order Details
@@ -527,40 +538,61 @@ export const OrderConfirmationEmail: React.FC<
                 <tr>
                   <td
                     style={{
-                      backgroundColor: colors.cardBackground,
-                      padding: "32px",
+                      backgroundColor: "#f5f5f5",
+                      padding: "28px 32px",
                       textAlign: "center",
-                      borderTop: `1px solid ${colors.border}`,
+                      borderTop: "1px solid #e0e0e0",
                     }}
                   >
                     <p
                       style={{
-                        margin: "0 0 12px",
-                        fontSize: "14px",
-                        color: colors.textMuted,
-                        lineHeight: "1.6",
+                        margin: "0 0 10px",
+                        fontSize: "13px",
+                        color: "#666666",
                       }}
                     >
-                      Questions? Contact us at{" "}
+                      Questions about your order? Contact us at{" "}
                       <a
-                        href="mailto:info@bubblewrapshop.co.uk"
+                        href="mailto:sales@ecodailysupplies.com"
                         style={{
-                          color: colors.accent,
-                          textDecoration: "none",
-                          fontWeight: "500",
+                          color: "#1a1a1a",
+                          textDecoration: "underline",
                         }}
                       >
-                        info@bubblewrapshop.co.uk
+                        sales@ecodailysupplies.com
                       </a>
                     </p>
                     <p
                       style={{
-                        margin: 0,
+                        margin: "0 0 10px",
                         fontSize: "12px",
-                        color: colors.textLight,
+                        color: "#888888",
                       }}
                     >
-                      © {new Date().getFullYear()} Bubble wrap shop (Blackburn) Limited. All rights reserved.
+                      Free UK delivery on orders over £50
+                    </p>
+                    <p
+                      style={{
+                        margin: "0 0 10px",
+                        fontSize: "12px",
+                        color: "#888888",
+                        lineHeight: "1.5",
+                      }}
+                    >
+                      <strong>Eco Daily Supplies Ltd</strong>
+                      <br />
+                      Unit CW10, Challenge Way, Blackburn, BB1 5QF
+                      <br />
+                      United Kingdom | Company No. 16187854
+                    </p>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: "11px",
+                        color: "#aaaaaa",
+                      }}
+                    >
+                      © {new Date().getFullYear()} Eco Daily Supplies Ltd. All rights reserved.
                     </p>
                   </td>
                 </tr>

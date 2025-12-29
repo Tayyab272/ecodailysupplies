@@ -1,9 +1,8 @@
 /**
  * Contact Form Email Template
  *
- * This email is sent when someone submits the contact form.
- * It notifies the support team about the new inquiry.
- * Styled to match the website's "Immersive Minimalism & Performant Luxury" theme.
+ * Sent to the support team when someone submits the contact form.
+ * Optimized for deliverability with proper structure and company details.
  */
 
 import * as React from "react";
@@ -25,7 +24,7 @@ export const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
   message,
   submittedAt,
 }) => {
-  const formattedDate = submittedAt.toLocaleString("en-US", {
+  const formattedDate = submittedAt.toLocaleString("en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -33,137 +32,134 @@ export const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
     minute: "2-digit",
   });
 
-  // Theme colors matching website
-  const colors = {
-    primary: "#0f172a", // slate-900 (near black)
-    primaryText: "#ffffff",
-    accent: "#059669", // emerald-600
-    accentLight: "#10b981", // emerald-500
-    accentGradient: "linear-gradient(135deg, #059669 0%, #14b8a6 100%)", // emerald-600 to teal-500
-    background: "#ffffff",
-    cardBackground: "#f8fafc", // slate-50
-    text: "#0f172a", // slate-900
-    textMuted: "#64748b", // slate-500
-    textLight: "#94a3b8", // slate-400
-    border: "#e2e8f0", // slate-200
-    success: "#059669", // emerald-600
-  };
+  const preheaderText = `New contact form submission from ${name}${company ? ` (${company})` : ""}.`;
 
   return (
-    <html>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>{`
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        `}</style>
+        <meta name="color-scheme" content="light" />
+        <meta name="supported-color-schemes" content="light" />
+        <title>{`New Contact Form Enquiry from ${name}`}</title>
       </head>
       <body
         style={{
-          fontFamily:
-            '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          fontFamily: 'Arial, Helvetica, sans-serif',
           lineHeight: "1.6",
-          color: colors.text,
-          backgroundColor: "#f1f5f9", // slate-100
+          color: "#333333",
+          backgroundColor: "#f5f5f5",
           margin: 0,
           padding: 0,
-          WebkitFontSmoothing: "antialiased",
-          MozOsxFontSmoothing: "grayscale",
         }}
       >
+        {/* Preheader text */}
+        <div
+          style={{
+            display: "none",
+            fontSize: "1px",
+            color: "#f5f5f5",
+            lineHeight: "1px",
+            maxHeight: 0,
+            maxWidth: 0,
+            opacity: 0,
+            overflow: "hidden",
+          }}
+        >
+          {preheaderText}
+          &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+        </div>
+
         <table
+          role="presentation"
           width="100%"
           cellPadding="0"
           cellSpacing="0"
-          style={{ backgroundColor: "#f1f5f9", padding: "32px 16px" }}
+          style={{ backgroundColor: "#f5f5f5", padding: "32px 16px" }}
         >
           <tr>
             <td align="center">
               <table
+                role="presentation"
                 width="600"
                 cellPadding="0"
                 cellSpacing="0"
                 style={{
-                  backgroundColor: colors.background,
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  boxShadow:
-                    "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+                  backgroundColor: "#ffffff",
                   maxWidth: "600px",
+                  borderRadius: "8px",
+                  overflow: "hidden",
                 }}
               >
-                {/* Header with Emerald Gradient */}
+                {/* Header */}
                 <tr>
                   <td
                     style={{
-                      background: colors.accentGradient,
-                      padding: "40px 32px",
+                      backgroundColor: "#1a1a1a",
+                      padding: "28px 32px",
                       textAlign: "center",
                     }}
                   >
                     <h1
                       style={{
                         margin: 0,
-                        color: colors.primaryText,
-                        fontSize: "24px",
-                        fontWeight: "700",
-                        letterSpacing: "-0.02em",
-                        fontFamily: '"Inter", sans-serif',
+                        color: "#ffffff",
+                        fontSize: "22px",
+                        fontWeight: "bold",
+                        letterSpacing: "1px",
                       }}
                     >
-                      New Contact Form Submission
+                      Eco Daily Supplies
                     </h1>
-                    <div
+                    <p
                       style={{
-                        marginTop: "8px",
-                        height: "2px",
-                        width: "60px",
-                        backgroundColor: "rgba(255, 255, 255, 0.3)",
-                        marginLeft: "auto",
-                        marginRight: "auto",
+                        margin: "6px 0 0",
+                        color: "#cccccc",
+                        fontSize: "13px",
                       }}
-                    />
+                    >
+                      Contact Form Notification
+                    </p>
                   </td>
                 </tr>
 
                 {/* Main Content */}
                 <tr>
-                  <td style={{ padding: "48px 32px" }}>
-                    {/* Submission Info Card */}
+                  <td style={{ padding: "32px" }}>
+                    {/* Alert Badge */}
                     <table
+                      role="presentation"
                       width="100%"
                       cellPadding="0"
                       cellSpacing="0"
-                      style={{
-                        backgroundColor: colors.cardBackground,
-                        borderRadius: "8px",
-                        padding: "20px",
-                        marginBottom: "32px",
-                        border: `1px solid ${colors.border}`,
-                      }}
+                      style={{ marginBottom: "24px" }}
                     >
                       <tr>
                         <td>
+                          <span
+                            style={{
+                              display: "inline-block",
+                              backgroundColor: "#fff3cd",
+                              color: "#856404",
+                              fontSize: "12px",
+                              fontWeight: "bold",
+                              textTransform: "uppercase",
+                              letterSpacing: "0.5px",
+                              padding: "6px 12px",
+                              borderRadius: "4px",
+                            }}
+                          >
+                            New Enquiry
+                          </span>
+                        </td>
+                        <td align="right">
                           <p
                             style={{
                               margin: 0,
-                              fontSize: "14px",
-                              color: colors.textMuted,
-                              fontWeight: "500",
+                              fontSize: "13px",
+                              color: "#888888",
                             }}
                           >
-                            <span
-                              style={{
-                                fontSize: "12px",
-                                fontWeight: "500",
-                                textTransform: "uppercase",
-                                letterSpacing: "0.1em",
-                                display: "block",
-                                marginBottom: "4px",
-                              }}
-                            >
-                              Submitted
-                            </span>
                             {formattedDate}
                           </p>
                         </td>
@@ -173,203 +169,207 @@ export const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                     {/* Contact Details */}
                     <h2
                       style={{
-                        margin: "0 0 24px",
-                        fontSize: "20px",
-                        fontWeight: "600",
-                        color: colors.text,
-                        fontFamily: '"Inter", sans-serif',
-                        letterSpacing: "-0.01em",
+                        margin: "0 0 16px",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        color: "#1a1a1a",
                       }}
                     >
                       Contact Information
                     </h2>
 
                     <table
+                      role="presentation"
                       width="100%"
                       cellPadding="0"
                       cellSpacing="0"
-                      style={{ marginBottom: "32px" }}
+                      style={{
+                        backgroundColor: "#f9f9f9",
+                        borderRadius: "8px",
+                        border: "1px solid #e0e0e0",
+                        marginBottom: "24px",
+                      }}
                     >
                       <tr>
-                        <td
-                          style={{
-                            padding: "16px 0",
-                            borderBottom: `1px solid ${colors.border}`,
-                          }}
-                        >
-                          <table width="100%" cellPadding="0" cellSpacing="0">
+                        <td style={{ padding: "18px 20px" }}>
+                          <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
+                            {/* Name */}
                             <tr>
                               <td
-                                width="30%"
                                 style={{
-                                  color: colors.textMuted,
-                                  fontSize: "14px",
-                                  fontWeight: "500",
+                                  padding: "10px 0",
+                                  borderBottom: "1px solid #e0e0e0",
                                 }}
                               >
-                                Name:
-                              </td>
-                              <td
-                                width="70%"
-                                style={{
-                                  color: colors.text,
-                                  fontSize: "15px",
-                                  fontWeight: "500",
-                                }}
-                              >
-                                {name}
+                                <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
+                                  <tr>
+                                    <td
+                                      width="100"
+                                      style={{
+                                        fontSize: "13px",
+                                        color: "#888888",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      Name
+                                    </td>
+                                    <td
+                                      style={{
+                                        fontSize: "14px",
+                                        color: "#1a1a1a",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      {name}
+                                    </td>
+                                  </tr>
+                                </table>
                               </td>
                             </tr>
+
+                            {/* Email */}
+                            <tr>
+                              <td
+                                style={{
+                                  padding: "10px 0",
+                                  borderBottom: company || phone ? "1px solid #e0e0e0" : "none",
+                                }}
+                              >
+                                <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
+                                  <tr>
+                                    <td
+                                      width="100"
+                                      style={{
+                                        fontSize: "13px",
+                                        color: "#888888",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      Email
+                                    </td>
+                                    <td>
+                                      <a
+                                        href={`mailto:${email}`}
+                                        style={{
+                                          fontSize: "14px",
+                                          color: "#2e7d32",
+                                          textDecoration: "none",
+                                        }}
+                                      >
+                                        {email}
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+
+                            {/* Company */}
+                            {company && (
+                              <tr>
+                                <td
+                                  style={{
+                                    padding: "10px 0",
+                                    borderBottom: phone ? "1px solid #e0e0e0" : "none",
+                                  }}
+                                >
+                                  <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
+                                    <tr>
+                                      <td
+                                        width="100"
+                                        style={{
+                                          fontSize: "13px",
+                                          color: "#888888",
+                                          fontWeight: "bold",
+                                        }}
+                                      >
+                                        Company
+                                      </td>
+                                      <td
+                                        style={{
+                                          fontSize: "14px",
+                                          color: "#1a1a1a",
+                                        }}
+                                      >
+                                        {company}
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            )}
+
+                            {/* Phone */}
+                            {phone && (
+                              <tr>
+                                <td style={{ padding: "10px 0" }}>
+                                  <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
+                                    <tr>
+                                      <td
+                                        width="100"
+                                        style={{
+                                          fontSize: "13px",
+                                          color: "#888888",
+                                          fontWeight: "bold",
+                                        }}
+                                      >
+                                        Phone
+                                      </td>
+                                      <td>
+                                        <a
+                                          href={`tel:${phone}`}
+                                          style={{
+                                            fontSize: "14px",
+                                            color: "#2e7d32",
+                                            textDecoration: "none",
+                                          }}
+                                        >
+                                          {phone}
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            )}
                           </table>
                         </td>
                       </tr>
-
-                      <tr>
-                        <td
-                          style={{
-                            padding: "16px 0",
-                            borderBottom: `1px solid ${colors.border}`,
-                          }}
-                        >
-                          <table width="100%" cellPadding="0" cellSpacing="0">
-                            <tr>
-                              <td
-                                width="30%"
-                                style={{
-                                  color: colors.textMuted,
-                                  fontSize: "14px",
-                                  fontWeight: "500",
-                                }}
-                              >
-                                Email:
-                              </td>
-                              <td width="70%">
-                                <a
-                                  href={`mailto:${email}`}
-                                  style={{
-                                    color: colors.accent,
-                                    textDecoration: "none",
-                                    fontSize: "15px",
-                                    fontWeight: "500",
-                                  }}
-                                >
-                                  {email}
-                                </a>
-                              </td>
-                            </tr>
-                          </table>
-                        </td>
-                      </tr>
-
-                      {company && (
-                        <tr>
-                          <td
-                            style={{
-                              padding: "16px 0",
-                              borderBottom: `1px solid ${colors.border}`,
-                            }}
-                          >
-                            <table width="100%" cellPadding="0" cellSpacing="0">
-                              <tr>
-                                <td
-                                  width="30%"
-                                  style={{
-                                    color: colors.textMuted,
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                  }}
-                                >
-                                  Company:
-                                </td>
-                                <td
-                                  width="70%"
-                                  style={{
-                                    color: colors.text,
-                                    fontSize: "15px",
-                                  }}
-                                >
-                                  {company}
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      )}
-
-                      {phone && (
-                        <tr>
-                          <td
-                            style={{
-                              padding: "16px 0",
-                              borderBottom: `1px solid ${colors.border}`,
-                            }}
-                          >
-                            <table width="100%" cellPadding="0" cellSpacing="0">
-                              <tr>
-                                <td
-                                  width="30%"
-                                  style={{
-                                    color: colors.textMuted,
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                  }}
-                                >
-                                  Phone:
-                                </td>
-                                <td width="70%">
-                                  <a
-                                    href={`tel:${phone}`}
-                                    style={{
-                                      color: colors.accent,
-                                      textDecoration: "none",
-                                      fontSize: "15px",
-                                    }}
-                                  >
-                                    {phone}
-                                  </a>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      )}
                     </table>
 
                     {/* Message */}
                     <h2
                       style={{
-                        margin: "0 0 20px",
-                        fontSize: "20px",
-                        fontWeight: "600",
-                        color: colors.text,
-                        fontFamily: '"Inter", sans-serif',
-                        letterSpacing: "-0.01em",
+                        margin: "0 0 16px",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        color: "#1a1a1a",
                       }}
                     >
                       Message
                     </h2>
 
                     <table
+                      role="presentation"
                       width="100%"
                       cellPadding="0"
                       cellSpacing="0"
                       style={{
-                        backgroundColor: colors.cardBackground,
+                        backgroundColor: "#f9f9f9",
                         borderRadius: "8px",
-                        padding: "24px",
-                        marginBottom: "32px",
-                        border: `1px solid ${colors.border}`,
+                        border: "1px solid #e0e0e0",
+                        marginBottom: "24px",
                       }}
                     >
                       <tr>
-                        <td>
+                        <td style={{ padding: "20px" }}>
                           <p
                             style={{
                               margin: 0,
                               whiteSpace: "pre-wrap",
-                              color: colors.text,
-                              fontSize: "15px",
-                              lineHeight: "1.8",
+                              color: "#333333",
+                              fontSize: "14px",
+                              lineHeight: "1.7",
                             }}
                           >
                             {message}
@@ -378,32 +378,24 @@ export const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                       </tr>
                     </table>
 
-                    {/* Quick Reply Button with Emerald Gradient */}
-                    <table
-                      width="100%"
-                      cellPadding="0"
-                      cellSpacing="0"
-                      style={{ marginTop: "32px" }}
-                    >
+                    {/* Reply Button */}
+                    <table role="presentation" width="100%" cellPadding="0" cellSpacing="0">
                       <tr>
                         <td align="center">
                           <a
-                            href={`mailto:${email}?subject=Re: Contact Form Inquiry`}
+                            href={`mailto:${email}?subject=Re: Your Enquiry to Eco Daily Supplies`}
                             style={{
                               display: "inline-block",
-                              background: colors.accentGradient,
-                              color: colors.primaryText,
-                              padding: "14px 32px",
+                              backgroundColor: "#1a1a1a",
+                              color: "#ffffff",
+                              padding: "14px 28px",
                               textDecoration: "none",
-                              borderRadius: "8px",
-                              fontWeight: "600",
-                              fontSize: "16px",
-                              fontFamily: '"Inter", sans-serif',
-                              boxShadow:
-                                "0 4px 6px -1px rgba(5, 150, 105, 0.2)",
+                              borderRadius: "6px",
+                              fontWeight: "bold",
+                              fontSize: "14px",
                             }}
                           >
-                            Reply to {name}
+                            Reply to {name.split(" ")[0]}
                           </a>
                         </td>
                       </tr>
@@ -415,21 +407,29 @@ export const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
                 <tr>
                   <td
                     style={{
-                      backgroundColor: colors.cardBackground,
-                      padding: "32px",
+                      backgroundColor: "#f5f5f5",
+                      padding: "24px 32px",
                       textAlign: "center",
-                      borderTop: `1px solid ${colors.border}`,
+                      borderTop: "1px solid #e0e0e0",
                     }}
                   >
                     <p
                       style={{
-                        margin: 0,
+                        margin: "0 0 8px",
                         fontSize: "12px",
-                        color: colors.textLight,
-                        lineHeight: "1.6",
+                        color: "#888888",
                       }}
                     >
-                      This is an automated notification from the Bubble wrap shop (Blackburn) Limited contact form.
+                      This is an automated notification from the Eco Daily Supplies contact form.
+                    </p>
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: "12px",
+                        color: "#888888",
+                      }}
+                    >
+                      <strong>Eco Daily Supplies Ltd</strong> | Unit CW10, Challenge Way, Blackburn, BB1 5QF
                     </p>
                   </td>
                 </tr>
