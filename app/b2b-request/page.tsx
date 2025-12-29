@@ -72,7 +72,7 @@ export default function B2BRequestPage() {
       <div className="relative w-full overflow-hidden bg-white">
         <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
           <Image
-            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://pub-20f982007aa54df4849bcd969b89a1bf.r2.dev/ecodailysupplies-wholesale.png"
             alt="B2B Business Solutions - Professional wholesale packaging"
             fill
             className="object-cover"
