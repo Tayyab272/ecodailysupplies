@@ -15,17 +15,38 @@ import {
 import { Button } from "@/components/ui/button";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
 
+/**
+ * About Page Metadata - SEO Optimized for UK
+ * Targets: "packaging supplier UK", "eco-friendly packaging company"
+ * Enhances E-E-A-T signals for Google rankings
+ */
 export const metadata: Metadata = {
-  title: "About Us - Premium Packaging Supplies | Bubble Wrap Shop",
+  title: "About EcoDailySupplies | UK's Trusted Eco-Friendly Packaging Supplier",
   description:
-    "Learn about Bubble Wrap Shop, your trusted UK supplier of premium packaging supplies. We offer eco-friendly solutions, bulk pricing, and next-day delivery across the UK.",
+    "EcoDailySupplies is the UK's leading eco-friendly packaging supplier. Based in Blackburn, Lancashire, we've served 10,000+ British businesses with sustainable packaging supplies since 2009. Free UK delivery, next-day shipping, wholesale prices.",
+  keywords: [
+    "packaging supplier UK",
+    "eco-friendly packaging company",
+    "sustainable packaging supplier",
+    "UK packaging company",
+    "Blackburn packaging supplier",
+    "Lancashire packaging company",
+    "wholesale packaging supplier UK",
+  ],
   openGraph: {
-    title: "About Us - Premium Packaging Supplies | Bubble Wrap Shop",
+    title: "About EcoDailySupplies | UK's Leading Packaging Supplier",
     description:
-      "Learn about Bubble Wrap Shop, your trusted UK supplier of premium packaging supplies. We offer eco-friendly solutions, bulk pricing, and next-day delivery.",
+      "Trusted by 10,000+ UK businesses. EcoDailySupplies provides eco-friendly packaging supplies with free delivery, wholesale prices, and next-day shipping across Britain.",
     url: `${siteUrl}/about`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About EcoDailySupplies | UK Packaging Supplier",
+    description:
+      "UK's trusted eco-friendly packaging supplier. 10,000+ happy customers. Free delivery over £50.",
   },
   alternates: {
     canonical: `${siteUrl}/about`,

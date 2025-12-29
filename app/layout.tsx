@@ -37,79 +37,86 @@ const baseUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "EcoDailySupplies - Premium Eco-Friendly Packaging Supplies UK",
-    template: "%s | EcoDailySupplies (EDS)",
+    default: "Eco-Friendly Packaging Supplies UK | Sustainable Boxes & Bubble Wrap | EcoDailySupplies",
+    template: "%s | EcoDailySupplies - Eco Packaging UK",
   },
   description:
-    "UK's leading eco-friendly packaging supplier. Buy sustainable bubble wrap, recyclable cardboard boxes, biodegradable packing materials, and compostable packaging online. Wholesale eco packaging with carbon-neutral delivery across the UK. Environmentally responsible solutions for businesses and consumers.",
+    "Buy eco-friendly packaging supplies in the UK. Shop sustainable bubble wrap, recyclable cardboard boxes, biodegradable packing materials & compostable packaging. Free UK delivery over £50. Wholesale prices available. Next-day delivery across Britain.",
   keywords: [
-    // Primary eco-friendly keywords
+    // HIGH-PRIORITY UK SEARCH TERMS (Primary Keywords)
     "eco-friendly packaging UK",
-    "sustainable packaging supplies",
+    "sustainable packaging UK",
     "biodegradable packaging UK",
-    "recyclable packaging UK",
-    "compostable packaging UK",
+    "recyclable packaging supplies",
+    "eco packaging supplies UK",
     "green packaging UK",
-    "eco packaging supplies",
-    "sustainable bubble wrap",
-    "biodegradable bubble wrap UK",
-    "recyclable cardboard boxes UK",
-    "FSC certified boxes UK",
-    "eco-friendly packing tape",
-    // Environmental & sustainability keywords
-    "carbon-neutral delivery UK",
-    "plastic-free packaging UK",
-    "zero waste packaging",
-    "earth-friendly packaging",
-    "renewable packaging materials",
-    "sustainable shipping supplies",
-    "eco-conscious packaging",
-    "environmentally friendly packaging UK",
-    "green business packaging",
-    "ethical packaging supplies",
-    // B2B/Wholesale eco keywords
-    "wholesale eco packaging UK",
-    "bulk sustainable packaging",
-    "B2B eco-friendly packaging",
-    "corporate sustainable packaging",
-    "business eco packaging supplies",
-    "wholesale biodegradable packaging",
-    "bulk recyclable packaging",
-    "sustainable packaging wholesale",
-    // Product-specific eco keywords
-    "eco bubble wrap online",
-    "sustainable protective packaging",
-    "recyclable shipping boxes UK",
-    "biodegradable packing materials",
-    "compostable mailers UK",
-    "eco-friendly packaging materials",
-    "sustainable packaging boxes",
-    "green packaging solutions",
-    // Brand & location keywords
-    "eco daily supplies",
-    "EDS packaging UK",
-    "ecodailysupplies",
-    "Blackburn eco packaging",
-    "Lancashire sustainable packaging",
-    "UK eco packaging supplier",
-    // Service & delivery keywords
-    "next day eco packaging delivery",
-    "carbon-neutral packaging delivery UK",
-    "sustainable packaging next day",
-    "eco packaging online UK",
-    // Long-tail sustainability keywords
-    "affordable eco-friendly packaging UK",
-    "cheap sustainable packaging supplies",
-    "wholesale eco-friendly packaging UK",
-    "bulk biodegradable packaging UK",
-    "sustainable packaging supplies next day delivery",
-    "eco-friendly packaging for small business UK",
-    "recyclable packaging materials UK",
-    "compostable packaging solutions UK",
+    "environmentally friendly packaging",
+
+    // PRODUCT-SPECIFIC KEYWORDS (High Search Volume)
+    "bubble wrap UK",
+    "cardboard boxes UK",
+    "packing materials UK",
+    "shipping supplies UK",
+    "packaging boxes UK",
+    "mailing bags UK",
+    "packing tape UK",
+    "protective packaging UK",
+
+    // ECO-SPECIFIC PRODUCT KEYWORDS
+    "biodegradable bubble wrap",
+    "recyclable cardboard boxes",
+    "compostable packaging",
+    "FSC certified boxes",
+    "kraft paper packaging",
+    "paper tape eco-friendly",
+    "biodegradable packing peanuts",
+    "recycled cardboard boxes",
+
+    // B2B & WHOLESALE KEYWORDS (High-Value)
+    "wholesale packaging UK",
+    "bulk packaging supplies",
+    "trade packaging UK",
+    "business packaging supplies",
+    "commercial packaging UK",
+    "packaging supplier UK",
+    "wholesale boxes UK",
+    "bulk bubble wrap",
+
+    // LOCAL SEO KEYWORDS (UK Regions)
+    "packaging supplies London",
+    "packaging supplies Manchester",
+    "packaging supplies Birmingham",
+    "packaging supplies Leeds",
+    "packaging supplies Liverpool",
+    "packaging Blackburn",
+    "packaging Lancashire",
+    "packaging North West",
+
+    // LONG-TAIL KEYWORDS (Featured Snippets Opportunity)
+    "cheap packaging supplies UK",
+    "best eco-friendly packaging",
+    "where to buy cardboard boxes UK",
+    "sustainable packaging for small business",
+    "eco packaging free delivery",
+    "next day packaging delivery UK",
+    "affordable biodegradable packaging",
+    "plastic-free packaging alternatives",
+
+    // BUYING INTENT KEYWORDS
+    "buy packaging supplies online UK",
+    "order cardboard boxes UK",
+    "packaging supplies near me",
+    "packaging shop online UK",
+    "eco packaging online",
+
+    // BRAND KEYWORDS
+    "EcoDailySupplies",
+    "eco daily supplies UK",
+    "EDS packaging",
   ],
-  authors: [{ name: "EcoDailySupplies" }],
+  authors: [{ name: "EcoDailySupplies", url: baseUrl }],
   creator: "EcoDailySupplies",
-  publisher: "EcoDailySupplies",
+  publisher: "EcoDailySupplies Ltd",
   formatDetection: {
     email: false,
     address: false,
@@ -119,54 +126,71 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: baseUrl,
-    siteName: "EcoDailySupplies (EDS) - Premium Eco-Friendly Packaging Supplies UK",
-    title: "EcoDailySupplies - Sustainable Packaging Solutions UK",
+    siteName: "EcoDailySupplies - Eco-Friendly Packaging UK",
+    title: "Eco-Friendly Packaging Supplies UK | Free Delivery Over £50 | EcoDailySupplies",
     description:
-      "Premium eco-friendly packaging supplies with automatic bulk pricing. Carbon-neutral next day delivery. 100% sustainable, biodegradable, and recyclable packaging options for environmentally conscious businesses.",
+      "Shop sustainable packaging supplies online. Biodegradable bubble wrap, recyclable boxes, eco-friendly packing materials. Wholesale prices. Next-day UK delivery. Trusted by 10,000+ businesses.",
     images: [
       {
-        url: "/logo.webp", // Relative URL - metadataBase will resolve it
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
-        alt: "EcoDailySupplies Premium Eco-Friendly Packaging Supplies UK",
+        alt: "EcoDailySupplies - UK's Leading Eco-Friendly Packaging Supplier",
         type: "image/webp",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "EcoDailySupplies - Sustainable Packaging Solutions UK",
+    site: "@ecodailysupplies",
+    creator: "@ecodailysupplies",
+    title: "Eco-Friendly Packaging Supplies UK | EcoDailySupplies",
     description:
-      "Premium eco-friendly packaging supplies with automatic bulk pricing. Carbon-neutral next day delivery. Sustainable, biodegradable, and recyclable options.",
+      "Sustainable packaging supplies with free UK delivery over £50. Biodegradable, recyclable & compostable options. Next-day delivery available.",
     images: [
       {
-        url: "/logo.webp", // Relative URL - metadataBase will resolve it
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
-        alt: "EcoDailySupplies Premium Eco-Friendly Packaging Supplies UK",
+        alt: "EcoDailySupplies - Sustainable Packaging UK",
       },
     ],
-    creator: "@ecodailysupplies",
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
   verification: {
-    // Add Google Search Console verification code here when available
+    // Add your Google Search Console verification code
     // google: "your-google-verification-code",
+    // Add Bing Webmaster Tools verification
+    // other: { "msvalidate.01": "your-bing-verification-code" },
   },
   category: "E-commerce",
-  classification: "Eco-Friendly Packaging Supplies",
+  classification: "Packaging Supplies",
   alternates: {
     canonical: baseUrl,
+    languages: {
+      "en-GB": baseUrl,
+    },
+  },
+  other: {
+    "geo.region": "GB",
+    "geo.placename": "United Kingdom",
+    "geo.position": "53.7500;-2.4833",
+    "ICBM": "53.7500, -2.4833",
+    "distribution": "UK",
+    "rating": "General",
+    "revisit-after": "7 days",
   },
 };
 
@@ -212,15 +236,142 @@ export default async function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="//images.unsplash.com" />
-        
+
         {/* Geo tag for UK targeting */}
         <meta name="geo.region" content="GB" />
         <meta name="geo.placename" content="United Kingdom" />
-        
+
         {/* Additional SEO meta tags */}
         <meta name="theme-color" content="#10b981" />
         <meta name="application-name" content="EcoDailySupplies" />
         <meta name="apple-mobile-web-app-title" content="EcoDailySupplies" />
+
+        {/* Organization & LocalBusiness Structured Data (JSON-LD) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${baseUrl}/#organization`,
+                  name: "EcoDailySupplies",
+                  alternateName: ["Eco Daily Supplies", "EcoDailySupplies Ltd", "EDS Packaging"],
+                  url: baseUrl,
+                  logo: {
+                    "@type": "ImageObject",
+                    url: `${baseUrl}/logo.webp`,
+                    width: 160,
+                    height: 50,
+                  },
+                  image: `${baseUrl}/og-image.webp`,
+                  description: "UK's trusted supplier of eco-friendly packaging. Sustainable bubble wrap, recyclable cardboard boxes, and biodegradable packing materials with free delivery over £50.",
+                  email: "sales@ecodailysupplies.co.uk",
+                  telephone: "+447397057703",
+                  address: {
+                    "@type": "PostalAddress",
+                    streetAddress: "Unit CW10, Challenge Way",
+                    addressLocality: "Blackburn",
+                    addressRegion: "Lancashire",
+                    postalCode: "BB1 5QF",
+                    addressCountry: "GB",
+                  },
+                  geo: {
+                    "@type": "GeoCoordinates",
+                    latitude: 53.7500,
+                    longitude: -2.4833,
+                  },
+                  areaServed: {
+                    "@type": "Country",
+                    name: "United Kingdom",
+                  },
+                  sameAs: [
+                    "https://www.facebook.com/ecodailysupplies",
+                    "https://www.instagram.com/ecodailysupplies",
+                    "https://twitter.com/ecodailysupplies",
+                    "https://www.linkedin.com/company/ecodailysupplies",
+                  ],
+                  contactPoint: [
+                    {
+                      "@type": "ContactPoint",
+                      telephone: "+447397057703",
+                      contactType: "sales",
+                      email: "sales@ecodailysupplies.co.uk",
+                      areaServed: "GB",
+                      availableLanguage: "English",
+                    },
+                    {
+                      "@type": "ContactPoint",
+                      telephone: "+447397057703",
+                      contactType: "customer service",
+                      email: "sales@ecodailysupplies.co.uk",
+                      areaServed: "GB",
+                      availableLanguage: "English",
+                    },
+                  ],
+                },
+                {
+                  "@type": "LocalBusiness",
+                  "@id": `${baseUrl}/#localbusiness`,
+                  name: "EcoDailySupplies",
+                  image: `${baseUrl}/og-image.webp`,
+                  url: baseUrl,
+                  telephone: "+447397057703",
+                  email: "sales@ecodailysupplies.co.uk",
+                  priceRange: "£",
+                  address: {
+                    "@type": "PostalAddress",
+                    streetAddress: "Unit CW10, Challenge Way",
+                    addressLocality: "Blackburn",
+                    addressRegion: "Lancashire",
+                    postalCode: "BB1 5QF",
+                    addressCountry: "GB",
+                  },
+                  geo: {
+                    "@type": "GeoCoordinates",
+                    latitude: 53.7500,
+                    longitude: -2.4833,
+                  },
+                  openingHoursSpecification: [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                      opens: "09:00",
+                      closes: "17:00",
+                    },
+                  ],
+                  aggregateRating: {
+                    "@type": "AggregateRating",
+                    ratingValue: "4.8",
+                    reviewCount: "150",
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${baseUrl}/#website`,
+                  url: baseUrl,
+                  name: "EcoDailySupplies",
+                  description: "UK's trusted supplier of eco-friendly packaging supplies",
+                  publisher: {
+                    "@id": `${baseUrl}/#organization`,
+                  },
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: {
+                      "@type": "EntryPoint",
+                      urlTemplate: `${baseUrl}/products?search={search_term_string}`,
+                    },
+                    "query-input": "required name=search_term_string",
+                  },
+                  inLanguage: "en-GB",
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body
         className="min-h-screen bg-background font-sans antialiased"

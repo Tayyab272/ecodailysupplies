@@ -3,19 +3,20 @@ import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 
 /**
- * Dynamic Sitemap Generation
+ * Dynamic Sitemap Generation for EcoDailySupplies UK
  * Generates sitemap.xml for all products, categories, and static pages
- * Helps search engines discover and index all pages
+ * Optimized for Google UK search rankings
  *
  * SEO Best Practices:
- * - Homepage: Priority 1.0, Daily updates
- * - Product pages: Priority 0.8, Weekly updates
- * - Category pages: Priority 0.7, Weekly updates
+ * - Homepage: Priority 1.0, Daily updates (main landing page)
+ * - Product pages: Priority 0.8, Weekly updates (conversion pages)
+ * - Category pages: Priority 0.7, Weekly updates (navigation/discovery)
+ * - B2B pages: Priority 0.8, Monthly updates (high-value leads)
  * - Static pages: Priority 0.3-0.7, Monthly/Yearly updates
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
-    process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+    process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
   const baseDate = new Date();
 
   // Static pages with optimized priorities and change frequencies

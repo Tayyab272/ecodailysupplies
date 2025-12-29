@@ -221,7 +221,7 @@ export function HeroCarousel({ banners }: HeroCarouselProps) {
                   Fast Delivery
                 </h3>
                 <p className="text-[9px] sm:text-xs md:text-sm text-gray-800 hidden sm:block">
-                  Free shipping over $50
+                  Free UK delivery over £50
                 </p>
               </div>
             </div>

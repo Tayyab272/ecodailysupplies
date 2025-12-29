@@ -8,9 +8,40 @@ import { getAllCategories } from "@/sanity/lib";
 // Revalidation strategy: On-demand revalidation via Sanity webhooks
 export const revalidate = false;
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+
 export const metadata: Metadata = {
-  title: "Shop All | Bubble Wrap Shop",
-  description: "Explore our premium collection of packaging supplies.",
+  title: "Buy Packaging Supplies Online UK | Boxes, Bubble Wrap & More | EcoDailySupplies",
+  description:
+    "Shop quality packaging supplies online in the UK. Cardboard boxes, bubble wrap, mailing bags, tape & more. Free delivery over £50, next-day shipping available. Wholesale prices.",
+  keywords: [
+    "packaging supplies UK",
+    "buy packaging online",
+    "cardboard boxes UK",
+    "bubble wrap UK",
+    "mailing bags UK",
+    "packing materials",
+    "wholesale packaging UK",
+    "packaging supplier UK",
+    "eco-friendly packaging",
+    "next day delivery packaging",
+  ],
+  openGraph: {
+    title: "Buy Packaging Supplies Online UK | EcoDailySupplies",
+    description: "Quality packaging supplies with free UK delivery over £50. Cardboard boxes, bubble wrap, mailing bags & more.",
+    url: `${siteUrl}/products`,
+    siteName: "EcoDailySupplies",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Packaging Supplies UK | EcoDailySupplies",
+    description: "Quality packaging supplies with free UK delivery over £50.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/products`,
+  },
 };
 
 export default async function ProductsPage({
@@ -72,7 +103,7 @@ export default async function ProductsPage({
               <p className="text-lg text-gray-500 font-medium leading-relaxed">
                 {searchQuery
                   ? "Found the following results for your search."
-                  : "Premium packaging solutions designed for durability and aesthetics."}
+                  : "Quality UK packaging supplies with free delivery over £50 and next-day shipping available."}
               </p>
             </div>
           </div>

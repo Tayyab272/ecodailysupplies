@@ -3,6 +3,26 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+
+export const metadata: Metadata = {
+  title: "Terms & Conditions | EcoDailySupplies UK",
+  description:
+    "Read the EcoDailySupplies terms and conditions. Learn about ordering, delivery, returns, and your rights when shopping for packaging supplies in the UK.",
+  openGraph: {
+    title: "Terms & Conditions | EcoDailySupplies UK",
+    description: "Terms and conditions for ordering packaging supplies from EcoDailySupplies UK.",
+    url: `${siteUrl}/terms`,
+    siteName: "EcoDailySupplies",
+    locale: "en_GB",
+    type: "website",
+  },
+  alternates: {
+    canonical: `${siteUrl}/terms`,
+  },
+};
 
 type TermsSection = {
   id: string;
@@ -592,10 +612,10 @@ const SECTIONS: TermsSection[] = [
           You may contact us regarding these Terms and Conditions by writing or
           emailing us at the following address:{" "}
           <a
-            href="mailto:info@ecodailysupplies.com"
+            href="mailto:sales@ecodailysupplies.co.uk"
             className="text-primary underline hover:text-primary/80 font-medium"
           >
-            info@ecodailysupplies.com
+            sales@ecodailysupplies.co.uk
           </a>
         </p>
         <p>

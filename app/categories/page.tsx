@@ -11,30 +11,37 @@ import { ArrowRight, Grid3X3 } from "lucide-react";
 // For development, use `npm run dev` which has hot reloading
 export const revalidate = false;
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
 
 export const metadata: Metadata = {
-  title:
-    "Packaging Categories UK | Bubble Wrap, Boxes & More | Bubble Wrap Shop",
+  title: "Packaging Categories UK | Boxes, Bubble Wrap & Mailing Bags | EcoDailySupplies",
   description:
-    "Browse our complete range of packaging categories in the UK. From bubble wrap and shipping boxes to packing tape and protective materials. Find the perfect packaging solution for your business or personal needs. Next day delivery available.",
+    "Browse packaging categories at EcoDailySupplies UK. Cardboard boxes, bubble wrap, mailing bags, tape & protective materials. Free delivery over £50. Next-day shipping available.",
   keywords: [
     "packaging categories UK",
-    "bubble wrap category",
-    "shipping boxes category",
-    "packing tape category",
+    "cardboard boxes category",
+    "bubble wrap UK",
+    "mailing bags category",
+    "packing tape UK",
     "protective packaging category",
-    "packaging supplies categories",
+    "packaging supplies UK",
     "packaging materials UK",
-    "buy packaging by category",
+    "eco-friendly packaging",
     "packaging solutions UK",
   ],
   openGraph: {
-    title:
-      "Packaging Categories UK | Bubble Wrap, Boxes & More | Bubble Wrap Shop",
+    title: "Packaging Categories UK | EcoDailySupplies",
     description:
-      "Browse our complete range of packaging categories in the UK. From bubble wrap and shipping boxes to packing tape and protective materials.",
+      "Browse packaging categories at EcoDailySupplies. Boxes, bubble wrap, mailing bags & more. Free UK delivery over £50.",
     url: `${siteUrl}/categories`,
+    siteName: "EcoDailySupplies",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Packaging Categories UK | EcoDailySupplies",
+    description: "Browse packaging categories. Free UK delivery over £50.",
   },
   alternates: {
     canonical: `${siteUrl}/categories`,
@@ -64,7 +71,7 @@ export default async function CategoriesPage() {
             Browse packaging categories
           </h1>
           <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl">
-            Find the right packaging supplies faster by shopping by category.
+            Find the right packaging supplies faster. Free UK delivery over £50, next-day shipping available.
           </p>
         </div>
 

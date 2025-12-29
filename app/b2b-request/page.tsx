@@ -13,33 +13,40 @@ import {
 import { B2BRequestForm } from "@/components/b2b/b2b-request-form";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
 
 export const metadata: Metadata = {
-  title:
-    "Wholesale Packaging UK | B2B Bulk Order Quote | Corporate Packaging Supplies",
+  title: "Wholesale Packaging UK | B2B Bulk Order Quote | EcoDailySupplies",
   description:
-    "Request a custom quote for wholesale packaging supplies in the UK. Bulk pricing for businesses. Competitive rates on large orders of bubble wrap, boxes, and packaging materials. Next day delivery available.",
+    "Request a wholesale packaging quote from EcoDailySupplies UK. Bulk pricing for businesses. Competitive rates on large orders of eco-friendly boxes, bubble wrap & packaging materials. Next-day delivery available.",
   keywords: [
     "wholesale packaging UK",
-    "B2B packaging",
-    "bulk packaging supplies",
+    "B2B packaging supplier",
+    "bulk packaging supplies UK",
     "corporate packaging",
     "business packaging supplies",
-    "wholesale bubble wrap",
-    "bulk cardboard boxes",
+    "wholesale bubble wrap UK",
+    "bulk cardboard boxes UK",
     "packaging wholesale UK",
-    "B2B packaging supplier",
-    "corporate packaging UK",
+    "B2B eco packaging",
+    "trade packaging UK",
     "bulk order packaging",
     "wholesale packaging prices",
-    "business packaging solutions",
+    "business packaging solutions UK",
   ],
   openGraph: {
-    title: "Wholesale Packaging UK | B2B Bulk Order Quote | Bubble Wrap Shop",
+    title: "Wholesale Packaging UK | B2B Bulk Quote | EcoDailySupplies",
     description:
-      "Request a custom quote for wholesale packaging supplies in the UK. Bulk pricing for businesses. Competitive rates on large orders.",
+      "Request a wholesale quote for eco-friendly packaging supplies. Bulk pricing for UK businesses. Competitive rates on large orders.",
     url: `${siteUrl}/b2b-request`,
+    siteName: "EcoDailySupplies",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Wholesale Packaging UK | EcoDailySupplies",
+    description: "Request a bulk packaging quote for your UK business.",
   },
   alternates: {
     canonical: `${siteUrl}/b2b-request`,

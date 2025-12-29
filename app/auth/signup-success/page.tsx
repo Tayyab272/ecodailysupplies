@@ -96,7 +96,7 @@ function SignupSuccessContent() {
                       <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
                       <div>
                         <h3 className="font-semibold text-emerald-900 mb-2">
-                          Welcome to Bubble Wrap Shop!
+                          Welcome to EcoDailySupplies!
                         </h3>
                         <p className="text-emerald-800 text-sm">
                           Your account has been successfully created and verified. You can now start shopping and enjoy all the benefits of being a member.
@@ -111,7 +111,7 @@ function SignupSuccessContent() {
                       What&apos;s Next?
                     </h3>
                     <ul className="space-y-2 text-slate-600 text-sm ml-7 list-disc">
-                      <li>Browse our wide selection of bubble wrap products</li>
+                      <li>Browse our wide selection of eco-friendly packaging</li>
                       <li>Add items to your cart and checkout securely</li>
                       <li>Track your orders in your account dashboard</li>
                       <li>Save your shipping addresses for faster checkout</li>

@@ -22,7 +22,7 @@ const getEmailDomain = (): string => {
   if (process.env.RESEND_EMAIL_DOMAIN) {
     return process.env.RESEND_EMAIL_DOMAIN;
   }
-  return "bubblewrapshop.co.uk";
+  return "ecodailysupplies.co.uk";
 };
 
 const emailDomain = getEmailDomain();

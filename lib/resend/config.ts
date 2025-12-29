@@ -44,7 +44,7 @@ const getEmailDomain = (): string => {
     return process.env.RESEND_EMAIL_DOMAIN;
   }
   // Default to verified domain
-  return "bubblewrapshop.co.uk";
+  return "ecodailysupplies.co.uk";
 };
 
 const emailDomain = getEmailDomain();
@@ -62,14 +62,14 @@ export const EMAIL_CONFIG = {
   // From addresses
   from: {
     orders: useVerifiedDomain
-      ? `Bubble Wrap Shop Orders <sales@${emailDomain}>`
-      : "Bubble Wrap Shop Orders <onboarding@resend.dev>",
+      ? `EcoDailySupplies Orders <sales@${emailDomain}>`
+      : "EcoDailySupplies Orders <onboarding@resend.dev>",
     support: useVerifiedDomain
-      ? `Bubble Wrap Shop Support <info@${emailDomain}>`
-      : "Bubble Wrap Shop Support <onboarding@resend.dev>",
+      ? `EcoDailySupplies Support <info@${emailDomain}>`
+      : "EcoDailySupplies Support <onboarding@resend.dev>",
     noreply: useVerifiedDomain
-      ? `Bubble Wrap Shop <noreply@${emailDomain}>`
-      : "Bubble Wrap Shop <onboarding@resend.dev>",
+      ? `EcoDailySupplies <noreply@${emailDomain}>`
+      : "EcoDailySupplies <onboarding@resend.dev>",
   },
 
   // Reply-to addresses
@@ -95,7 +95,7 @@ export const EMAIL_CONFIG = {
       `Your Order Has Been Delivered - #${orderNumber}`,
     contactFormSubmission: "New Contact Form Submission",
     passwordReset: "Reset Your Password",
-    welcome: "Welcome to Bubble Wrap Shop",
+    welcome: "Welcome to EcoDailySupplies",
   },
 
   // Default settings

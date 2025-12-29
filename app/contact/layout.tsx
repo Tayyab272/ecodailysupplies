@@ -1,16 +1,36 @@
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
 
+/**
+ * Contact Page Metadata - SEO Optimized for UK Local Search
+ * Targets: "packaging supplier contact", "packaging company Blackburn"
+ * Includes local business signals for Google UK rankings
+ */
 export const metadata: Metadata = {
-  title: "Contact Us - Premium Packaging Supplies | Bubble Wrap Shop",
+  title: "Contact EcoDailySupplies | UK Packaging Supplier | Blackburn, Lancashire",
   description:
-    "Get in touch with Bubble Wrap Shop. Contact us for packaging supplies, bulk orders, wholesale pricing, or any questions. We're here to help with all your packaging needs.",
+    "Contact EcoDailySupplies for eco-friendly packaging supplies in the UK. Call 07397 057703 or email sales@ecodailysupplies.co.uk. Based in Blackburn, Lancashire. Free quotes, wholesale enquiries, bulk orders welcome. Mon-Fri 9AM-6PM.",
+  keywords: [
+    "contact packaging supplier UK",
+    "packaging company Blackburn",
+    "Lancashire packaging supplier",
+    "wholesale packaging enquiry",
+    "bulk packaging order UK",
+    "eco-friendly packaging contact",
+  ],
   openGraph: {
-    title: "Contact Us - Premium Packaging Supplies | Bubble Wrap Shop",
+    title: "Contact EcoDailySupplies | UK Packaging Supplier",
     description:
-      "Get in touch with Bubble Wrap Shop. Contact us for packaging supplies, bulk orders, wholesale pricing, or any questions.",
+      "Get in touch for eco-friendly packaging supplies. Call 07397 057703 or email us. Blackburn-based, serving all of UK. Free quotes available.",
     url: `${siteUrl}/contact`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact EcoDailySupplies | UK Packaging",
+    description:
+      "Contact us for packaging supplies UK. Call 07397 057703. Based in Blackburn, Lancashire.",
   },
   alternates: {
     canonical: `${siteUrl}/contact`,

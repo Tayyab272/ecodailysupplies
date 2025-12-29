@@ -1,31 +1,60 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, Package } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+/**
+ * Final CTA Section - SEO-Optimized Call to Action
+ * Targets: "buy packaging online UK", "packaging supplier UK"
+ * Strong conversion-focused copy with trust signals
+ */
 export function FinalCTA() {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white" aria-labelledby="cta-heading">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px]">
         <div className="grid lg:grid-cols-2 min-h-[500px] overflow-hidden">
 
           {/* Left Side - Content */}
           <div className="bg-primary flex flex-col justify-center p-12 md:p-16 lg:p-20 order-2 lg:order-1">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight leading-[1.1]">
-              Ready to deliver exceptional service with <br />
-              <span className="text-white">Bubble Wrap Shop?</span>
+            <h2
+              id="cta-heading"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]"
+            >
+              Start Shipping Smarter with <br />
+              <span className="text-white">EcoDailySupplies</span>
             </h2>
+
+            <p className="text-lg text-gray-800 mb-8 max-w-lg">
+              Join 10,000+ UK businesses saving money on quality packaging supplies.
+              Free delivery over £50, next-day shipping available, and wholesale prices
+              on all orders.
+            </p>
+
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-center gap-3 text-gray-900">
+                <CheckCircle2 className="h-5 w-5 text-gray-900" />
+                <span className="font-medium">Free UK Delivery on Orders Over £50</span>
+              </li>
+              <li className="flex items-center gap-3 text-gray-900">
+                <CheckCircle2 className="h-5 w-5 text-gray-900" />
+                <span className="font-medium">Next-Day Delivery Across Britain</span>
+              </li>
+              <li className="flex items-center gap-3 text-gray-900">
+                <CheckCircle2 className="h-5 w-5 text-gray-900" />
+                <span className="font-medium">Bulk Discounts on All Products</span>
+              </li>
+            </ul>
 
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <Button asChild className="bg-gray-900 text-white hover:bg-gray-800 rounded-full px-8 py-6 text-base font-bold transition-all duration-300 shadow-lg">
-                <Link href="/products">
-                  Shop All Products
+                <Link href="/products" title="Shop packaging supplies UK">
+                  Shop Packaging Supplies
                 </Link>
               </Button>
 
               <Button asChild variant="outline" className="bg-transparent border-gray-900 text-gray-900 hover:bg-white hover:text-gray-900 hover:border-primary rounded-full px-8 py-6 text-base font-bold transition-all duration-300">
-                <Link href="/contact">
-                  Contact Sales
+                <Link href="/b2b-request" title="Request wholesale packaging quote UK">
+                  Get Wholesale Quote
                 </Link>
               </Button>
             </div>
@@ -35,20 +64,20 @@ export function FinalCTA() {
           <div className="relative bg-gray-100 order-1 lg:order-2 h-[400px] lg:h-auto">
             <Image
               src="https://images.unsplash.com/photo-1758351507026-71ad3645cb43?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Business Packaging Team"
+              alt="UK business team packing orders with eco-friendly packaging supplies"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
 
-            {/* Floating Notification Card */}
+            {/* Floating Notification Card - Social Proof */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 lg:-translate-x-0 lg:left-12 lg:bottom-12 bg-white/10 backdrop-blur-md p-4 shadow-xl border border-white/50 flex items-center gap-4 max-w-sm w-[90%] lg:w-auto animate-in slide-in-from-bottom-4 duration-700 fade-in">
               <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center shrink-0">
                 <CheckCircle2 className="h-6 w-6 text-green-600" />
               </div>
               <div>
-                <p className="text-sm font-bold text-white">Order #8834 Shipped</p>
-                <p className="text-xs text-white/50">Next day delivery confirmed</p>
+                <p className="text-sm font-bold text-white">Order Dispatched to Manchester</p>
+                <p className="text-xs text-white/50">Next-day delivery confirmed</p>
               </div>
               <div className="ml-auto">
                 <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase">

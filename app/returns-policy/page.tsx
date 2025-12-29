@@ -2,6 +2,26 @@ import { Breadcrumbs } from "@/components/common";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
+
+export const metadata: Metadata = {
+  title: "Returns & Refund Policy | EcoDailySupplies UK",
+  description:
+    "Read our 30-day returns policy for packaging supplies. Free returns collection, full refunds within 5-7 days. EcoDailySupplies UK customer guarantee.",
+  openGraph: {
+    title: "Returns & Refund Policy | EcoDailySupplies UK",
+    description: "30-day returns policy with free collection. Full refunds processed within 5-7 business days.",
+    url: `${siteUrl}/returns-policy`,
+    siteName: "EcoDailySupplies",
+    locale: "en_GB",
+    type: "website",
+  },
+  alternates: {
+    canonical: `${siteUrl}/returns-policy`,
+  },
+};
 
 export default function RefundPolicyPage() {
   return (
@@ -54,10 +74,10 @@ export default function RefundPolicyPage() {
                 <p>
                   To start a return, you can contact us at{" "}
                   <a
-                    href="mailto:sales@bubblewrapshop.co.uk"
+                    href="mailto:sales@ecodailysupplies.co.uk"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@bubblewrapshop.co.uk
+                    sales@ecodailysupplies.co.uk
                   </a>
                   . Please note that returns will need to be sent to the
                   following address:{" "}
@@ -74,10 +94,10 @@ export default function RefundPolicyPage() {
                 <p>
                   You can always contact us for any return question at{" "}
                   <a
-                    href="mailto:sales@bubblewrapshop.co.uk"
+                    href="mailto:sales@ecodailysupplies.co.uk"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@bubblewrapshop.co.uk
+                    sales@ecodailysupplies.co.uk
                   </a>
                   .
                 </p>
@@ -171,10 +191,10 @@ export default function RefundPolicyPage() {
                   If more than 15 business days have passed since we&apos;ve
                   approved your return, please contact us at{" "}
                   <a
-                    href="mailto:sales@bubblewrapshop.co.uk"
+                    href="mailto:sales@ecodailysupplies.co.uk"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@bubblewrapshop.co.uk
+                    sales@ecodailysupplies.co.uk
                   </a>
                   .
                 </p>

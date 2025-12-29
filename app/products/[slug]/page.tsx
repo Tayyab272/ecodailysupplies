@@ -14,8 +14,8 @@ import { getProductSlugs } from "@/sanity/lib/api";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
-const BRAND_NAME = "Eco Daily Supplies";
-const DEFAULT_SITE_URL = "https://ecodailysupplies.com";
+const BRAND_NAME = "EcoDailySupplies";
+const DEFAULT_SITE_URL = "https://ecodailysupplies.co.uk";
 
 // PERFORMANCE: Code split ProductGallery (heavy image component)
 const ProductGallery = dynamic(

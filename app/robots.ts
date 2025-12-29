@@ -1,17 +1,18 @@
 import { MetadataRoute } from "next";
 
 /**
- * Robots.txt Configuration
+ * Robots.txt Configuration for EcoDailySupplies UK
  * Controls what search engines can crawl and index
- * 
+ *
  * SEO Best Practices:
- * - Allow public pages (products, categories, static pages)
+ * - Allow all public pages (products, categories, static pages)
  * - Block private pages (admin, account, checkout, cart)
  * - Block API routes and internal pages
  * - Point to sitemap.xml for better indexing
+ * - Optimized for Google UK and Bing UK
  */
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://bubblewrapshop.co.uk";
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.co.uk";
 
   return {
     rules: [
@@ -19,34 +20,33 @@ export default function robots(): MetadataRoute.Robots {
         // Default rules for all search engines
         userAgent: "*",
         allow: [
-          "/", // Allow homepage
-          "/products", // Allow products listing
-          "/products/*", // Allow individual product pages
-          "/categories", // Allow categories page
-          "/about", // Allow about page
-          "/contact", // Allow contact page
-          "/faq", // Allow FAQ page
-          "/sustainability", // Allow sustainability page
-          "/terms", // Allow terms page
-          "/privacy", // Allow privacy page
-          "/refund-policy", // Allow refund policy page
+          "/", // Homepage - eco-friendly packaging UK
+          "/products", // Products listing - sustainable packaging supplies
+          "/products/*", // Individual product pages
+          "/categories", // Categories page
+          "/about", // About page - company trust signals
+          "/contact", // Contact page - local SEO
+          "/faq", // FAQ page - featured snippets opportunity
+          "/terms", // Terms page
+          "/privacy", // Privacy page
+          "/returns-policy", // Returns policy page
+          "/b2b-request", // B2B wholesale page
         ],
         disallow: [
           "/api/", // Block all API routes
           "/admin/", // Block admin dashboard
           "/account/", // Block user account pages
-          "/checkout/", // Block checkout pages (private, user-specific)
-          "/cart", // Block cart page (user-specific)
+          "/checkout/", // Block checkout pages
+          "/cart", // Block cart page
           "/auth/", // Block authentication pages
           "/studio/", // Block Sanity Studio
           "/_next/", // Block Next.js internal files
           "/test-supabase/", // Block test pages
-          "/*.json$", // Block JSON files (API responses)
-          // Note: We allow query parameters for category filters as they're in the sitemap
+          "/*.json$", // Block JSON files
         ],
       },
       {
-        // Specific rules for Googlebot
+        // Optimized rules for Googlebot (primary search engine for UK)
         userAgent: "Googlebot",
         allow: [
           "/",
@@ -56,10 +56,10 @@ export default function robots(): MetadataRoute.Robots {
           "/about",
           "/contact",
           "/faq",
-          "/sustainability",
           "/terms",
           "/privacy",
-          "/refund-policy",
+          "/returns-policy",
+          "/b2b-request",
         ],
         disallow: [
           "/api/",
@@ -75,7 +75,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
-        // Rules for Bingbot
+        // Rules for Bingbot (second most used in UK)
         userAgent: "Bingbot",
         allow: [
           "/",
@@ -85,7 +85,7 @@ export default function robots(): MetadataRoute.Robots {
           "/about",
           "/contact",
           "/faq",
-          "/sustainability",
+          "/b2b-request",
         ],
         disallow: [
           "/api/",
@@ -102,10 +102,9 @@ export default function robots(): MetadataRoute.Robots {
     ],
     sitemap: [
       `${siteUrl}/sitemap.xml`,
-      `${siteUrl}/sitemap-images.xml`, // Image sitemap for better image search visibility
+      `${siteUrl}/sitemap-images.xml`,
     ],
-    // Optional: Add host directive for better SEO
-    // host: siteUrl.replace(/^https?:\/\//, ""), // Remove protocol
+    host: "ecodailysupplies.co.uk",
   };
 }
 
