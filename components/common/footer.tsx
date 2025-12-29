@@ -1,14 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Mail,
-  Instagram,
-  Facebook,
-  Twitter,
-  Linkedin,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 /**
  * Footer Component - SEO Optimized
@@ -42,28 +34,20 @@ export function Footer() {
               biodegradable packing materials with free delivery over £50 and
               next-day shipping across Britain.
             </p>
+            {/* Social media links - add URLs when accounts are created
             <div className="flex items-center gap-4">
               <SocialLink
-                href="#"
+                href="https://instagram.com/ecodailysupplies"
                 icon={<Instagram className="h-5 w-5" />}
                 aria-label="Follow EcoDailySupplies on Instagram"
               />
               <SocialLink
-                href="#"
+                href="https://facebook.com/ecodailysupplies"
                 icon={<Facebook className="h-5 w-5" />}
                 aria-label="Follow EcoDailySupplies on Facebook"
               />
-              <SocialLink
-                href="#"
-                icon={<Twitter className="h-5 w-5" />}
-                aria-label="Follow EcoDailySupplies on Twitter"
-              />
-              <SocialLink
-                href="#"
-                icon={<Linkedin className="h-5 w-5" />}
-                aria-label="Follow EcoDailySupplies on LinkedIn"
-              />
             </div>
+            */}
           </div>
 
           {/* Links Columns - SEO Internal Links */}
@@ -197,13 +181,14 @@ function FooterLink({
   );
 }
 
-function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
-  return (
-    <a
-      href={href}
-      className="h-10 w-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:bg-white hover:text-black transition-all duration-300"
-    >
-      {icon}
-    </a>
-  );
-}
+// Uncomment when social media accounts are created
+// function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
+//   return (
+//     <a
+//       href={href}
+//       className="h-10 w-10 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 hover:bg-white hover:text-black transition-all duration-300"
+//     >
+//       {icon}
+//     </a>
+//   );
+// }

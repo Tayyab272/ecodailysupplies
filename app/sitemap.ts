@@ -5,262 +5,147 @@ import { groq } from "next-sanity";
 /**
  * Dynamic Sitemap Generation for EcoDailySupplies UK
  * Generates sitemap.xml for all products, categories, and static pages
- * Optimized for Google UK search rankings
+ * Optimized for Google Search Console indexing
  *
- * SEO Best Practices:
- * - Homepage: Priority 1.0, Daily updates (main landing page)
- * - Product pages: Priority 0.8, Weekly updates (conversion pages)
- * - Category pages: Priority 0.7, Weekly updates (navigation/discovery)
- * - B2B pages: Priority 0.8, Monthly updates (high-value leads)
- * - Static pages: Priority 0.3-0.7, Monthly/Yearly updates
+ * Best Practices:
+ * - Only include pages that actually exist and return 200 status
+ * - Use accurate lastModified dates where possible
+ * - Priority is a hint, not a directive (Google may ignore it)
+ * - Keep sitemap under 50,000 URLs and 50MB uncompressed
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl =
     process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
-  const baseDate = new Date();
+  const currentDate = new Date();
 
-  // Static pages with optimized priorities and change frequencies
+  // Static pages - only include pages that actually exist
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "daily",
       priority: 1.0,
     },
     {
       url: `${siteUrl}/products`,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
       url: `${siteUrl}/categories`,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${siteUrl}/about`,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${siteUrl}/contact`,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${siteUrl}/faq`,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
-      url: `${siteUrl}/sustainability`,
-      lastModified: baseDate,
+      url: `${siteUrl}/b2b-request`,
+      lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
     },
     {
       url: `${siteUrl}/terms`,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${siteUrl}/privacy`,
-      lastModified: baseDate,
+      lastModified: currentDate,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${siteUrl}/refund-policy`,
-      lastModified: baseDate,
+      url: `${siteUrl}/returns-policy`,
+      lastModified: currentDate,
       changeFrequency: "yearly",
       priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/b2b-request`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/wholesale`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/blog`,
-      lastModified: baseDate,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/guides`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    // Location-specific landing pages for local SEO
-    {
-      url: `${siteUrl}/packaging-supplies-blackburn`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/packaging-supplies-manchester`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/packaging-supplies-london`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/packaging-supplies-birmingham`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/packaging-supplies-leeds`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/packaging-supplies-liverpool`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
     },
   ];
 
-  // Fetch all products with _updatedAt from Sanity
+  // Fetch all active products from Sanity
   let productPages: MetadataRoute.Sitemap = [];
   try {
     const products = await client.fetch<
-      Array<{ slug: { current: string }; _updatedAt: string }>
+      Array<{ slug: string; _updatedAt: string }>
     >(
       groq`*[_type == "product" && isActive == true] | order(name asc) {
         "slug": slug.current,
         _updatedAt
-      }`
+      }`,
+      {},
+      { next: { revalidate: 3600 } } // Cache for 1 hour
     );
-    productPages = products.map((product) => ({
-      url: `${siteUrl}/products/${product.slug}`,
-      lastModified: product._updatedAt
-        ? new Date(product._updatedAt)
-        : baseDate,
-      changeFrequency: "weekly" as const,
-      priority: 0.8, // High priority for product pages
-    }));
+
+    if (products && products.length > 0) {
+      productPages = products
+        .filter((product) => product.slug) // Only include products with valid slugs
+        .map((product) => ({
+          url: `${siteUrl}/products/${product.slug}`,
+          lastModified: product._updatedAt
+            ? new Date(product._updatedAt)
+            : currentDate,
+          changeFrequency: "weekly" as const,
+          priority: 0.8,
+        }));
+    }
   } catch (error) {
-    console.error("Error fetching products for sitemap:", error);
-    // Continue without products - don't break the sitemap
+    console.error("Sitemap: Error fetching products:", error);
   }
 
-  // Fetch all categories with _updatedAt from Sanity
+  // Fetch all active categories from Sanity
   let categoryPages: MetadataRoute.Sitemap = [];
   try {
     const categories = await client.fetch<
-      Array<{ slug: { current: string }; _updatedAt: string }>
+      Array<{ slug: string; _updatedAt: string }>
     >(
       groq`*[_type == "category" && isActive == true] | order(sortOrder asc, name asc) {
         "slug": slug.current,
         _updatedAt
-      }`
+      }`,
+      {},
+      { next: { revalidate: 3600 } } // Cache for 1 hour
     );
-    if (categories) {
-      categoryPages = categories.map((category) => ({
-        url: `${siteUrl}/products?category=${category.slug}`,
-        lastModified: category._updatedAt
-          ? new Date(category._updatedAt)
-          : baseDate,
-        changeFrequency: "weekly" as const,
-        priority: 0.7, // Medium-high priority for category pages
-      }));
+
+    if (categories && categories.length > 0) {
+      categoryPages = categories
+        .filter((category) => category.slug) // Only include categories with valid slugs
+        .map((category) => ({
+          url: `${siteUrl}/products?category=${category.slug}`,
+          lastModified: category._updatedAt
+            ? new Date(category._updatedAt)
+            : currentDate,
+          changeFrequency: "weekly" as const,
+          priority: 0.7,
+        }));
     }
   } catch (error) {
-    console.error("Error fetching categories for sitemap:", error);
-    // Continue without categories - don't break the sitemap
+    console.error("Sitemap: Error fetching categories:", error);
   }
 
-  // Buying guide pages
-  const guidePages: MetadataRoute.Sitemap = [
-    {
-      url: `${siteUrl}/guides/packaging-boxes-guide`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/guides/bubble-wrap-guide`,
-      lastModified: baseDate,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-  ];
-
-  // Blog pages
-  const blogPages: MetadataRoute.Sitemap = [
-    {
-      url: `${siteUrl}/blog/how-to-choose-the-right-packaging-box`,
-      lastModified: new Date("2024-12-15"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/blog/bubble-wrap-vs-foam-which-is-better`,
-      lastModified: new Date("2024-12-10"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/blog/packaging-tips-for-fragile-items`,
-      lastModified: new Date("2024-12-05"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/blog/eco-friendly-packaging-alternatives`,
-      lastModified: new Date("2024-11-28"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/blog/how-to-calculate-packaging-costs`,
-      lastModified: new Date("2024-11-20"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${siteUrl}/blog/cardboard-box-sizes-guide`,
-      lastModified: new Date("2024-11-15"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-  ];
-
   // Combine all pages
-  // Sort by priority (highest first) for better SEO
-  const allPages = [
-    ...staticPages,
-    ...productPages,
-    ...categoryPages,
-    ...blogPages,
-    ...guidePages,
-  ];
+  const allPages = [...staticPages, ...productPages, ...categoryPages];
 
-  // Sort by priority (descending) - helps search engines prioritize important pages
+  // Sort by priority (descending) for better organization
   allPages.sort((a, b) => (b.priority || 0) - (a.priority || 0));
 
   return allPages;

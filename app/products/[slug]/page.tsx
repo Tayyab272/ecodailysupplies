@@ -165,11 +165,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       },
     },
     category: product.category || "Packaging Supplies",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.5",
-      reviewCount: "10",
-    },
   };
 
   return (

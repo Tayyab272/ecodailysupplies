@@ -139,7 +139,7 @@ export function Header({ categories = MOCK_CATEGORIES }: HeaderProps) {
             <Link href="/" className="shrink-0 cursor-pointer group relative">
               <Image
                 src="/logo.webp"
-                alt="Logo"
+                alt="EcoDailySupplies - Eco-Friendly Packaging Supplier UK"
                 width={120}
                 height={40}
                 className="h-10 lg:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"

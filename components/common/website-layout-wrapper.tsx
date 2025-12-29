@@ -42,7 +42,7 @@ export function WebsiteLayoutWrapper({
 
       {/* Floating WhatsApp Button */}
       <WhatsAppButton
-        phoneNumber="+447882851632"
+        phoneNumber="+447397057703"
         message="Hi! I'm interested in your packaging products."
         position="left"
       />
