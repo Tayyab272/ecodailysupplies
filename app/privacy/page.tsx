@@ -635,10 +635,10 @@ export default function PrivacyPolicyPage() {
                   <p>
                     Email:{" "}
                     <a
-                      href="mailto:sales@ecodailysupplies.com"
+                      href="mailto:info@ecodailysupplies.com"
                       className="text-primary underline hover:text-primary/80 font-medium"
                     >
-                      sales@ecodailysupplies.com
+                      info@ecodailysupplies.com
                     </a>
                   </p>
                   <p>

@@ -73,7 +73,7 @@ export async function sendOrderConfirmationEmail(
       throw new Error("Failed to render email template: HTML is not a string");
     }
 
-    const adminEmail = `sales@${emailDomain}`;
+    const adminEmail = `info@${emailDomain}`;
 
     // Send email to customer with reply-to header
     const customerResult = await resend.emails.send({
@@ -407,7 +407,7 @@ export async function sendOrderShippedEmail(
                 <tr>
                   <td style="background-color: #f5f5f5; padding: 28px 32px; text-align: center; border-top: 1px solid #e0e0e0;">
                     <p style="margin: 0 0 10px; font-size: 13px; color: #666666;">
-                      Questions? Contact us at <a href="mailto:sales@ecodailysupplies.com" style="color: #1a1a1a; text-decoration: underline;">sales@ecodailysupplies.com</a>
+                      Questions? Contact us at <a href="mailto:info@ecodailysupplies.com" style="color: #1a1a1a; text-decoration: underline;">info@ecodailysupplies.com</a>
                     </p>
                     ${companyFooter}
                     <p style="margin: 0; font-size: 11px; color: #aaaaaa;">

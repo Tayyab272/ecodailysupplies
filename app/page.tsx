@@ -136,7 +136,7 @@ export default async function Home() {
       contactType: "Customer Service",
       areaServed: "GB",
       availableLanguage: "English",
-      email: "sales@ecodailysupplies.com",
+      email: "info@ecodailysupplies.com",
     },
     sameAs: [
       // Add social media links when available
@@ -172,7 +172,7 @@ export default async function Home() {
     image: `${siteUrl}/logo.webp`,
     url: siteUrl,
     telephone: "+44-7882-851632",
-    email: "sales@ecodailysupplies.com",
+    email: "info@ecodailysupplies.com",
     priceRange: "££",
     paymentAccepted: "Credit Card, Debit Card, Bank Transfer, PayPal",
     currenciesAccepted: "GBP",
@@ -280,7 +280,7 @@ export default async function Home() {
     image: `${siteUrl}/logo.webp`,
     url: siteUrl,
     telephone: "+44-7882-851632",
-    email: "sales@ecodailysupplies.com",
+    email: "info@ecodailysupplies.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Unit BR16 Blakewater Road",

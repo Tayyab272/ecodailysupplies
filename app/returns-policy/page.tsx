@@ -74,10 +74,10 @@ export default function RefundPolicyPage() {
                 <p>
                   To start a return, you can contact us at{" "}
                   <a
-                    href="mailto:sales@ecodailysupplies.com"
+                    href="mailto:info@ecodailysupplies.com"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@ecodailysupplies.com
+                    info@ecodailysupplies.com
                   </a>
                   . Please note that returns will need to be sent to the
                   following address:{" "}
@@ -94,10 +94,10 @@ export default function RefundPolicyPage() {
                 <p>
                   You can always contact us for any return question at{" "}
                   <a
-                    href="mailto:sales@ecodailysupplies.com"
+                    href="mailto:info@ecodailysupplies.com"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@ecodailysupplies.com
+                    info@ecodailysupplies.com
                   </a>
                   .
                 </p>
@@ -191,10 +191,10 @@ export default function RefundPolicyPage() {
                   If more than 15 business days have passed since we&apos;ve
                   approved your return, please contact us at{" "}
                   <a
-                    href="mailto:sales@ecodailysupplies.com"
+                    href="mailto:info@ecodailysupplies.com"
                     className="text-primary underline hover:text-primary/80 font-medium"
                   >
-                    sales@ecodailysupplies.com
+                    info@ecodailysupplies.com
                   </a>
                   .
                 </p>

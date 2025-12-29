@@ -85,7 +85,7 @@ const faqData = [
       {
         question: "Do you offer trade accounts?",
         answer:
-          "We welcome trade customers! UK businesses can apply for a trade account to receive preferential pricing, dedicated account management, and flexible payment terms. Contact our B2B team at sales@ecodailysupplies.com for more information.",
+          "We welcome trade customers! UK businesses can apply for a trade account to receive preferential pricing, dedicated account management, and flexible payment terms. Contact our B2B team at info@ecodailysupplies.com for more information.",
       },
       {
         question: "Are prices shown inclusive of VAT?",
@@ -130,7 +130,7 @@ const faqData = [
       {
         question: "How can I contact your UK support team?",
         answer:
-          "Our friendly UK-based team is here to help! Call us on 07397 057703 (Mon-Fri, 9am-5pm), email sales@ecodailysupplies.com, or use our contact form. We typically respond to emails within 2 hours during business hours.",
+          "Our friendly UK-based team is here to help! Call us on 07397 057703 (Mon-Fri, 9am-5pm), email info@ecodailysupplies.com, or use our contact form. We typically respond to emails within 2 hours during business hours.",
       },
       {
         question: "Can I cancel or modify my order?",

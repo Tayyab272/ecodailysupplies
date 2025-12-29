@@ -10,7 +10,7 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com
 export const metadata: Metadata = {
   title: "Contact EcoDailySupplies | UK Packaging Supplier | Blackburn, Lancashire",
   description:
-    "Contact EcoDailySupplies for eco-friendly packaging supplies in the UK. Call 07397 057703 or email sales@ecodailysupplies.com. Based in Blackburn, Lancashire. Free quotes, wholesale enquiries, bulk orders welcome. Mon-Fri 9AM-6PM.",
+    "Contact EcoDailySupplies for eco-friendly packaging supplies in the UK. Call 07397 057703 or email info@ecodailysupplies.com. Based in Blackburn, Lancashire. Free quotes, wholesale enquiries, bulk orders welcome. Mon-Fri 9AM-6PM.",
   keywords: [
     "contact packaging supplier UK",
     "packaging company Blackburn",

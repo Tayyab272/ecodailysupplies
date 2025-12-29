@@ -59,16 +59,16 @@ const useVerifiedDomain = isProduction || !!process.env.RESEND_EMAIL_DOMAIN;
  * Uses verified domain when available (production or RESEND_EMAIL_DOMAIN is set)
  */
 export const EMAIL_CONFIG = {
-  // From addresses - using sales@ for better deliverability
+  // From addresses - using info@ for all communications
   from: {
     orders: useVerifiedDomain
-      ? `Eco Daily Supplies <sales@${emailDomain}>`
+      ? `Eco Daily Supplies <info@${emailDomain}>`
       : "Eco Daily Supplies <onboarding@resend.dev>",
     support: useVerifiedDomain
-      ? `Eco Daily Supplies <sales@${emailDomain}>`
+      ? `Eco Daily Supplies <info@${emailDomain}>`
       : "Eco Daily Supplies <onboarding@resend.dev>",
     noreply: useVerifiedDomain
-      ? `Eco Daily Supplies <sales@${emailDomain}>`
+      ? `Eco Daily Supplies <info@${emailDomain}>`
       : "Eco Daily Supplies <onboarding@resend.dev>",
   },
 

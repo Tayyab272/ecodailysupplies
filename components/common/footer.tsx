@@ -118,11 +118,11 @@ export function Footer() {
                 <li className="flex items-start gap-3 text-zinc-400">
                   <Mail className="h-5 w-5 shrink-0 mt-0.5" aria-hidden="true" />
                   <a
-                    href="mailto:sales@ecodailysupplies.com"
+                    href="mailto:info@ecodailysupplies.com"
                     className="hover:text-white transition-colors"
                     title="Email EcoDailySupplies"
                   >
-                    sales@ecodailysupplies.com
+                    info@ecodailysupplies.com
                   </a>
                 </li>
                 <li className="flex items-start gap-3 text-zinc-400">

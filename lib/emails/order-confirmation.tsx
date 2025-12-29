@@ -553,13 +553,13 @@ export const OrderConfirmationEmail: React.FC<
                     >
                       Questions about your order? Contact us at{" "}
                       <a
-                        href="mailto:sales@ecodailysupplies.com"
+                        href="mailto:info@ecodailysupplies.com"
                         style={{
                           color: "#1a1a1a",
                           textDecoration: "underline",
                         }}
                       >
-                        sales@ecodailysupplies.com
+                        info@ecodailysupplies.com
                       </a>
                     </p>
                     <p

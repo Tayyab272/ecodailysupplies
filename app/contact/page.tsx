@@ -268,10 +268,10 @@ export default function ContactPage() {
                       Email
                     </h3>
                     <a
-                      href="mailto:sales@ecodailysupplies.com"
+                      href="mailto:info@ecodailysupplies.com"
                       className="block text-sm font-medium text-gray-900 hover:text-primary transition-colors break-all"
                     >
-                      sales@ecodailysupplies.com
+                      info@ecodailysupplies.com
                     </a>
                   </div>
                 </div>
