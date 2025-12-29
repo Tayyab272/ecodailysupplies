@@ -209,47 +209,47 @@ export function HeroCarousel({ banners }: HeroCarouselProps) {
       </div>
 
       {/* Trust Bar - Professional & Clean */}
-      <div className="w-full bg-primary border-b border-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="w-full bg-primary py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-            <div className="flex items-center justify-center gap-4 py-2">
-              <div className="p-3 rounded-full bg-primary/5 text-white">
-                <Truck className="h-6 w-6" strokeWidth={1.5} />
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 py-2">
+              <div className="p-2 sm:p-3 rounded-full bg-white/10 text-white">
+                <Truck className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" strokeWidth={1.5} />
               </div>
-              <div className="text-left">
-                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+              <div className="text-center sm:text-left">
+                <h3 className="text-[10px] sm:text-xs md:text-sm font-bold text-gray-900 uppercase tracking-wide">
                   Fast Delivery
                 </h3>
-                <p className="text-sm text-gray-100">
-                  Free shipping on orders over $50
+                <p className="text-[9px] sm:text-xs md:text-sm text-gray-800 hidden sm:block">
+                  Free shipping over $50
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-4 py-2">
-              <div className="p-3 rounded-full bg-primary/5 text-white">
-                <ShieldCheck className="h-6 w-6" strokeWidth={1.5} />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 py-2">
+              <div className="p-2 sm:p-3 rounded-full bg-white/10 text-white">
+                <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" strokeWidth={1.5} />
               </div>
-              <div className="text-left">
-                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+              <div className="text-center sm:text-left">
+                <h3 className="text-[10px] sm:text-xs md:text-sm font-bold text-gray-900 uppercase tracking-wide">
                   Quality Guarantee
                 </h3>
-                <p className="text-sm text-gray-100">
-                  30-day money back guarantee
+                <p className="text-[9px] sm:text-xs md:text-sm text-gray-800 hidden sm:block">
+                  30-day money back
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center justify-center gap-4 py-2">
-              <div className="p-3 rounded-full bg-primary/5 text-white">
-                <Leaf className="h-6 w-6" strokeWidth={1.5} />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 py-2">
+              <div className="p-2 sm:p-3 rounded-full bg-white/10 text-white">
+                <Leaf className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" strokeWidth={1.5} />
               </div>
-              <div className="text-left">
-                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+              <div className="text-center sm:text-left">
+                <h3 className="text-[10px] sm:text-xs md:text-sm font-bold text-gray-900 uppercase tracking-wide">
                   Eco-Friendly
                 </h3>
-                <p className="text-sm text-gray-100">
-                  100% sustainable materials
+                <p className="text-[9px] sm:text-xs md:text-sm text-gray-800 hidden sm:block">
+                  Sustainable materials
                 </p>
               </div>
             </div>

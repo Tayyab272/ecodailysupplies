@@ -28,8 +28,8 @@ export function CategoryList({ categories }: CategoryListProps) {
           </p>
         </div>
 
-        {/* Category Grid - Clean Circular Design */}
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10">
+        {/* Category Grid - Responsive Grid Layout */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 max-w-4xl mx-auto">
           {categories.map((category, index) => (
             <motion.div
               key={category.id}
@@ -37,37 +37,38 @@ export function CategoryList({ categories }: CategoryListProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="flex justify-center"
             >
               <Link
                 href={`/products?category=${category.slug}`}
-                className="group flex flex-col items-center text-center"
+                className="group flex flex-col items-center text-center w-full max-w-[140px] sm:max-w-[160px]"
               >
                 {/* Circular Image Container */}
-                <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 mb-4 rounded-full overflow-hidden bg-white border-2 border-gray-400  group-hover:border-primary transition-all duration-300 shadow-sm group-hover:shadow-lg">
-                  <div className="absolute inset-2 rounded-full overflow-hidden bg-gray-100">
+                <div className="relative w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] md:w-[140px] md:h-[140px] mb-3 rounded-full overflow-hidden bg-white border-2 border-gray-300 group-hover:border-primary transition-all duration-300 shadow-sm group-hover:shadow-lg">
+                  <div className="absolute inset-1.5 sm:inset-2 rounded-full overflow-hidden bg-gray-100">
                     {category.image ? (
                       <Image
                         src={category.image}
                         alt={category.imageAlt || category.name}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        sizes="(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 144px, 160px"
+                        sizes="(max-width: 640px) 100px, (max-width: 768px) 120px, 140px"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                        <span className="text-3xl">📦</span>
+                        <span className="text-2xl sm:text-3xl">📦</span>
                       </div>
                     )}
                   </div>
                 </div>
 
                 {/* Category Name */}
-                <h3 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors duration-300 line-clamp-2 px-1">
                   {category.name}
                 </h3>
 
                 {/* Subtle Arrow on Hover */}
-                <div className="flex items-center gap-1 mt-1 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                <div className="flex items-center gap-1 mt-1 text-[10px] sm:text-xs text-gray-400 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
                   <span>Explore</span>
                   <ArrowRight className="h-3 w-3" />
                 </div>
