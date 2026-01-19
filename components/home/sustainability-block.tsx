@@ -22,14 +22,12 @@ export function SustainabilityBlock() {
               id="sustainability-heading"
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 tracking-tight leading-tight"
             >
-              Sustainable Packaging <br />
-              <span className="text-zinc-900">for UK Businesses</span>
+              Eco Packaging Supplies <br />
+              <span className="text-zinc-900">for Small Businesses in the UK</span>
             </h2>
 
             <p className="text-lg text-zinc-900 mb-12 leading-relaxed max-w-xl">
-              Join thousands of UK businesses choosing eco-friendly packaging solutions. Our 100% recyclable
-              and biodegradable packaging materials help reduce your carbon footprint whilst protecting
-              your products. Made from sustainable sources, delivered carbon-neutral across Britain.
+              EcoDailySupplies is a reputable supply company in the UK that offers useful and, at the same time, sustainable packaging. Our small business specialises in  eco packaging supplies for small businesses and would provide trusted solutions for clients regarding packaging, paper products, cleaning materials, and safety supplies. Our products would suit the day to day requirement of offices, retailers, hospitality establishments and eCommerce businesses within the UK.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-8 mb-12">

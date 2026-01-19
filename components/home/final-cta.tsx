@@ -20,14 +20,12 @@ export function FinalCTA() {
               id="cta-heading"
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight leading-[1.1]"
             >
-              Start Shipping Smarter with <br />
-              <span className="text-white">EcoDailySupplies</span>
+              Everyday Supplies <br />
+              <span className="text-white">That Support Smarter Business Operations</span>
             </h2>
 
             <p className="text-lg text-gray-800 mb-8 max-w-lg">
-              Join 10,000+ UK businesses saving money on quality packaging supplies.
-              Free delivery over £50, next-day shipping available, and wholesale prices
-              on all orders.
+              We have listed packaging materials, paper products, cleaning supplies, medical and safety necessities in our catalogue. The products are selected well in terms of longevity, value, and UK quality standards.
             </p>
 
             <ul className="space-y-3 mb-8">

@@ -23,11 +23,17 @@ const siteUrl =
  * Enhances E-E-A-T signals for Google rankings
  */
 export const metadata: Metadata = {
-  title: "About EcoDailySupplies | UK's Trusted Eco-Friendly Packaging Supplier",
+  title: "About EcoDailySupplies: Eco Supplies for UK Businesses",
   description:
-    "EcoDailySupplies is the UK's leading eco-friendly packaging supplier. Based in Blackburn, Lancashire, we've served 10,000+ British businesses with sustainable packaging supplies since 2009. Free UK delivery, next-day shipping, wholesale prices.",
+    "Learn about EcoDailySupplies, a UK supplier providing eco packaging, paper, and safety supplies for businesses with reliable delivery and quality service.",
   keywords: [
+    "eco supplies for UK businesses",
+    "sustainable packaging supplier UK",
+    "wholesale eco supplies",
     "packaging supplier UK",
+    "responsible business supplies",
+    "eco packaging supplier",
+    "sustainable business products",
     "eco-friendly packaging company",
     "sustainable packaging supplier",
     "UK packaging company",
@@ -90,15 +96,17 @@ export default function AboutPage() {
 
                 {/* Main Heading */}
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-[1.1]">
-                  Premium Packaging Solutions
-                  <span className="block mt-2 md:mt-3">for Your Business</span>
+                  About EcoDailySupplies
                 </h1>
 
                 {/* Description */}
                 <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  We are a leading provider of premium eco-friendly packaging
-                  supplies, serving businesses across industries with
-                  sustainable, high-quality solutions.
+                  EcoDailySupplies is a dominant supplier of reliable eco
+                  supplies for UK businesses, with its suppliers being
+                  London-based businesses. We supply organisations, big or
+                  small, with convenient, responsibly obtained products that can
+                  be used to facilitate the daily processes and promote more
+                  responsible buying choices.
                 </p>
 
                 {/* Decorative Line */}
@@ -140,17 +148,20 @@ export default function AboutPage() {
             </div>
             <div className="space-y-6 text-base leading-relaxed text-gray-600 md:text-lg">
               <p>
-                We are a leading provider of premium eco-friendly packaging
-                supplies, serving businesses across industries with sustainable,
-                high-quality solutions. We combine exceptional quality with
-                innovative design to protect and enhance your products while
-                caring for our planet.
+                EcoDailySupplies was formed with the aim of satisfying the
+                rising pressure of business needs to have some responsible
+                performance blends. Most organisations desire to make an
+                improved purchasing decision, and yet they cannot identify
+                suppliers who provide consistent quality, a fair price, and
+                reliable delivery..
               </p>
               <p>
-                With over 15 years of experience, we&apos;ve built a reputation
-                for reliability, quality, and exceptional customer service. Our
-                automated bulk pricing ensures you get the best value whether
-                you&apos;re ordering 10 units or 10,000.
+                EcoDailySupplies is the gap that we have created. Through
+                collaborating with reputable manufacturers and suppliers of
+                logistics, it will be guaranteed that our products are of UK
+                standards; at the same time, they will be available to small and
+                medium-sized business enterprises and large commercial
+                enterprises.
               </p>
             </div>
           </div>
@@ -234,10 +245,10 @@ export default function AboutPage() {
                   <Heart className="h-6 w-6 text-primary" strokeWidth={2} />
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900">
-                  Our Commitment
+                  Our Approach to Responsible Sourcing
                 </h3>
               </div>
-              <ul className="space-y-4">
+              {/* <ul className="space-y-4">
                 <li className="flex items-start gap-3">
                   <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                   <span className="text-sm md:text-base leading-relaxed text-gray-600">
@@ -268,7 +279,20 @@ export default function AboutPage() {
                     Exceptional customer service
                   </span>
                 </li>
-              </ul>
+              </ul> */}
+              <p className="text-sm md:text-base leading-relaxed text-gray-600">
+                At EcoDailySupplies, the process of responsibility begins with
+                product selection. Our suppliers are focused on quality
+                management, sustainable packaging supplier UK and efficient
+                production procedures.
+                <br />
+                <br />
+                Our products utilize recyclable or biodegradable materials a
+                lot, and this contributes towards businesses not having to
+                compromise performance by reducing their waste. Although we are
+                constantly broadening our scope, we are determined to be
+                transparent and pragmatic as opposed to trends or greenwashing.
+              </p>
             </div>
 
             <div className="group bg-white rounded-lg border border-gray-300 shadow-sm p-8 hover:shadow-md transition-all duration-300">
@@ -277,41 +301,25 @@ export default function AboutPage() {
                   <Leaf className="h-6 w-6 text-primary" strokeWidth={2} />
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900">
-                  Why Choose Us
+                  Supporting UK Businesses at Every Stage
                 </h3>
               </div>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
-                    Industry-leading sustainable practices
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
-                    Trusted by 10,000+ businesses
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
-                    Comprehensive product range
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
-                    15+ years of packaging expertise
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm md:text-base leading-relaxed text-gray-600">
-                    Competitive pricing guaranteed
-                  </span>
-                </li>
-              </ul>
+              <p className="text-sm md:text-base leading-relaxed text-gray-600">
+                We are aware that there are no two businesses that can run in
+                the same manner. This is why we have been assisting
+                organisations during all stages of growth, from start-ups when
+                they make their first bulk orders, to already existing companies
+                with recurring supply requirements.
+                <br />
+                <br />
+                Taking orders in high quantities, buying at good-better-best,
+                and constantly replenishing stock; these are the advantages of
+                our wholesale eco supplies service, which will enable businesses
+                to be environmentally conscious and conscious of their
+                operational costs. This will assist in eliminating stress in the
+                procurement process, and there will not be any disruption in
+                operations.
+              </p>
             </div>
           </div>
 

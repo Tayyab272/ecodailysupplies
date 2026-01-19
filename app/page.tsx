@@ -26,11 +26,12 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com
  * Secondary: Wholesale, B2B, sustainable packaging
  */
 export const metadata: Metadata = {
-  title: "Eco-Friendly Packaging Supplies UK | Buy Boxes, Bubble Wrap & Sustainable Packing | EcoDailySupplies",
+  title: "Eco Packaging Supplies for Small Businesses ",
   description:
-    "Shop eco-friendly packaging supplies online in the UK. Buy sustainable bubble wrap, recyclable cardboard boxes, biodegradable packing materials at wholesale prices. Free delivery over £50. Next-day UK shipping. Trusted by 10,000+ British businesses.",
+    "Shop eco packaging supplies for small businesses in the UK. Recyclable, biodegradable and bulk packaging, cleaning and safety products with fast UK delivery.",
   keywords: [
     // Primary Keywords (Highest Search Volume UK)
+    "eco packaging supplies for small businesses",
     "packaging supplies UK",
     "eco-friendly packaging UK",
     "cardboard boxes UK",
@@ -61,6 +62,13 @@ export const metadata: Metadata = {
     "best packaging supplies UK",
     "next day packaging delivery UK",
     "free delivery packaging UK",
+    "sustainable packaging supplier UK",
+    "recyclable packaging materials",
+    "biodegradable packaging options",
+    "Wholesale Eco Supplies UK",
+    "eco friendly paper products",
+    "cleaning and safety supplies UK",
+
 
     // Local Keywords
     "packaging supplies near me",

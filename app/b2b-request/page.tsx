@@ -16,10 +16,15 @@ const siteUrl =
   process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 export const metadata: Metadata = {
-  title: "Wholesale Packaging UK | B2B Bulk Order Quote | EcoDailySupplies",
+  title: "Wholesale Eco Supplies for Businesses: B2B Requests",
   description:
-    "Request a wholesale packaging quote from EcoDailySupplies UK. Bulk pricing for businesses. Competitive rates on large orders of eco-friendly boxes, bubble wrap & packaging materials. Next-day delivery available.",
+    "Request wholesale eco supplies for your business. Explore bulk packaging, paper, cleaning and safety products with competitive pricing and fast UK delivery.",
   keywords: [
+    "wholesale eco supplies UK",
+    "eco packaging wholesale",
+    "bulk business supplies UK",
+    "B2B packaging supplies",
+    "wholesale paper and cleaning supplies",
     "wholesale packaging UK",
     "B2B packaging supplier",
     "bulk packaging supplies UK",
@@ -95,14 +100,13 @@ export default function B2BRequestPage() {
 
                 {/* Main Heading */}
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-[1.1]">
-                  Request a Custom Quote
+                  Wholesale Eco Supplies for UK Businesses
                 </h1>
 
                 {/* Description */}
                 <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  Need bulk packaging supplies? Get competitive wholesale
-                  pricing for your business. Fill out the form below and our
-                  team will provide a custom quote within 1-2 business days.
+                  When placing a B2B order, you will receive personalized
+                  pricing, quantity breaks, and special service from our team.
                 </p>
 
                 {/* Decorative Line */}

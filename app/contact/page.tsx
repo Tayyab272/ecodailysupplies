@@ -91,7 +91,9 @@ export default function ContactPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name } = e.target;
     // Clear error for this field when user starts typing
     if (errors[name as keyof FormErrors]) {
@@ -172,7 +174,7 @@ export default function ContactPage() {
       } else {
         setSubmitStatus("error");
         setErrorMessage(
-          result.error || "Failed to send message. Please try again."
+          result.error || "Failed to send message. Please try again.",
         );
       }
     } catch (error) {
@@ -220,13 +222,17 @@ export default function ContactPage() {
 
                 {/* Main Heading */}
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tight leading-[1.1]">
-                  We&apos;re Here to Help
+                  Contact EcoDailySupplies: UK Business Support
                 </h1>
 
                 {/* Description */}
                 <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  Have questions about our eco-friendly packaging? We&apos;d love to
-                  hear from you.
+                  We are glad to see you at EcoDailySupplies. We are here to
+                  answer all queries that an individual may have concerning our
+                  products, services, wholesale eco supplies, delivery, as well
+                  as business enquiries. Our UK support team is available to
+                  help you make correct decisions about eco packaging, paper,
+                  cleaning, or safety supplies, etc.
                 </p>
 
                 {/* Decorative Line */}
@@ -261,7 +267,10 @@ export default function ContactPage() {
               <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 transition-all duration-300 group hover:shadow-md">
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
-                    <Mail className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
+                    <Mail
+                      className="h-6 w-6 text-primary group-hover:text-white transition-colors"
+                      strokeWidth={2}
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -281,7 +290,10 @@ export default function ContactPage() {
               <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 transition-all duration-300 group hover:shadow-md">
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
-                    <Phone className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
+                    <Phone
+                      className="h-6 w-6 text-primary group-hover:text-white transition-colors"
+                      strokeWidth={2}
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -305,7 +317,10 @@ export default function ContactPage() {
               <div className="bg-white rounded-lg border border-gray-300 shadow-sm p-6 transition-all duration-300 group hover:shadow-md">
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 shrink-0 group-hover:bg-primary transition-colors">
-                    <MapPin className="h-6 w-6 text-primary group-hover:text-white transition-colors" strokeWidth={2} />
+                    <MapPin
+                      className="h-6 w-6 text-primary group-hover:text-white transition-colors"
+                      strokeWidth={2}
+                    />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">
@@ -375,7 +390,9 @@ export default function ContactPage() {
                             : "border-gray-300 focus-visible:ring-primary"
                         } bg-white focus-visible:ring-1 transition-all`}
                         aria-invalid={errors.name ? "true" : "false"}
-                        aria-describedby={errors.name ? "name-error" : undefined}
+                        aria-describedby={
+                          errors.name ? "name-error" : undefined
+                        }
                       />
                       {errors.name && (
                         <p
@@ -409,7 +426,9 @@ export default function ContactPage() {
                             : "border-gray-300 focus-visible:ring-primary"
                         } bg-white focus-visible:ring-1 transition-all`}
                         aria-invalid={errors.email ? "true" : "false"}
-                        aria-describedby={errors.email ? "email-error" : undefined}
+                        aria-describedby={
+                          errors.email ? "email-error" : undefined
+                        }
                       />
                       {errors.email && (
                         <p
@@ -461,7 +480,9 @@ export default function ContactPage() {
                             : "border-gray-300 focus-visible:ring-primary"
                         } bg-white focus-visible:ring-1 transition-all`}
                         aria-invalid={errors.phone ? "true" : "false"}
-                        aria-describedby={errors.phone ? "phone-error" : undefined}
+                        aria-describedby={
+                          errors.phone ? "phone-error" : undefined
+                        }
                       />
                       {errors.phone && (
                         <p
@@ -496,7 +517,9 @@ export default function ContactPage() {
                           : "border-gray-300 focus-visible:ring-primary"
                       } bg-white focus-visible:ring-1 transition-all`}
                       aria-invalid={errors.subject ? "true" : "false"}
-                      aria-describedby={errors.subject ? "subject-error" : undefined}
+                      aria-describedby={
+                        errors.subject ? "subject-error" : undefined
+                      }
                     />
                     {errors.subject && (
                       <p
@@ -530,7 +553,9 @@ export default function ContactPage() {
                           : "border-gray-300 focus-visible:ring-primary"
                       } bg-white focus-visible:ring-1 transition-all`}
                       aria-invalid={errors.message ? "true" : "false"}
-                      aria-describedby={errors.message ? "message-error" : undefined}
+                      aria-describedby={
+                        errors.message ? "message-error" : undefined
+                      }
                     />
                     {errors.message && (
                       <p

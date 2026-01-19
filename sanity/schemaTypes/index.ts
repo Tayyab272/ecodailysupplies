@@ -6,6 +6,7 @@ import { pricingTier } from "./pricingTier";
 import { banner } from "./banner";
 import { announcement } from "./announcement";
 import { blogPost } from "./blog-post";
+import { seo, faqItem } from "./seo";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -19,5 +20,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     // Embedded types
     productVariant,
     pricingTier,
+
+    // SEO types
+    seo,
+    faqItem,
   ],
 };

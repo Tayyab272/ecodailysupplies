@@ -93,6 +93,40 @@ export interface SanityProduct {
   }>;
 }
 
+export interface SanitySEOFields {
+  metaTitle?: string;
+  metaDescription?: string;
+  shareImage?: {
+    asset?: {
+      _id: string;
+      url: string;
+      metadata?: {
+        dimensions?: {
+          width: number;
+          height: number;
+        };
+      };
+    };
+    alt?: string;
+  };
+  keywords?: Array<{
+    _key?: string;
+    term: string;
+    relevance?: "primary" | "secondary" | "related";
+    entityType?: string;
+  }>;
+  canonicalUrl?: string;
+  structuredData?: string;
+  noIndex?: boolean;
+  noFollow?: boolean;
+}
+
+export interface SanityFAQItem {
+  _key?: string;
+  question: string;
+  answer: string;
+}
+
 export interface SanityCategory {
   _id: string;
   _type: string;
@@ -114,6 +148,8 @@ export interface SanityCategory {
   };
   isActive: boolean;
   sortOrder: number;
+  seo?: SanitySEOFields;
+  faq?: SanityFAQItem[];
 }
 
 export interface SanityBanner {
@@ -268,10 +304,10 @@ export function transformSanityProduct(sanityProduct: SanityProduct) {
 // Transform Sanity category to our Category type
 export function transformSanityCategory(sanityCategory: SanityCategory) {
   // Generate descriptive alt text for category images
-  const categoryImageAlt = sanityCategory.image?.alt 
+  const categoryImageAlt = sanityCategory.image?.alt
     ? sanityCategory.image.alt
     : `${sanityCategory.name} packaging supplies category`;
-  
+
   return {
     id: sanityCategory._id,
     name: sanityCategory.name,
@@ -281,6 +317,25 @@ export function transformSanityCategory(sanityCategory: SanityCategory) {
     imageAlt: categoryImageAlt,
     isActive: sanityCategory.isActive,
     sortOrder: sanityCategory.sortOrder,
+    // SEO fields
+    seo: sanityCategory.seo ? {
+      metaTitle: sanityCategory.seo.metaTitle,
+      metaDescription: sanityCategory.seo.metaDescription,
+      shareImage: sanityCategory.seo.shareImage ? {
+        asset: sanityCategory.seo.shareImage.asset,
+        alt: sanityCategory.seo.shareImage.alt,
+      } : undefined,
+      keywords: sanityCategory.seo.keywords,
+      canonicalUrl: sanityCategory.seo.canonicalUrl,
+      structuredData: sanityCategory.seo.structuredData,
+      noIndex: sanityCategory.seo.noIndex,
+      noFollow: sanityCategory.seo.noFollow,
+    } : undefined,
+    // FAQ items for structured data
+    faq: sanityCategory.faq?.map(item => ({
+      question: item.question,
+      answer: item.answer,
+    })),
   };
 }
 

@@ -13,6 +13,12 @@ import {
 import { getProductSlugs } from "@/sanity/lib/api";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import {
+  ProductStructuredData,
+  BreadcrumbStructuredData,
+  FAQStructuredData,
+} from "@/components/seo";
+import { generateProductMetadata } from "@/lib/seo";
 
 const BRAND_NAME = "EcoDailySupplies";
 const DEFAULT_SITE_URL = "https://ecodailysupplies.com";
@@ -35,7 +41,8 @@ interface ProductPageProps {
 
 /**
  * Generate dynamic metadata for product pages
- * Includes SEO title, description, Open Graph tags, and structured data
+ * Uses centralized SEO utilities for consistent metadata generation
+ * Supports both legacy SEO fields and new comprehensive SEO object from Sanity
  */
 export async function generateMetadata({
   params,
@@ -50,71 +57,8 @@ export async function generateMetadata({
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || DEFAULT_SITE_URL;
-  const productUrl = `${siteUrl}/products/${slug}`;
-  const productImage = product.images?.[0] || product.image;
-  const productPrice = product.basePrice.toFixed(2);
-
-  // Use custom SEO fields if available, otherwise generate from product data
-  const seoTitle =
-    product.seoTitle ||
-    `${product.name} UK | Buy Online | Packaging Supplies | ${BRAND_NAME}`;
-  const seoDescription =
-    product.seoDescription ||
-    `Buy ${product.name} online in the UK. Professional packaging supplies with bulk pricing. Starting from £${productPrice}. Next day delivery available. ${product.category ? `Part of our ${product.category} range.` : ""}`;
-
-  // Generate comprehensive keywords based on product
-  const productKeywords = [
-    product.name,
-    `${product.name} UK`,
-    "packaging supplies",
-    "packaging supplies UK",
-    product.category || "packaging",
-    `${product.category || "packaging"} UK`,
-    "bulk packaging",
-    "wholesale packaging",
-    "wholesale packaging UK",
-    "next day delivery",
-    "UK packaging supplier",
-    "buy packaging online",
-    "packaging materials UK",
-  ];
-
-  return {
-    title: seoTitle,
-    description: seoDescription,
-    keywords: productKeywords,
-    openGraph: {
-      type: "website",
-      title: seoTitle,
-      description: seoDescription,
-      url: productUrl,
-      siteName: `${BRAND_NAME} - Premium Packaging Supplies`,
-      images: [
-        {
-          url: productImage,
-          width: 1200,
-          height: 630,
-          alt: product.name,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seoTitle,
-      description: seoDescription,
-      images: [productImage],
-    },
-    alternates: {
-      canonical: productUrl,
-    },
-    other: {
-      "product:price:amount": productPrice,
-      "product:price:currency": "GBP",
-      "product:availability": "in stock",
-      "product:condition": "new",
-    },
-  };
+  // Use centralized SEO metadata generation
+  return generateProductMetadata(product, slug);
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
@@ -132,48 +76,44 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL || DEFAULT_SITE_URL;
   const productUrl = `${siteUrl}/products/${slug}`;
-  const productPrice = product.basePrice.toFixed(2);
 
-  // Structured Data (JSON-LD) for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description:
-      product.description || `${product.name} - Premium packaging supplies`,
-    image: product.images || [product.image],
-    sku: product.product_code,
-    brand: {
-      "@type": "Brand",
-      name: BRAND_NAME,
-    },
-    offers: {
-      "@type": "Offer",
-      url: productUrl,
-      priceCurrency: "GBP",
-      price: productPrice,
-      priceValidUntil: new Date(
-        new Date().getTime() + 365 * 24 * 60 * 60 * 1000
-      )
-        .toISOString()
-        .split("T")[0],
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition",
-      seller: {
-        "@type": "Organization",
-        name: BRAND_NAME,
-      },
-    },
-    category: product.category || "Packaging Supplies",
-  };
+  // Build breadcrumb data for structured data
+  const breadcrumbs = [
+    { name: "Home", url: siteUrl },
+    { name: "Products", url: `${siteUrl}/products` },
+    ...(product.category && product.categorySlug
+      ? [
+          {
+            name: product.category,
+            url: `${siteUrl}/products?category=${product.categorySlug}`,
+          },
+        ]
+      : []),
+    { name: product.name },
+  ];
+
+  // Get FAQ items if available (from new SEO schema)
+  const faqItems = (product as { faq?: Array<{ question: string; answer: string }> }).faq;
+
+  // Get custom structured data from Sanity SEO settings
+  const customStructuredData = (product as { seo?: { structuredData?: string } }).seo?.structuredData;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Structured Data (JSON-LD) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    <article className="min-h-screen bg-gray-50" itemScope itemType="https://schema.org/Product">
+      {/* Structured Data (JSON-LD) - Product */}
+      <ProductStructuredData
+        product={product}
+        url={productUrl}
+        customStructuredData={customStructuredData}
       />
+
+      {/* Structured Data (JSON-LD) - Breadcrumbs */}
+      <BreadcrumbStructuredData items={breadcrumbs} />
+
+      {/* Structured Data (JSON-LD) - FAQ (if available) */}
+      {faqItems && faqItems.length > 0 && (
+        <FAQStructuredData items={faqItems} />
+      )}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1600px] py-5 sm:py-7 md:py-8">
         <div className="mx-auto max-w-6xl">
@@ -233,7 +173,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 

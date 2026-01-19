@@ -3,10 +3,65 @@
  * These queries fetch products, categories, and related data
  */
 
+// SEO fields projection (reusable)
+export const SEO_FIELDS = `
+  seo {
+    metaTitle,
+    metaDescription,
+    aiSummary,
+    shareImage {
+      asset-> {
+        _id,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height
+          }
+        }
+      },
+      alt
+    },
+    keywords[] {
+      _key,
+      term,
+      relevance,
+      entityType
+    },
+    canonicalUrl,
+    structuredData,
+    noIndex,
+    noFollow
+  }
+`;
+
+// FAQ fields projection (reusable)
+export const FAQ_FIELDS = `
+  faq[] {
+    _key,
+    question,
+    answer
+  }
+`;
+
+// Ecological credentials projection (reusable)
+export const ECO_CREDENTIALS_FIELDS = `
+  ecologicalCredentials {
+    isRecyclable,
+    isBiodegradable,
+    isCompostable,
+    recycledContentPercent,
+    certifications,
+    carbonFootprintReduction
+  }
+`;
+
 // Base product query with all fields
 export const PRODUCT_QUERY = `
   _id,
   _type,
+  _updatedAt,
+  _createdAt,
   name,
   slug,
   productCode,
@@ -23,6 +78,9 @@ export const PRODUCT_QUERY = `
   seoTitle,
   seoDescription,
   delivery,
+  ${SEO_FIELDS},
+  ${FAQ_FIELDS},
+  ${ECO_CREDENTIALS_FIELDS},
   category-> {
     _id,
     name,
@@ -157,7 +215,9 @@ export const CATEGORY_QUERY = `
     alt
   },
   isActive,
-  sortOrder
+  sortOrder,
+  ${SEO_FIELDS},
+  ${FAQ_FIELDS}
 `;
 
 // All products query

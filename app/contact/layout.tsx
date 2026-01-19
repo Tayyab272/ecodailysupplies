@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com";
 
 /**
  * Contact Page Metadata - SEO Optimized for UK Local Search
@@ -8,10 +9,11 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://ecodailysupplies.com
  * Includes local business signals for Google UK rankings
  */
 export const metadata: Metadata = {
-  title: "Contact EcoDailySupplies | UK Packaging Supplier | Blackburn, Lancashire",
+  title: "Contact EcoDailySupplies: UK Wholesale Eco Packaging",
   description:
-    "Contact EcoDailySupplies for eco-friendly packaging supplies in the UK. Call 07397 057703 or email info@ecodailysupplies.com. Based in Blackburn, Lancashire. Free quotes, wholesale enquiries, bulk orders welcome. Mon-Fri 9AM-6PM.",
+    "Get in touch with EcoDailySupplies for enquiries about eco packaging, paper products, cleaning supplies, safety supplies and wholesale requests. Fast UK support.",
   keywords: [
+    "contact eco supplies UK",
     "contact packaging supplier UK",
     "packaging company Blackburn",
     "Lancashire packaging supplier",
@@ -44,4 +46,3 @@ export default function ContactLayout({
 }) {
   return <>{children}</>;
 }
-

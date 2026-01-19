@@ -57,6 +57,19 @@ export const category = defineType({
       initialValue: 0,
       description: "Lower numbers appear first",
     }),
+    defineField({
+      name: "seo",
+      title: "SEO Settings",
+      type: "seo",
+      description: "Comprehensive SEO settings for this category page.",
+    }),
+    defineField({
+      name: "faq",
+      title: "Category FAQ",
+      type: "array",
+      of: [{ type: "faqItem" }],
+      description: "Frequently asked questions about this category. Generates FAQ structured data.",
+    }),
   ],
   preview: {
     select: {
